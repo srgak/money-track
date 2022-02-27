@@ -1,0 +1,65 @@
+<form class="form-wallet"
+    [formGroup]="walletForm"
+    (submit)="addWallet()">
+    <div class="container">
+      <div class="row form-wallet__head">
+        <div class="col d-flex justify-content-between">
+          <button nz-button 
+            nzType="default"
+            type="submit">Добавить</button>
+          <a class="form-wallet__close"
+            [routerLink]="['../']">X</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="input">
+            <input type="text"
+              nz-input
+              formControlName="name"
+              activeInput="Мой счёт">
+            <label>Название</label>
+          </div>
+          <val-errors controlName="name"></val-errors>
+        </div>
+        <div class="col-12">
+          <div class="input">
+            <input type="text"
+              nz-input
+              formControlName="price"
+              activeInput="1000"
+              mask="separator.2"
+              thousandSeparator=" ">
+            <label>Начальна сумма</label>
+          </div>
+          <val-errors controlName="price"></val-errors>
+        </div>
+        <div class="col-12 form-wallet__select">
+          <div class="input">
+            <nz-select formControlName="type"
+              activeInput="Выберите из списка"
+              nzDropdownClassName="input__dropdown">
+              <nz-option *ngFor="let item of data.moneBoxList; let i = index" 
+                [nzValue]="item.value"
+                [nzLabel]="item.name"></nz-option>
+            </nz-select>
+            <label>Вид счёта</label>
+          </div>
+          <val-errors controlName="type"></val-errors>
+        </div>
+        <div class="col-12 form-wallet__select">
+          <div class="input">
+            <nz-select formControlName="currency"
+              activeInput="Выберите из списка"
+              nzDropdownClassName="input__dropdown">
+              <nz-option *ngFor="let item of data.currencyList"
+                [nzValue]="item.value"
+                [nzLabel]="item.name"></nz-option>
+            </nz-select>
+            <label>Валюта</label>
+          </div>
+          <val-errors controlName="currency"></val-errors>
+        </div>
+      </div>
+    </div>
+  </form>

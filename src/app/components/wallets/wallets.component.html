@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="wallets col">
+      <div class="wallets__item"
+        *ngFor="let item of data.walletList; let i = index">
+          <a class="wallets__open"
+            [routerLink]="['./', i]">
+            <img [src]="item.img" [alt]="'icon' + i">
+            <h2 class="wallets__title">{{item.name}}</h2>
+            <span class="wallets__price">Текущая сумма {{item.price | thousand}}{{item.currency}}</span>
+          </a>
+          <button type="button"
+            class="wallets__delete">
+            <i nz-icon nzType="close" nzTheme="outline"></i>
+          </button>
+          <a [routerLink]="['./form']"
+            [queryParams]="{id: i}"
+            nz-button>Изменить</a>
+      </div>
+      <a class="wallets__add"
+        [routerLink]="['./form']"
+        [skipLocationChange]="true">Добавить счёт</a>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

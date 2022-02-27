@@ -1,0 +1,80 @@
+@import './variables.less';
+
+nz-select,
+nz-date-picker {
+  width: 100%;
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid @Scream-4-hex;
+  color: @Scream-4-hex;
+  padding: 10px 0;
+  &:focus {
+    border-bottom-color: @Scream-5-hex;
+    box-shadow: none;
+  }
+}
+
+.ant-radio-button-wrapper {
+  background: transparent;
+  border-color: @Scream-3-hex;
+}
+
+.ant-radio-button-wrapper-checked:not([class*=' ant-radio-button-wrapper-disabled']).ant-radio-button-wrapper:first-child,
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background: @Scream-3-hex;
+  border-color: @Scream-3-hex;
+  color: @Scream-4-hex;
+}
+
+.ant-radio-button-wrapper:first-child {
+  border-color: @Scream-3-hex;
+}
+
+.ant-radio-button-wrapper:not(:first-child)::before,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
+  background: transparent;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid @Scream-4-hex;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: auto;
+  padding: 10px 0;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-color: @Scream-3-hex;
+  box-shadow: none;
+}
+
+.ant-radio-button-wrapper, .ant-radio-button-wrapper a, .ant-select {
+  color: @Scream-4-hex;
+}
+
+.ant-picker {
+  border: none;
+  border-bottom: 1px solid @Scream-4-hex;
+}
+
+.ant-picker-focused, .ant-picker:hover {
+  border-bottom-color: @Scream-3-hex;
+}
+
+.ant-picker-focused,
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  box-shadow: none;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: transparent;
+  border-bottom-color: @Scream-3-hex;
+}

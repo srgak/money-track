@@ -1,0 +1,61 @@
+<div class="wallet-operations">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <a [routerLink]="['../']"
+          nz-button
+          nzType="default">
+          <i nz-icon nzType="left" nzTheme="outline"></i>
+          Назад
+        </a>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="data.currentWallet.operationList.length; else noOperations">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 wallet-operations__item"
+          *ngFor="let item of data.currentWallet.operationList; let i = index">
+          <div class="d-flex flex-column"
+            [routerLink]="['./form']"
+            [queryParams]="{id: i}">
+            <span class="wallet-operations__price"
+              [ngClass]="{
+                'wallet-operations__price_green': item.type === 'finance',
+                'wallet-operations__price_red': item.type === 'spending'
+              }">{{item.price | thousand}}{{data.currentWallet.currency}}</span>
+            <p>{{item.comment || 'Описания нет'}}</p>
+          </div>
+          <button type="button"
+            class="wallet-operations__delete"
+            (click)="removeOperation(i)">
+            <i nz-icon nzType="close" nzTheme="outline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noOperations>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>Операции по данному счёту отсутствуют</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <a [routerLink]="['./form']"
+          [skipLocationChange]="true"
+          class="wallet-operations__add"
+          nz-button
+          nzType="default"
+          fixBlock>Добавить операцию</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
