@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { InputComponent } from './components/input/input.component';
 import { FieldComponent } from './field.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NgxMaskModule } from 'ngx-mask';
@@ -10,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FieldComponent,
-    InputComponent,
     ActiveInputDirective
   ],
   imports: [
@@ -19,8 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxMaskModule.forRoot()
   ],
   exports: [
-    FieldComponent,
-    InputComponent
+    FieldComponent
   ]
 })
 export class FieldModule { }

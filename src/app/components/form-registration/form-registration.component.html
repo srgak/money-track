@@ -6,27 +6,27 @@
         <h1>Регистрация пользователя</h1>
       </div>
       <div class="col-12">
-        <lib-input formControlName="firstName"
+        <lib-field formControlName="firstName"
           placeholder="Иван"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Имя"></lib-input>
+          label="Имя"></lib-field>
         <val-errors controlName="firstName"></val-errors>
       </div>
       <div class="col-12">
-        <lib-input formControlName="lastName"
+        <lib-field formControlName="lastName"
           placeholder="Иванов"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Фамилия"></lib-input>
+          label="Фамилия"></lib-field>
         <val-errors controlName="lastName"></val-errors>
       </div>
       <div class="col-12">
-        <lib-input formControlName="patronymic"
+        <lib-field formControlName="patronymic"
           placeholder="Иванович"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Отчество"></lib-input>
+          label="Отчество"></lib-field>
         <val-errors controlName="patronymic"></val-errors>
       </div>
       <div class="col-12">
@@ -41,10 +41,10 @@
         </nz-radio-group>
       </div>
       <div class="col-12">
-        <lib-input formControlName="login"
+        <lib-field formControlName="login"
           placeholder="loginName"
           mask="S*"
-          label="Придумайте логин"></lib-input>
+          label="Придумайте логин"></lib-field>
         <val-errors controlName="login"></val-errors>
       </div>
       <div class="col-12">

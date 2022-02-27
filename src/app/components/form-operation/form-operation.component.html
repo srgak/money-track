@@ -14,20 +14,20 @@
         </nz-radio-group>
       </div>
       <div class="col-12">
-        <lib-input formControlName="price"
+        <lib-field formControlName="price"
           placeholder="100"
           mask="separator.2"
           maskThousand=" "
           [maskSuffix]="data.currentWallet.currency"
-          label="Сумма"></lib-input>
+          label="Сумма"></lib-field>
         <val-errors controlName="price"></val-errors>
       </div>
       <div class="col-12">
-        <lib-input formControlName="comment"
+        <lib-field formControlName="comment"
           placeholder="Цитирую известного философа"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Описание"></lib-input>
+          label="Описание"></lib-field>
       </div>
       <div class="col-12">
         <input-date-picker formControlName="date"
