@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/variables.less';
+@import './assets/styles/zorro.less';
+
+* {
+  box-sizing:border-box;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+body {
+  background: @Scream-2-hex;
+  color: @Scream-4-hex;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: @white;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: @white;
+}
+
+p {
+  margin: 0;
+}
+
+.input {
+  margin-bottom: 10px;
+  position: relative;
+  input,
+  .ant-picker {
+    background: transparent;
+  }
+  .ant-picker {
+    padding: 0;
+  }
+  input {
+    font-size: 16px;
+    padding: 10px 0;
+    color: @white;
+  }
+  label {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: .3s;
+  }
+  &__dropdown {
+    .ant-select-dropdown {
+      border: 1px solid @Scream-3-hex;
+      background: @Scream-2-hex;
+      padding: 0;
+      margin-top: 0;
+      border-radius: 0 0 5px 5px;
+    }
+    .ant-select-item {
+      color: @Scream-4-hex;
+      font-size: 16px;
+    }
+    .ant-select-item-option-active {
+      background: @Scream-3-hex;
+    }
+  }
+  &__date-picker {
+    .ant-picker {
+      &-panel {
+        border-color: @Scream-3-hex;
+        &-container {
+          background: @Scream-2-hex;
+        }
+        .ant-picker-footer {
+          border-top-color: @Scream-3-hex;
+        }
+      }
+      &-header {
+        border-bottom-color: @Scream-3-hex;
+        button {
+          color: @Scream-5-hex;
+        }
+      }
+      &-content {
+        th {
+          color: @Scream-4-hex;
+        }
+      }
+      &-cell {
+        color: @Scream-4-hex;
+        &-disabled {
+          opacity: .25;
+        }
+        &-in-view.ant-picker-cell {
+          &-selected .ant-picker-cell-inner {
+            background: @Scream-1-hex;
+          }
+          &-today .ant-picker-cell-inner::before {
+            border-color: @Scream-1-hex;
+          }
+        }
+      }
+      &-today-btn {
+        color: @Scream-5-hex;
+      }
+    }
+  }
+  &_active {
+    label,
+    textarea + label {
+      font-size: 12px;
+      top: 8px;
+    }
+  }
+  &__error {
+    color: @Scream-1-hex;
+    margin-bottom: 10px;
+  }
+}
