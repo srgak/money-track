@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface Wallet {
-  id: number;
+  id?: number;
   img: string;
   name: string;
   type: string;

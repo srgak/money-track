@@ -4,6 +4,9 @@
   &__item {
     display: flex;
     flex-wrap: wrap;
+    background: @Scream-3-hex;
+    border-top: 1px solid @Scream-2-hex;
+    border-bottom: 1px solid @Scream-2-hex;
     img {
       width: 50px;
       margin-right: 20px;
@@ -14,6 +17,13 @@
   }
   &__delete {
     flex-basis: 50px;
+    width: 50px;
+    height: 50px;
+    background: @Scream-1-hex;
+    align-self: center;
+    .anticon {
+      font-size: 50px;
+    }
   }
   &__title {
     color: @white;

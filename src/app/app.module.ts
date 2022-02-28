@@ -65,6 +65,7 @@ import { PasswordModule } from 'dist/password';
     NzButtonModule,
     NzRadioModule,
     NzIconModule,
+    
     NgxMaskModule.forRoot(),
     ValdemortModule,
     //свои библиотеки

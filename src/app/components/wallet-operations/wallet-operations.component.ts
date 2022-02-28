@@ -23,13 +23,13 @@ export class WalletOperationsComponent implements OnInit {
         break;
     }
     this.data.currentWallet.operationList.splice(index, 1);
+    this.data.setLocStore();
   }
 
   ngOnInit(): void {
     this.currentRoute.params.subscribe(val => {
       this.data.currentWallet = this.data.walletList[+val['id']];
+      this.data.currentWallet.id = +val['id'];
     });
-    console.log(this.data);
-  }
-
+  };
 }

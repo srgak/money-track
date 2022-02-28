@@ -6,7 +6,7 @@
         <div class="col d-flex justify-content-between">
           <button nz-button 
             nzType="default"
-            type="submit">Добавить</button>
+            type="submit">{{isChange ? 'Изменить' : 'Добавить'}}</button>
           <a class="form-wallet__close"
             [routerLink]="['../']">X</a>
         </div>

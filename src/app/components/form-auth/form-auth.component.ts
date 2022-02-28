@@ -35,9 +35,7 @@ export class FormAuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authForm.get('login').valueChanges.subscribe(val => {
-      console.log(val);
-    });
+    
   }
 
 }

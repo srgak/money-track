@@ -12,6 +12,11 @@ export class WalletsComponent implements OnInit {
 
   constructor(public data: DataService) { }
 
+  public removeWallet(index: number): void {
+    this.data.walletList.splice(index, 1);
+    this.data.setLocStore();
+  }
+
   ngOnInit(): void {
     if(!this.data.walletList.length) {
       this.data.walletList = JSON.parse(localStorage.getItem('walletList') || JSON.stringify([]));

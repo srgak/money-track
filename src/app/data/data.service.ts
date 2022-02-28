@@ -13,7 +13,7 @@ export class DataService {
   public userData: User | null = null;
   public walletList: Wallet[] = [];
   public currentWallet: Wallet = {
-    id: 0,
+    // id: 0,
     img: '',
     name: '',
     type: '',

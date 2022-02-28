@@ -93,7 +93,6 @@ class DatePickerComponent {
         this.onTouch = fn;
     }
     ngOnInit() {
-        console.log(this.disabledDate);
         this.startControl.valueChanges.subscribe(val => {
             if (this.onChange) {
                 this.onChange(val);
