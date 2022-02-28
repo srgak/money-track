@@ -14,6 +14,14 @@
       "field": [
         "dist/field/field",
         "dist/field"
+      ],
+      "password": [
+        "dist/password/password",
+        "dist/password"
+      ],
+      "select": [
+        "dist/select/select",
+        "dist/select"
       ]
     },
     "noImplicitOverride": true,

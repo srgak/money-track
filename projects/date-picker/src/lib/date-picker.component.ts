@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'input-date-picker',
@@ -13,7 +13,7 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class DatePickerComponent implements OnInit {
+export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   constructor() { }
 

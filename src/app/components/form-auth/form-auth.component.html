@@ -13,20 +13,9 @@
         <val-errors controlName="login"></val-errors>
       </div>
       <div class="col-12">
-        <div class="input">
-          <nz-input-group [nzSuffix]="suffixTemplate">
-            <input [type]="passwordVisible ? 'text' : 'password'"
-              formControlName="password"
-              nz-input
-              activeInput="123">
-              <label>Пароль</label>
-          </nz-input-group>
-          <ng-template #suffixTemplate>
-            <i nz-icon
-              [nzType]="'eye'"
-              (click)="passwordVisible = !passwordVisible"></i>
-          </ng-template>
-        </div>
+        <input-password formControlName="password"
+          placeholder="123"
+          label="Пароль"></input-password>
         <val-errors controlName="password"></val-errors>
       </div>
       <div class="col-6">

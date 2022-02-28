@@ -169,6 +169,68 @@
           }
         }
       }
+    },
+    "select": {
+      "projectType": "library",
+      "root": "projects/select",
+      "sourceRoot": "projects/select/src",
+      "prefix": "input",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/select/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/select/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/select/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/select/src/test.ts",
+            "tsConfig": "projects/select/tsconfig.spec.json",
+            "karmaConfig": "projects/select/karma.conf.js"
+          }
+        }
+      }
+    },
+    "password": {
+      "projectType": "library",
+      "root": "projects/password",
+      "sourceRoot": "projects/password/src",
+      "prefix": "input",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/password/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/password/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/password/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/password/src/test.ts",
+            "tsConfig": "projects/password/tsconfig.spec.json",
+            "karmaConfig": "projects/password/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "novella"

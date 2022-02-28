@@ -1,0 +1,10 @@
+<div class="input">
+  <nz-select [formControl]="startControl"
+    [activeInput]="placeholder"
+    nzDropdownClassName="input__dropdown">
+    <nz-option *ngFor="let item of list;"
+      [nzValue]="item.value"
+      [nzLabel]="item.name"></nz-option>
+  </nz-select>
+  <label>{{label}}</label>
+</div>

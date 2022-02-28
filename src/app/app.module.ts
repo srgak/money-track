@@ -20,16 +20,13 @@ import { LoginComponent } from './components/login/login.component';
 import { DataService } from './data/data.service';
 
 //директивы
-import { ActiveInputDirective } from './directives/active-input.directive';
 import { FixBlockDirective } from './directives/fix-block.directive';
 
 //пайпы
 import { ThousandPipe } from './pipes/thousand.pipe';
 
 //ng-zorro
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -43,6 +40,8 @@ import { ValdemortModule } from 'ngx-valdemort';
 //свои библиотеки
 import { FieldModule } from 'field';
 import { DatePickerModule } from 'dist/date-picker';
+import { SelectModule } from 'select';
+import { PasswordModule } from 'dist/password';
 
 @NgModule({
   declarations: [
@@ -52,7 +51,6 @@ import { DatePickerModule } from 'dist/date-picker';
     FormOperationComponent,
     FormWalletComponent,
     ThousandPipe,
-    ActiveInputDirective,
     FixBlockDirective,
     FormRegistrationComponent,
     FormAuthComponent,
@@ -63,16 +61,17 @@ import { DatePickerModule } from 'dist/date-picker';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NzInputModule,
+    //ng-zorro
     NzButtonModule,
-    NzSelectModule,
     NzRadioModule,
     NzIconModule,
     NgxMaskModule.forRoot(),
     ValdemortModule,
     //свои библиотеки
     FieldModule,
-    DatePickerModule
+    DatePickerModule,
+    SelectModule,
+    PasswordModule
   ],
   providers: [ 
     DataService, 

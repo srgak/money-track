@@ -1,0 +1,31 @@
+{
+  "name": "password",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^13.1.0",
+    "@angular/core": "^13.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/password.mjs",
+  "es2020": "fesm2020/password.mjs",
+  "esm2020": "esm2020/password.mjs",
+  "fesm2020": "fesm2020/password.mjs",
+  "fesm2015": "fesm2015/password.mjs",
+  "typings": "password.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./password.d.ts",
+      "esm2020": "./esm2020/password.mjs",
+      "es2020": "./fesm2020/password.mjs",
+      "es2015": "./fesm2015/password.mjs",
+      "node": "./fesm2015/password.mjs",
+      "default": "./fesm2020/password.mjs"
+    }
+  },
+  "sideEffects": false
+}

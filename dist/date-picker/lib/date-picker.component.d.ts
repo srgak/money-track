@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl } from '@angular/forms';
 import * as i0 from "@angular/core";
-export declare class DatePickerComponent implements OnInit {
+export declare class DatePickerComponent implements OnInit, ControlValueAccessor {
     constructor();
     placeholder: string;
     label: string;

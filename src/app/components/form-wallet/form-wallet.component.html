@@ -13,51 +13,31 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="input">
-            <input type="text"
-              nz-input
-              formControlName="name"
-              activeInput="Мой счёт">
-            <label>Название</label>
-          </div>
+          <lib-field formControlName="name"
+            placeholder="Мой счёт"
+            label="Название"></lib-field>
           <val-errors controlName="name"></val-errors>
         </div>
         <div class="col-12">
-          <div class="input">
-            <input type="text"
-              nz-input
-              formControlName="price"
-              activeInput="1000"
-              mask="separator.2"
-              thousandSeparator=" ">
-            <label>Начальна сумма</label>
-          </div>
+          <lib-field formControlName="price"
+            placeholder="1000"
+            mask="separator.2"
+            maskThousand=" "
+            label="Начальная сумма"></lib-field>
           <val-errors controlName="price"></val-errors>
         </div>
         <div class="col-12 form-wallet__select">
-          <div class="input">
-            <nz-select formControlName="type"
-              activeInput="Выберите из списка"
-              nzDropdownClassName="input__dropdown">
-              <nz-option *ngFor="let item of data.moneBoxList; let i = index" 
-                [nzValue]="item.value"
-                [nzLabel]="item.name"></nz-option>
-            </nz-select>
-            <label>Вид счёта</label>
-          </div>
+          <input-select formControlName="type"
+            placeholder="Выберите из списка"
+            label="Вид счёта"
+            [list]="data.moneBoxList"></input-select>
           <val-errors controlName="type"></val-errors>
         </div>
         <div class="col-12 form-wallet__select">
-          <div class="input">
-            <nz-select formControlName="currency"
-              activeInput="Выберите из списка"
-              nzDropdownClassName="input__dropdown">
-              <nz-option *ngFor="let item of data.currencyList"
-                [nzValue]="item.value"
-                [nzLabel]="item.name"></nz-option>
-            </nz-select>
-            <label>Валюта</label>
-          </div>
+          <input-select formControlName="currency"
+            placeholder="Выберите из списка"
+            label="Валюта"
+            [list]="data.currencyList"></input-select>
           <val-errors controlName="currency"></val-errors>
         </div>
       </div>
