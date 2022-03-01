@@ -20,7 +20,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() public placeholder: string;
   @Input() public label: string;
   @Input() public list;
-
+  
   public startControl: FormControl = new FormControl();
   private onChange: Function;
   private onTouch: Function;

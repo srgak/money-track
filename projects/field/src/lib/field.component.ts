@@ -23,6 +23,7 @@ export class FieldComponent implements OnInit, ControlValueAccessor {
   @Input() public patterns;
   @Input() public maskSuffix: string = '';
   @Input() public maskThousand: string;
+  @Input() public readonly: boolean;
 
   public startControl: FormControl = new FormControl();
   private onChange: Function;

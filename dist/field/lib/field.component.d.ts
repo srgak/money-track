@@ -9,6 +9,7 @@ export declare class FieldComponent implements OnInit, ControlValueAccessor {
     patterns: any;
     maskSuffix: string;
     maskThousand: string;
+    readonly: boolean;
     startControl: FormControl;
     private onChange;
     private onTouch;
@@ -17,5 +18,5 @@ export declare class FieldComponent implements OnInit, ControlValueAccessor {
     registerOnTouched(fn: Function): void;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FieldComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FieldComponent, "lib-field", never, { "placeholder": "placeholder"; "mask": "mask"; "label": "label"; "patterns": "patterns"; "maskSuffix": "maskSuffix"; "maskThousand": "maskThousand"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FieldComponent, "lib-field", never, { "placeholder": "placeholder"; "mask": "mask"; "label": "label"; "patterns": "patterns"; "maskSuffix": "maskSuffix"; "maskThousand": "maskThousand"; "readonly": "readonly"; }, {}, never, never>;
 }

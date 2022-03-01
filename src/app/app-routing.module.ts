@@ -8,6 +8,7 @@ import { HasOperationsGuard } from './guards/has-operations.guard';
 import { WalletsComponent } from './components/wallets/wallets.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { LoginComponent } from './components/login/login.component';
+import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
 
 const routes: Routes = [
   { path: 'wallets', component: WalletsComponent, canActivate: [IsLoggedGuard], children: [
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'form', component: FormOperationComponent, pathMatch: 'full' }
     ]
   },
+  { path: 'currency', component: FormCurrencyComponent },
   {
     path: '', component: LoginComponent, pathMatch: 'full'
   }

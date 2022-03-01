@@ -4,7 +4,8 @@
     nzDropdownClassName="input__dropdown">
     <nz-option *ngFor="let item of list;"
       [nzValue]="item.value"
-      [nzLabel]="item.name"></nz-option>
+      [nzLabel]="item.name"
+      [nzHide]="item.hide"></nz-option>
   </nz-select>
   <label>{{label}}</label>
 </div>

@@ -15,6 +15,7 @@ import { FormWalletComponent } from './components/form-wallet/form-wallet.compon
 import { FormRegistrationComponent } from './components/form-registration/form-registration.component';
 import { FormAuthComponent } from './components/form-auth/form-auth.component';
 import { LoginComponent } from './components/login/login.component';
+import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
 
 //сервисы
 import { DataService } from './data/data.service';
@@ -54,7 +55,8 @@ import { PasswordModule } from 'dist/password';
     FixBlockDirective,
     FormRegistrationComponent,
     FormAuthComponent,
-    LoginComponent
+    LoginComponent,
+    FormCurrencyComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { PasswordModule } from 'dist/password';
     NzButtonModule,
     NzRadioModule,
     NzIconModule,
-    
+
     NgxMaskModule.forRoot(),
     ValdemortModule,
     //свои библиотеки

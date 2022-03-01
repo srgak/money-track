@@ -56,7 +56,7 @@ export class DataService {
       value: '£'
     },
     {
-      name: 'Японская йена (¥)',
+      name: 'Японская иена (¥)',
       value: '¥'
     }
   ];
