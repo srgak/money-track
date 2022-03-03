@@ -26,8 +26,10 @@ export class FormOperationComponent implements OnInit {
   }
   public addOperation(): void {
     if(this.operationForm.valid) {
+      //подготовить данные
       const operation: WalletOperation = {...this.operationForm.value};
       operation.price = +operation.price;
+      //изменить данные
       switch(operation.type) {
         case 'finance':
           this.data.currentWallet.price += operation.price;
@@ -39,6 +41,7 @@ export class FormOperationComponent implements OnInit {
           break;
       }
       this.data.walletList[this.data.currentWallet.id].operationList?.push(operation);
+      //обновить хранилище, сбросить форму, вернуться обратно
       this.data.setLocStore();
       this.operationForm.reset();
       this.operationForm.get('type')?.setValue('finance');
@@ -48,8 +51,10 @@ export class FormOperationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //записать текущую операцию
     const id : number = this.currRoute.snapshot.queryParams['id'];
     const operationData: WalletOperation = this.data.currentWallet.operationList[id];
+    //пробросить данные при необходимости
     if(operationData) {
       this.operationForm.setValue({
         type: operationData.type,

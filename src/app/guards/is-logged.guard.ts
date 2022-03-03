@@ -8,7 +8,7 @@ export class IsLoggedGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    if(!!localStorage.getItem('isLogin')) {
+    if(!!localStorage.getItem('userData')) {
       return true;
     } else {
       this.router.navigate(['']);

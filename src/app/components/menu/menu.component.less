@@ -1,0 +1,48 @@
+@import '../../../assets/styles/variables.less';
+
+.menu {
+  position: fixed;
+  bottom: 30px;
+  left: 15px;
+  &__open {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: @Scream-3-hex;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 10px 1px @Scream-5-hex;
+  }
+  &__drop {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: @Scream-3-hex;
+    padding-top: 10px;
+    &_active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__title {
+    margin-bottom: 20px;
+  }
+  &-list {
+    &__item {
+      padding: 10px;
+      border: 1px solid @Scream-5-hex;
+      display: block;
+      &_active {
+        background: @Scream-1-hex;
+      }
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

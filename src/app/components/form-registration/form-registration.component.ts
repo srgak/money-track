@@ -22,16 +22,16 @@ export class FormRegistrationComponent implements OnInit {
   public passwordVisible = false;
   public addUser(): void {
     if(this.regForm.valid) {
+      //подготовить данные
       const userData: User = {...this.regForm.value};
-
-      //занести данные в localstorage
+      userData.walletList = [];
       if(!localStorage.getItem('userList')) {
         localStorage.setItem('userList', JSON.stringify([]));
       }
       const parsedArr: User[] = JSON.parse(localStorage.getItem('userList'));
+      //изменить данные, обновить хранилище, показать форму авторизации
       parsedArr.push(userData);
       localStorage.setItem('userList', JSON.stringify(parsedArr));
-
       this.data.needReg = false;
     }
   }

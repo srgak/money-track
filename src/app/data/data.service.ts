@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Currency, MoneyBox, User, Wallet } from './interfaces';
+import { Currency, Menu, MoneyBox, User, Wallet } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +9,24 @@ export class DataService {
 
   constructor() { }
 
-  public needReg: boolean = true;
+  public needReg: boolean = false;
   public userData: User | null = null;
+  public menuData: Menu[] = [
+    {
+      name: 'Профиль',
+      link: '/account'
+    },
+    {
+      name: 'Счета',
+      link: '/wallets'
+    },
+    {
+      name: 'Конвертер валют',
+      link: '/currency'
+    }
+  ];
   public walletList: Wallet[] = [];
-  public currentWallet: Wallet = {
-    // id: 0,
-    img: '',
-    name: '',
-    type: '',
-    price: 0,
-    currency: '',
-    operationList: []
-  };
+  public currentWallet: Wallet | null = null;
   public moneBoxList: MoneyBox[] = [
     {
       value: 'card',
@@ -67,7 +73,15 @@ export class DataService {
   ];
 
   public setLocStore(): void {
-    localStorage.setItem('walletList', JSON.stringify(this.walletList));
+    const userData: User = JSON.parse(localStorage.getItem('userData'));
+    const userList: User[] = JSON.parse(localStorage.getItem('userList'));
+    const index = userList.findIndex(item => item.login === userData.login);
+    //записать данные в userData
+    userData.walletList = this.walletList;
+    localStorage.setItem('userData', JSON.stringify(userData));
+    //записать данные в userList
+    userList.splice(index, 1, userData);
+    localStorage.setItem('userList', JSON.stringify(userList));
   }
   public isPasswordCorrect(control: FormControl): Object | null {
     const { value } = control

@@ -9,8 +9,10 @@ import { WalletsComponent } from './components/wallets/wallets.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { LoginComponent } from './components/login/login.component';
 import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
+import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [
+  { path: 'account', component: AccountComponent, canActivate: [IsLoggedGuard] },
   { path: 'wallets', component: WalletsComponent, canActivate: [IsLoggedGuard], children: [
     { path: 'form', component: FormWalletComponent, pathMatch: 'full' }
   ]},
@@ -19,7 +21,7 @@ const routes: Routes = [
       { path: 'form', component: FormOperationComponent, pathMatch: 'full' }
     ]
   },
-  { path: 'currency', component: FormCurrencyComponent },
+  { path: 'currency', component: FormCurrencyComponent, canActivate: [IsLoggedGuard] },
   {
     path: '', component: LoginComponent, pathMatch: 'full'
   }

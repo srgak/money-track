@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/data/data.service';
 import { Wallet } from 'src/app/data/interfaces';
 
@@ -19,7 +18,7 @@ export class WalletsComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.data.walletList.length) {
-      this.data.walletList = JSON.parse(localStorage.getItem('walletList') || JSON.stringify([]));
+      this.data.walletList = JSON.parse(localStorage.getItem('userData')).walletList;
     }
   }
 

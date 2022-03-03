@@ -1,3 +1,8 @@
+export interface Menu {
+  name: string;
+  link: string;
+}
+
 export interface User {
   firstName: string;
   lastName: string;
@@ -5,6 +10,7 @@ export interface User {
   gender: string;
   login: string;
   password: string;
+  walletList: Wallet[];
 }
 
 export interface Wallet {

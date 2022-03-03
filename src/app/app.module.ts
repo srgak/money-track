@@ -16,6 +16,8 @@ import { FormRegistrationComponent } from './components/form-registration/form-r
 import { FormAuthComponent } from './components/form-auth/form-auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
+import { AccountComponent } from './components/account/account.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 //сервисы
 import { DataService } from './data/data.service';
@@ -56,7 +58,9 @@ import { PasswordModule } from 'dist/password';
     FormRegistrationComponent,
     FormAuthComponent,
     LoginComponent,
-    FormCurrencyComponent
+    FormCurrencyComponent,
+    AccountComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
