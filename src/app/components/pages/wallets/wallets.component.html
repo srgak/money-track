@@ -3,7 +3,7 @@
     <a class="wallets__button"
       [routerLink]="['/account']">Профиль</a>
     <a class="wallets__button"
-      [routerLink]="['./form']"
+      [routerLink]="['./', 'form']"
       [skipLocationChange]="true">Добавить счёт</a>
   </div>
   <div class="row wallets">
@@ -21,9 +21,9 @@
           class="wallets__delete">
           <i nz-icon nzType="close" nzTheme="outline"></i>
         </button>
-        <a [routerLink]="['./form']"
-          [queryParams]="{id: i}"
-          nz-button>Изменить</a>
+        <a class="button" 
+          [routerLink]="['./', 'form']"
+          [queryParams]="{id: i}">Изменить</a>
       </div>
     </ng-container>
     <ng-template #noWallets>

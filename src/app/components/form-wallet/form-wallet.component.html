@@ -4,8 +4,7 @@
     <div class="container">
       <div class="row form-wallet__head">
         <div class="col d-flex justify-content-between">
-          <button nz-button 
-            nzType="default"
+          <button class="button"
             type="submit">{{isChange ? 'Изменить' : 'Добавить'}}</button>
           <a class="form-wallet__close"
             [routerLink]="['../']">X</a>
@@ -18,6 +17,13 @@
             label="Название"></lib-field>
           <val-errors controlName="name"></val-errors>
         </div>
+        <div class="col-12 form-wallet__select">
+          <input-select formControlName="type"
+            placeholder="Выберите из списка"
+            label="Вид счёта"
+            [list]="data.moneBoxList"></input-select>
+          <val-errors controlName="type"></val-errors>
+        </div>
         <div class="col-12">
           <lib-field formControlName="price"
             placeholder="1000"
@@ -25,13 +31,6 @@
             maskThousand=" "
             label="Начальная сумма"></lib-field>
           <val-errors controlName="price"></val-errors>
-        </div>
-        <div class="col-12 form-wallet__select">
-          <input-select formControlName="type"
-            placeholder="Выберите из списка"
-            label="Вид счёта"
-            [list]="data.moneBoxList"></input-select>
-          <val-errors controlName="type"></val-errors>
         </div>
         <div class="col-12 form-wallet__select">
           <input-select formControlName="currency"

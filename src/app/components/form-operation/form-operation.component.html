@@ -36,9 +36,8 @@
         <val-errors controlName="date"></val-errors>
       </div>
       <div class="col d-flex justify-content-between">
-        <button nz-button
-          nzType="default"
-          type="submit">Добавить операцию</button>
+        <button class="button"
+          type="submit">{{isChange ? 'Изменить' : 'Добавить операцию'}}</button>
         <a [routerLink]="['../']">
           <i nz-icon nzType="close" nzTheme="outline"></i>
         </a>

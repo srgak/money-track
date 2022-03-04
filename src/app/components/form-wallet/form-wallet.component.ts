@@ -21,7 +21,7 @@ export class FormWalletComponent implements OnInit {
   });
 
   public isChange: boolean = false;
-  public id: number;
+  private id: number;
 
   public addWallet(): void {
     if(this.walletForm.valid) {

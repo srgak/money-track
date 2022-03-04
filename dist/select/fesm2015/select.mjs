@@ -5,7 +5,7 @@ import { FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import * as i1$1 from 'ng-zorro-antd/select';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import * as i4 from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 class SelectService {
     constructor() { }
@@ -128,11 +128,11 @@ class SelectModule {
 }
 SelectModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: SelectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
 SelectModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: SelectModule, declarations: [SelectComponent,
-        ActiveInputDirective], imports: [BrowserModule,
+        ActiveInputDirective], imports: [CommonModule,
         ReactiveFormsModule,
         NzSelectModule], exports: [SelectComponent] });
 SelectModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: SelectModule, imports: [[
-            BrowserModule,
+            CommonModule,
             ReactiveFormsModule,
             NzSelectModule
         ]] });
@@ -144,7 +144,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ActiveInputDirective
                     ],
                     imports: [
-                        BrowserModule,
+                        CommonModule,
                         ReactiveFormsModule,
                         NzSelectModule
                     ],

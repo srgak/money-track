@@ -1,29 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { WalletOperationsComponent } from './components/wallet-operations/wallet-operations.component';
-import { FormOperationComponent } from './components/form-operation/form-operation.component';
-import { FormWalletComponent } from './components/form-wallet/form-wallet.component';
-import { HasOperationsGuard } from './guards/has-operations.guard';
-import { WalletsComponent } from './components/wallets/wallets.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { LoginComponent } from './components/login/login.component';
 import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
-import { AccountComponent } from './components/account/account.component';
+import { AccountComponent } from './components/pages/account/account.component';
 
 const routes: Routes = [
-  { path: 'account', component: AccountComponent, canActivate: [IsLoggedGuard] },
-  { path: 'wallets', component: WalletsComponent, canActivate: [IsLoggedGuard], children: [
-    { path: 'form', component: FormWalletComponent, pathMatch: 'full' }
-  ]},
-  { path: 'wallets/:id', component: WalletOperationsComponent, canActivate: [HasOperationsGuard], 
-    children:[
-      { path: 'form', component: FormOperationComponent, pathMatch: 'full' }
-    ]
-  },
-  { path: 'currency', component: FormCurrencyComponent, canActivate: [IsLoggedGuard] },
   {
     path: '', component: LoginComponent, pathMatch: 'full'
+  },
+  {
+    path: 'account',
+    pathMatch: 'full',
+    loadChildren: () => import('./components/pages/account/account.module').then(m => m.AccountModule),
+    canLoad: [IsLoggedGuard]
+  },
+  {
+    path: 'wallets',
+    pathMatch: 'full',
+    loadChildren: () => import('./components/pages/wallets/wallets.module').then(m => m.WalletsModule),
+    canLoad: [IsLoggedGuard]
+  },
+  {
+    path: 'currency',
+    pathMatch: 'full',
+    loadChildren: () => import('./components/pages/currency/currency.module').then(m => m.CurrencyModule),
+    canLoad: [IsLoggedGuard]
   }
 ];
 

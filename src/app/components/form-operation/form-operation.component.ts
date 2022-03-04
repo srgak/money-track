@@ -20,6 +20,7 @@ export class FormOperationComponent implements OnInit {
     comment: new FormControl(''),
     date: new FormControl('', Validators.required)
   });
+  public isChange: boolean = false;
 
   public disableNextDate(current: Date): boolean {
     return differenceInCalendarDays(current, new Date()) > 0;
@@ -29,18 +30,10 @@ export class FormOperationComponent implements OnInit {
       //подготовить данные
       const operation: WalletOperation = {...this.operationForm.value};
       operation.price = +operation.price;
+      operation.price = operation.type === 'finance' ? operation.price : operation.price * -1;
       //изменить данные
-      switch(operation.type) {
-        case 'finance':
-          this.data.currentWallet.price += operation.price;
-          break;
-        case 'spending':
-          this.data.currentWallet.price -= operation.price;
-          break;
-        default:
-          break;
-      }
-      this.data.walletList[this.data.currentWallet.id].operationList?.push(operation);
+      this.data.walletList[this.data.currentWallet.id].operationList.push(operation);
+      this.data.currentWallet.price += operation.price;
       //обновить хранилище, сбросить форму, вернуться обратно
       this.data.setLocStore();
       this.operationForm.reset();
@@ -51,17 +44,6 @@ export class FormOperationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //записать текущую операцию
-    const id : number = this.currRoute.snapshot.queryParams['id'];
-    const operationData: WalletOperation = this.data.currentWallet.operationList[id];
-    //пробросить данные при необходимости
-    if(operationData) {
-      this.operationForm.setValue({
-        type: operationData.type,
-        price: operationData.price,
-        comment: operationData.comment,
-        date: operationData.date
-      });
-    }
+
   }
 }

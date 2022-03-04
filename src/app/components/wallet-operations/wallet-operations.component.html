@@ -2,9 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <a [routerLink]="['../']"
-          nz-button
-          nzType="default">
+        <a class="button" 
+          [routerLink]="['../']">
           <i nz-icon nzType="left" nzTheme="outline"></i>
           Назад
         </a>
@@ -16,15 +15,14 @@
       <div class="row">
         <div class="col-12 wallet-operations__item"
           *ngFor="let item of data.currentWallet.operationList; let i = index">
-          <div class="d-flex flex-column"
-            [routerLink]="['./form']"
-            [queryParams]="{id: i}">
+          <div class="d-flex flex-column">
             <span class="wallet-operations__price"
               [ngClass]="{
                 'wallet-operations__price_green': item.type === 'finance',
                 'wallet-operations__price_red': item.type === 'spending'
               }">{{item.price | thousand}}{{data.currentWallet.currency}}</span>
             <p>{{item.comment || 'Описания нет'}}</p>
+            <p>Дата: {{item.date | date:'MM.dd.yyyy'}}</p>
           </div>
           <button type="button"
             class="wallet-operations__delete"
@@ -49,9 +47,7 @@
       <div class="col">
         <a [routerLink]="['./form']"
           [skipLocationChange]="true"
-          class="wallet-operations__add"
-          nz-button
-          nzType="default"
+          class="button wallet-operations__add"
           fixBlock>Добавить операцию</a>
       </div>
     </div>

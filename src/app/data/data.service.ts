@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Currency, Menu, MoneyBox, User, Wallet } from './interfaces';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Currency, Menu, MoneyBox, User, Wallet, WalletOperation } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
