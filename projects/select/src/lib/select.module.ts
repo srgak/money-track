@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RiseInputModule } from 'dist/rise-input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { ActiveInputDirective } from './directives/active-input.directive';
 import { SelectComponent } from './select.component';
 
 
 
 @NgModule({
   declarations: [
-    SelectComponent,
-    ActiveInputDirective
+    SelectComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NzSelectModule
+    NzSelectModule,
+    RiseInputModule
   ],
   exports: [
     SelectComponent

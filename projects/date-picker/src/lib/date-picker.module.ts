@@ -5,18 +5,18 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NZ_I18N, ru_RU } from 'ng-zorro-antd/i18n';
 import ru from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
-import { ActiveInputDirective } from './directives/active-input.directive';
+import { RiseInputModule } from 'dist/rise-input';
 
 registerLocaleData(ru)
 
 @NgModule({
   declarations: [
-    DatePickerComponent,
-    ActiveInputDirective
+    DatePickerComponent
   ],
   imports: [
     ReactiveFormsModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    RiseInputModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   exports: [

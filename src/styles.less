@@ -129,4 +129,62 @@ p {
     color: @Scream-1-hex;
     margin-bottom: 10px;
   }
+  &__status {
+    &_loading {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid @Scream-5-hex;
+      border-top-color: transparent;
+      animation: loading 1s linear infinite;
+    }
+    &_error {
+      position: relative;
+      color: @Scream-1-hex;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 3px;
+        background: @Scream-1-hex;
+        top: 50%;
+        left: 50%;
+      }
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+  &__clear {
+    position: relative;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 3px;
+      background: @Scream-1-hex;
+      top: 50%;
+      left: 50%;
+    }
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

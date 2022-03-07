@@ -231,6 +231,68 @@
           }
         }
       }
+    },
+    "autocomplete": {
+      "projectType": "library",
+      "root": "projects/autocomplete",
+      "sourceRoot": "projects/autocomplete/src",
+      "prefix": "input",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/autocomplete/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/autocomplete/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/autocomplete/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/autocomplete/src/test.ts",
+            "tsConfig": "projects/autocomplete/tsconfig.spec.json",
+            "karmaConfig": "projects/autocomplete/karma.conf.js"
+          }
+        }
+      }
+    },
+    "rise-input": {
+      "projectType": "library",
+      "root": "projects/rise-input",
+      "sourceRoot": "projects/rise-input/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/rise-input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/rise-input/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/rise-input/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rise-input/src/test.ts",
+            "tsConfig": "projects/rise-input/tsconfig.spec.json",
+            "karmaConfig": "projects/rise-input/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "novella"

@@ -7,6 +7,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "paths": {
+      "autocomplete": [
+        "dist/autocomplete/autocomplete",
+        "dist/autocomplete"
+      ],
       "date-picker": [
         "dist/date-picker/date-picker",
         "dist/date-picker"
@@ -18,6 +22,10 @@
       "password": [
         "dist/password/password",
         "dist/password"
+      ],
+      "rise-input": [
+        "dist/rise-input/rise-input",
+        "dist/rise-input"
       ],
       "select": [
         "dist/select/select",
@@ -39,7 +47,8 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "types": ["node"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

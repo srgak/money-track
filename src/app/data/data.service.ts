@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { HttpService } from './http.service';
 import { Currency, Menu, MoneyBox, User, Wallet, WalletOperation } from './interfaces';
 
 @Injectable({
@@ -7,9 +9,9 @@ import { Currency, Menu, MoneyBox, User, Wallet, WalletOperation } from './inter
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
-  public needReg: boolean = false;
+  public needReg: boolean = true;
   public userData: User | null = null;
   public menuData: Menu[] = [
     {
@@ -83,6 +85,7 @@ export class DataService {
     userList.splice(index, 1, userData);
     localStorage.setItem('userList', JSON.stringify(userList));
   }
+
   public isPasswordCorrect(control: FormControl): Object | null {
     const { value } = control
     const minLength = 6;

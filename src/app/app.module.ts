@@ -37,6 +37,9 @@ import { PasswordModule } from 'dist/password';
 import { WalletsModule } from './components/pages/wallets/wallets.module';
 import { AccountModule } from './components/pages/account/account.module';
 import { CurrencyModule } from './components/pages/currency/currency.module';
+import { AutocompleteModule } from 'dist/autocomplete';
+import { HttpService } from './data/http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -62,14 +65,17 @@ import { CurrencyModule } from './components/pages/currency/currency.module';
     DatePickerModule,
     SelectModule,
     PasswordModule,
+    AutocompleteModule,
 
     WalletsModule,
     AccountModule,
-    CurrencyModule
+    CurrencyModule,
+    HttpClientModule
   ],
   providers: [ 
     DataService,
-    IsLoggedGuard
+    IsLoggedGuard,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

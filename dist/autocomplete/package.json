@@ -1,0 +1,31 @@
+{
+  "name": "autocomplete",
+  "version": "0.0.0-watch+1646663203480",
+  "peerDependencies": {
+    "@angular/common": "^13.1.0",
+    "@angular/core": "^13.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/autocomplete.mjs",
+  "es2020": "fesm2020/autocomplete.mjs",
+  "esm2020": "esm2020/autocomplete.mjs",
+  "fesm2020": "fesm2020/autocomplete.mjs",
+  "fesm2015": "fesm2015/autocomplete.mjs",
+  "typings": "autocomplete.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./autocomplete.d.ts",
+      "esm2020": "./esm2020/autocomplete.mjs",
+      "es2020": "./fesm2020/autocomplete.mjs",
+      "es2015": "./fesm2015/autocomplete.mjs",
+      "node": "./fesm2015/autocomplete.mjs",
+      "default": "./fesm2020/autocomplete.mjs"
+    }
+  },
+  "sideEffects": false
+}

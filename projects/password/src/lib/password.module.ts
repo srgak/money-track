@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RiseInputModule } from 'dist/rise-input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { ActiveInputDirective } from './directives/active-input.directive';
 import { PasswordComponent } from './password.component';
 
 
 
 @NgModule({
   declarations: [
-    PasswordComponent,
-    ActiveInputDirective
+    PasswordComponent
   ],
   imports: [
     ReactiveFormsModule,
     NzInputModule,
-    NzIconModule
+    NzIconModule,
+    RiseInputModule
   ],
   exports: [
     PasswordComponent

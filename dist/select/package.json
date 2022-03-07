@@ -1,6 +1,6 @@
 {
   "name": "select",
-  "version": "0.0.0-watch+1646300743512",
+  "version": "0.0.0-watch+1646646486540",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

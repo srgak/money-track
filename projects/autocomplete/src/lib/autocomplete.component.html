@@ -1,0 +1,26 @@
+<div class="input">
+  <nz-select [formControl]="startControl"
+    [activeInput]="placeholder"
+    nzDropdownClassName="input__dropdown"
+    nzAllowClear
+    nzShowSearch
+    nzServerSearch
+    (nzOnSearch)="search($event)">
+    <ng-container *ngIf="!data.isLoading; else status">
+      <nz-option *ngFor="let item of list;"
+      [nzValue]="item"
+      [nzLabel]="item"></nz-option>
+    </ng-container>
+    <ng-template #status>
+      <nz-option nzDisabled
+        nzCustomContent>
+        <div *ngIf="!data.isError; else error"
+          class="input__status input__status_loading"></div>
+        <ng-template #error>
+          <div class="input__status input__status_error">Возникла ошибка</div>
+        </ng-template>
+      </nz-option>
+    </ng-template>
+  </nz-select>
+  <label>{{label}}</label>
+</div>

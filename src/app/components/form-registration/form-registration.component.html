@@ -6,27 +6,39 @@
         <h1>Регистрация пользователя</h1>
       </div>
       <div class="col-12">
-        <lib-field formControlName="firstName"
+        <input-autocomplete formControlName="firstName"
+          placeholder="Иван"
+          label="Имя"
+          [reqLink]="reqLinkList.firstName"></input-autocomplete>
+        <!-- <lib-field formControlName="firstName"
           placeholder="Иван"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Имя"></lib-field>
+          label="Имя"></lib-field> -->
         <val-errors controlName="firstName"></val-errors>
       </div>
       <div class="col-12">
-        <lib-field formControlName="lastName"
+        <input-autocomplete formControlName="lastName"
+          placeholder="Иванов"
+          label="Фамилия"
+          [reqLink]="reqLinkList.lastName"></input-autocomplete>
+        <!-- <lib-field formControlName="lastName"
           placeholder="Иванов"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Фамилия"></lib-field>
+          label="Фамилия"></lib-field> -->
         <val-errors controlName="lastName"></val-errors>
       </div>
       <div class="col-12">
-        <lib-field formControlName="patronymic"
+        <input-autocomplete formControlName="patronymic"
+          placeholder="Иванович"
+          label="Отчество"
+          [reqLink]="reqLinkList.patronymic"></input-autocomplete>
+        <!-- <lib-field formControlName="patronymic"
           placeholder="Иванович"
           mask="c*"
           [patterns]="data.customPatternList[0]"
-          label="Отчество"></lib-field>
+          label="Отчество"></lib-field> -->
         <val-errors controlName="patronymic"></val-errors>
       </div>
       <div class="col-12">
@@ -57,11 +69,11 @@
       </div>
       <div class="col-6">
         <button type="submit"
-          nz-button>Зарегестрироваться</button>
+          class="button">Зарегестрироваться</button>
       </div>
       <div class="col-6">
         <button type="button"
-          nz-button
+          class="button"
          (click)="data.needReg = false">Авторизоваться</button>
       </div>
     </div>

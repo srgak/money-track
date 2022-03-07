@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, map } from 'rxjs';
 import { DataService } from 'src/app/data/data.service';
+import { HttpService } from 'src/app/data/http.service';
 import { User } from 'src/app/data/interfaces';
 
 @Component({
@@ -10,7 +12,7 @@ import { User } from 'src/app/data/interfaces';
 })
 export class FormRegistrationComponent implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(public data: DataService, private http: HttpService) { }
   public regForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -20,6 +22,12 @@ export class FormRegistrationComponent implements OnInit {
     password: new FormControl('', [Validators.required, this.data.isPasswordCorrect])
   });
   public passwordVisible = false;
+  public reqLinkList = {
+    firstName: './assets/json/data-names.json',
+    lastName: './assets/json/data-surname.json',
+    patronymic: './assets/json/data-patronymic.json'
+  };
+
   public addUser(): void {
     if(this.regForm.valid) {
       //подготовить данные
@@ -37,9 +45,9 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.regForm.get('patronymic')?.valueChanges
+    this.regForm.get('patronymic').valueChanges
       .subscribe(val => this.regForm
-        .get('gender')?.setValue(val.substring(val.length - 3, val.length) === 'вна' ? 'woman' : 'man'));
+        .get('gender')
+        .setValue(val.substring(val.length - 3, val.length) === 'вна' ? 'woman' : 'man'));
   }
-
 }
