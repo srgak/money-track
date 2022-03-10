@@ -25,6 +25,10 @@ export class DataService {
     {
       name: 'Конвертер валют',
       link: '/currency'
+    },
+    {
+      name: 'Калькулятор вклада',
+      link: '/deposit'
     }
   ];
   public walletList: Wallet[] = [];

@@ -40,3 +40,9 @@ export interface MoneyBox {
   name: string;
   imgLink: string;
 }
+
+export interface Deposit {
+  total: number;
+  profit: number;
+  price: number;
+}

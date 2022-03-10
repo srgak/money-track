@@ -8,7 +8,6 @@ import { SelectModule } from 'select';
 import { ValdemortModule } from 'ngx-valdemort';
 
 
-
 @NgModule({
   declarations: [],
   imports: [

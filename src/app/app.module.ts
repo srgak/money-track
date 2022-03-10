@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 //компоненты 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { MenuComponent } from './components/menu/menu.component';
 
 //сервисы
 import { DataService } from './data/data.service';
+import { HttpService } from './data/http.service';
 
 //директивы
 import { FixBlockDirective } from './directives/fix-block.directive';
@@ -33,13 +35,12 @@ import { FieldModule } from 'field';
 import { DatePickerModule } from 'dist/date-picker';
 import { SelectModule } from 'select';
 import { PasswordModule } from 'dist/password';
+import { AutocompleteModule } from 'dist/autocomplete';
 
 import { WalletsModule } from './components/pages/wallets/wallets.module';
 import { AccountModule } from './components/pages/account/account.module';
 import { CurrencyModule } from './components/pages/currency/currency.module';
-import { AutocompleteModule } from 'dist/autocomplete';
-import { HttpService } from './data/http.service';
-import { HttpClientModule } from '@angular/common/http';
+import { DepositModule } from './components/pages/deposit/deposit.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     //ng-zorro
     NzRadioModule,
     NzIconModule,
@@ -66,11 +68,11 @@ import { HttpClientModule } from '@angular/common/http';
     SelectModule,
     PasswordModule,
     AutocompleteModule,
-
+    //свои страницы
     WalletsModule,
     AccountModule,
     CurrencyModule,
-    HttpClientModule
+    DepositModule
   ],
   providers: [ 
     DataService,

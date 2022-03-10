@@ -1,0 +1,28 @@
+<form [formGroup]="depositForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <lib-field formControlName="price"
+          placeholder="100000"
+          label="Сумма"
+          mask="0*"></lib-field>
+        <val-errors controlName="price"></val-errors>
+      </div>
+      <div class="col">
+        <lib-field formControlName="percent"
+          placeholder="8"
+          label="Процентная ставка"
+          mask="separator.2"
+          maskThousand=" "></lib-field>
+        <val-errors controlName="percent"></val-errors>
+      </div>
+      <div class="col">
+        <lib-field formControlName="period"
+          placeholder="8"
+          label="Количество дней"
+          mask="0*"></lib-field>
+        <val-errors controlName="period"></val-errors>
+      </div>
+    </div>
+  </div>
+</form>

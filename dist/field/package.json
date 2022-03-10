@@ -1,6 +1,6 @@
 {
   "name": "field",
-  "version": "0.0.0-watch+1646646485761",
+  "version": "0.0.0-watch+1646747004162",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

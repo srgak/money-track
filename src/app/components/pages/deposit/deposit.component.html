@@ -1,0 +1,31 @@
+<div class="deposit">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="deposit__title">Калькулятор вклада</h1>
+      </div>
+    </div>
+  </div>
+  <app-form-deposit (onUpdatePrice)="outputPrice($event)"></app-form-deposit>
+  <div class="container">
+    <div class="deposit-chart">
+      <canvas #chartEl></canvas>
+      <div class="deposit-chart__content">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center deposit__value">
+            Вклад:
+            <span class="deposit__value_price">&nbsp;{{depositData?.price}}</span>
+          </div>
+          <div class="col-12 d-flex justify-content-center deposit__value">
+            Проценты:
+            <span class="deposit__value_profit">&nbsp;{{depositData?.profit}}</span>
+          </div>
+          <div class="col-12 d-flex justify-content-center deposit__value">
+            Сумма:
+            <span class="deposit__value_total">&nbsp;{{depositData?.total}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

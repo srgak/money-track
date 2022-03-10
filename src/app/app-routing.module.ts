@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { LoginComponent } from './components/login/login.component';
-import { FormCurrencyComponent } from './components/form-currency/form-currency.component';
-import { AccountComponent } from './components/pages/account/account.component';
 
 const routes: Routes = [
   {
@@ -26,6 +24,12 @@ const routes: Routes = [
     path: 'currency',
     pathMatch: 'full',
     loadChildren: () => import('./components/pages/currency/currency.module').then(m => m.CurrencyModule),
+    canLoad: [IsLoggedGuard]
+  },
+  {
+    path: 'deposit',
+    pathMatch: 'full',
+    loadChildren: () => import('./components/pages/deposit/deposit.module').then(m => m.DepositModule),
     canLoad: [IsLoggedGuard]
   }
 ];
