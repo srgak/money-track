@@ -68,6 +68,7 @@ import { DepositModule } from './components/pages/deposit/deposit.module';
     SelectModule,
     PasswordModule,
     AutocompleteModule,
+    // AdditionalModule,
     //свои страницы
     WalletsModule,
     AccountModule,

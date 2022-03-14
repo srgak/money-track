@@ -7,6 +7,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "paths": {
+      "additional": [
+        "dist/additional/additional",
+        "dist/additional"
+      ],
       "autocomplete": [
         "dist/autocomplete/autocomplete",
         "dist/autocomplete"

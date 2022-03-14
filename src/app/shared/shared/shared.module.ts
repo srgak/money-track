@@ -6,6 +6,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SelectModule } from 'select';
 import { ValdemortModule } from 'ngx-valdemort';
+import { AdditionalModule } from 'dist/additional';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ValdemortModule } from 'ngx-valdemort';
     FieldModule,
     DatePickerModule,
     SelectModule,
+    AdditionalModule,
     ValdemortModule,
 
     NzRadioModule

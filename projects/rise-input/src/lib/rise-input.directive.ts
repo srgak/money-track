@@ -36,6 +36,5 @@ export class RiseInputDirective implements AfterViewInit {
     if (this.control.value) {
       this.onFocus();
     }
-    
   }
 }

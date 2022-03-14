@@ -46,3 +46,8 @@ export interface Deposit {
   profit: number;
   price: number;
 }
+
+export interface Capitalization {
+  name: string;
+  value: number;
+}

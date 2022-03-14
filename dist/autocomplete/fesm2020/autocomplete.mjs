@@ -19,7 +19,7 @@ class AutocompleteService {
         if (param.length) {
             this.isLoading = true;
             return this.http.get(url)
-                .pipe(catchError(err => throwError(() => err)), map((res) => res.map(item => item.toLowerCase())), map((data) => data.filter(item => item.includes(param))), map((filtered) => filtered.map(item => `${item[0].toUpperCase()}${item.substring(1)}`)));
+                .pipe(catchError(err => throwError(() => err)), map((res) => res.map(item => item.toLowerCase())), map((data) => data.filter(item => item.startsWith(param))), map((filtered) => filtered.map(item => `${item[0].toUpperCase()}${item.substring(1)}`)));
         }
         else {
             return of([]);

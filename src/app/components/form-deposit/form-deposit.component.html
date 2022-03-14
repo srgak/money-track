@@ -1,6 +1,7 @@
 <form [formGroup]="depositForm">
   <div class="container">
-    <div class="row">
+    <div class="row"
+      formGroupName="startData">
       <div class="col-12">
         <lib-field formControlName="price"
           placeholder="100000"
@@ -24,5 +25,16 @@
         <val-errors controlName="period"></val-errors>
       </div>
     </div>
+    <input-additional class="row align-items-center"
+      formGroupName="capitalization"
+      (onResetControls)="resetControls($event, 'capitalization')">
+      <div class="col-6">
+        <input-select formControlName="periodicity"
+          placeholder="Выберите из списка"
+          label="Периодичность"
+          [list]="data.depositPeriodicity"></input-select>
+        <val-errors controlName="periodicity"></val-errors>
+      </div>
+    </input-additional>
   </div>
 </form>

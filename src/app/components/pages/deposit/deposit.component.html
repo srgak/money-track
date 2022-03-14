@@ -10,20 +10,35 @@
   <div class="container">
     <div class="deposit-chart">
       <canvas #chartEl></canvas>
-      <div class="deposit-chart__content">
+      <div class="deposit-chart__content deposit-chart__content_center">
         <div class="row">
-          <div class="col-12 d-flex justify-content-center deposit__value">
-            Вклад:
-            <span class="deposit__value_price">&nbsp;{{depositData?.price}}</span>
-          </div>
-          <div class="col-12 d-flex justify-content-center deposit__value">
-            Проценты:
-            <span class="deposit__value_profit">&nbsp;{{depositData?.profit}}</span>
-          </div>
           <div class="col-12 d-flex justify-content-center deposit__value">
             Сумма:
             <span class="deposit__value_total">&nbsp;{{depositData?.total}}</span>
           </div>
+          <div class="col-12 d-flex justify-content-center">
+            <button type="button"
+              class="deposit-chart__more"
+              [ngClass]="{'deposit-chart__more_active':isDetail}"
+              (click)="isDetail = !isDetail">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isDetail"
+      class="deposit-chart__content">
+      <div class="row">
+        <div class="col-12 deposit__value">
+          Вклад:
+          <span class="deposit__value_price">&nbsp;{{depositData?.price}}</span>
+        </div>
+        <div class="col-12 deposit__value">
+          Проценты:
+          <span class="deposit__value_profit">&nbsp;{{depositData?.profit}}</span>
+        </div>
+        <div class="col-12 deposit__value">
+          Сумма:
+          <span class="deposit__value_total">&nbsp;{{depositData?.total}}</span>
         </div>
       </div>
     </div>

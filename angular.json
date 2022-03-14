@@ -293,6 +293,37 @@
           }
         }
       }
+    },
+    "additional": {
+      "projectType": "library",
+      "root": "projects/additional",
+      "sourceRoot": "projects/additional/src",
+      "prefix": "input",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/additional/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/additional/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/additional/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/additional/src/test.ts",
+            "tsConfig": "projects/additional/tsconfig.spec.json",
+            "karmaConfig": "projects/additional/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "novella"

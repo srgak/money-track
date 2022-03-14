@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Deposit } from 'src/app/data/interfaces';
 import Chart from 'chart.js/auto';
 
@@ -7,15 +7,15 @@ import Chart from 'chart.js/auto';
   templateUrl: './deposit.component.html',
   styleUrls: ['./deposit.component.less']
 })
-export class DepositComponent implements OnInit, AfterViewInit {
+export class DepositComponent implements AfterViewInit {
 
   constructor() { }
 
   @ViewChild('chartEl') chartEl: ElementRef;
 
   public depositData: Deposit;
-
   public diagram: Chart;
+  public isDetail: boolean = false;
 
   public outputPrice(price: string): void {
     const data: Deposit = JSON.parse(price);
@@ -26,10 +26,6 @@ export class DepositComponent implements OnInit, AfterViewInit {
     this.diagram.update();
   }
 
-  ngOnInit(): void {
-    
-    
-  }
   ngAfterViewInit(): void {
     this.diagram = new Chart(this.chartEl.nativeElement, {
       type: 'doughnut',
