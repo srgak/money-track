@@ -1,6 +1,6 @@
 {
   "name": "date-picker",
-  "version": "0.0.0-watch+1647272381003",
+  "version": "0.0.0-watch+1647366735530",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

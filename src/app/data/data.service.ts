@@ -106,7 +106,7 @@ export class DataService {
     userList.splice(index, 1, userData);
     localStorage.setItem('userList', JSON.stringify(userList));
   }
-  public isPasswordCorrect(control: FormControl): Object | null {
+  public validatePassword(control: FormControl): Object | null {
     const { value } = control
     const minLength = 6;
     return value && value.length < minLength? 

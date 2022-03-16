@@ -19,7 +19,7 @@ export class FormRegistrationComponent implements OnInit {
     patronymic: new FormControl('', Validators.required),
     gender: new FormControl('man', Validators.required),
     login: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, this.data.isPasswordCorrect])
+    password: new FormControl('', [Validators.required, this.data.validatePassword])
   });
   public passwordVisible = false;
   public reqLinkList = {
