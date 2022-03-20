@@ -9,10 +9,12 @@ export declare class SelectComponent implements OnInit, ControlValueAccessor {
     startControl: FormControl;
     private onChange;
     private onTouch;
+    isShow: boolean;
     writeValue(value: string): void;
     registerOnChange(fn: Function): void;
     registerOnTouched(fn: Function): void;
     ngOnInit(): void;
+    change(event: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectComponent, "input-select", never, { "placeholder": "placeholder"; "label": "label"; "list": "list"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectComponent, "input-select", never, { "placeholder": "placeholder"; "label": "label"; "list": "list"; }, {}, never, ["*"]>;
 }

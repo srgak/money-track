@@ -47,6 +47,11 @@ export class DataService {
       value: 'deposit',
       name: 'Вклад',
       imgLink: ''
+    },
+    {
+      value: 'other',
+      name: 'Иное',
+      imgLink: ''
     }
   ];
   public currencyList: Currency[] = [

@@ -1,11 +1,17 @@
-<div class="input">
-  <nz-select [formControl]="startControl"
-    [activeInput]="placeholder"
-    nzDropdownClassName="input__dropdown">
-    <nz-option *ngFor="let item of list;"
-      [nzValue]="item.value"
-      [nzLabel]="item.name"
-      [nzHide]="item.hide"></nz-option>
-  </nz-select>
-  <label>{{label}}</label>
+<div class="col-12">
+  <div class="input__field">
+    <nz-select [formControl]="startControl"
+      [activeInput]="placeholder"
+      nzDropdownClassName="input__dropdown"
+      (ngModelChange)="change($event)">
+      <nz-option *ngFor="let item of list;"
+        [nzValue]="item.value"
+        [nzLabel]="item.name"
+        [nzHide]="item.hide"></nz-option>
+    </nz-select>
+    <label>{{label}}</label>
+  </div>
 </div>
+<ng-content *ngIf="isShow">
+
+</ng-content>

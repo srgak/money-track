@@ -40,6 +40,8 @@ export class FormOperationComponent implements OnInit {
       this.operationForm.get('type')?.setValue('finance');
       this.operationForm.get('date')?.setValue(new Date());
       this.router.navigate(['/wallets/' + this.data.currentWallet.id]);
+    } else {
+      this.operationForm.markAllAsTouched();
     }
   }
 

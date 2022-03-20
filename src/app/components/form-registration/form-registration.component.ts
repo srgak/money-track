@@ -41,6 +41,8 @@ export class FormRegistrationComponent implements OnInit {
       parsedArr.push(userData);
       localStorage.setItem('userList', JSON.stringify(parsedArr));
       this.data.needReg = false;
+    } else {
+      this.regForm.markAllAsTouched();
     }
   }
 

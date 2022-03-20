@@ -14,22 +14,15 @@ export class FormCurrencyComponent implements OnInit {
   constructor(public data: DataService) { }
 
   public currForm: FormGroup = new FormGroup({
-    list: new FormArray([
-      new FormGroup({
-        groupFrom: new FormGroup({
-          currencyFrom: new FormControl('$'),
-          valueFrom: new FormControl(''),
-        }),
-        groupTo: new FormGroup({
-          currencyTo: new FormControl('₽'),
-          valueTo: new FormControl('0')
-        })
-      })
-    ])
+    groupFrom: new FormGroup({
+      currencyFrom: new FormControl('$'),
+      valueFrom: new FormControl(''),
+    }),
+    groupTo: new FormGroup({
+      currencyTo: new FormControl('₽'),
+      valueTo: new FormControl('0')
+    })
   });
-  public get currList(): FormArray {
-    return this.currForm.controls['list'] as FormArray;
-  }
   public currencyPrice = {
     dollar: 100,
     euro: 110,
@@ -40,56 +33,55 @@ export class FormCurrencyComponent implements OnInit {
   public currFilteredTo = this.data.currencyList.filter(item => item.value === '₽');
   public sub: Subscription;
 
-  public addGroup(): void {
-    this.currList.push(
-      new FormGroup({
-        groupFrom: new FormGroup({
-          currencyFrom: new FormControl('$'),
-          valueFrom: new FormControl(''),
-        }),
-        groupTo: new FormGroup({
-          currencyTo: new FormControl('₽'),
-          valueTo: new FormControl('0')
-        })
-      })
-    );
-    this.sub.unsubscribe();
-    this.subscribeControls();
-  }
-  public deleteGroup(): void {
-    if(this.currList.length > 1) {
-      this.currList.removeAt(this.currList.length - 1);
-    }
-  }
-  public subscribeControls(): void {
-    this.currList.controls.forEach((item: FormGroup) => {
-      const controlTo: AbstractControl = item.get('groupTo.valueTo');
-      const controlCurrencyTo: AbstractControl = item.get('groupTo.currencyTo');
-      this.sub = item.get('groupFrom').valueChanges.subscribe(val => {
-        let currFrom: string;
-        switch(val.currencyFrom) {
-          case '$':
-            currFrom = 'dollar';
-            break;
-          case '€':
-            currFrom = 'euro';
-            break;
-          case '£':
-            currFrom = 'pound';
-            break;
-          case '¥':
-            currFrom = 'yen';
-            break;
-          default:
-            break;
-        }
-        controlTo.setValue(val.valueFrom * this.currencyPrice[currFrom]);
-      });
-    });
-  }
+  // public subscribeControls(): void {
+  //   this.currList.controls.forEach((item: FormGroup) => {
+  //     const controlTo: AbstractControl = item.get('groupTo.valueTo');
+  //     const controlCurrencyTo: AbstractControl = item.get('groupTo.currencyTo');
+  //     this.sub = item.get('groupFrom').valueChanges.subscribe(val => {
+  //       let currFrom: string;
+  //       switch(val.currencyFrom) {
+  //         case '$':
+  //           currFrom = 'dollar';
+  //           break;
+  //         case '€':
+  //           currFrom = 'euro';
+  //           break;
+  //         case '£':
+  //           currFrom = 'pound';
+  //           break;
+  //         case '¥':
+  //           currFrom = 'yen';
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //       controlTo.setValue(val.valueFrom * this.currencyPrice[currFrom]);
+  //     });
+  //   });
+  // }
 
   ngOnInit(): void {
-    this.subscribeControls();
+    // this.subscribeControls();
+    this.currForm.get('groupFrom').valueChanges.subscribe(val => {
+      let currFrom: string;
+      switch(val.currencyFrom) {
+        case '$':
+          currFrom = 'dollar';
+          break;
+        case '€':
+          currFrom = 'euro';
+          break;
+        case '£':
+          currFrom = 'pound';
+          break;
+        case '¥':
+          currFrom = 'yen';
+          break;
+        default:
+          break;
+      }
+      this.currForm.get('groupTo.valueTo').setValue(val.valueFrom * this.currencyPrice[currFrom]);
+    });
   }
 
 }

@@ -3,14 +3,16 @@
     <div class="row"
       formGroupName="startData">
       <div class="col-12">
-        <lib-field formControlName="price"
+        <lib-field class="input" 
+          formControlName="price"
           placeholder="100000"
           label="Сумма"
           mask="0*"></lib-field>
         <val-errors controlName="price"></val-errors>
       </div>
       <div class="col">
-        <lib-field formControlName="percent"
+        <lib-field class="input" 
+          formControlName="percent"
           placeholder="8"
           label="Процентная ставка"
           mask="separator.2"
@@ -18,7 +20,8 @@
         <val-errors controlName="percent"></val-errors>
       </div>
       <div class="col">
-        <lib-field formControlName="period"
+        <lib-field class="input"
+          formControlName="period"
           placeholder="8"
           label="Количество дней"
           mask="0*"></lib-field>
@@ -29,7 +32,8 @@
       formGroupName="capitalization"
       (onResetControls)="resetControls($event, 'capitalization')">
       <div class="col-6">
-        <input-select formControlName="periodicity"
+        <input-select class="row input"
+          formControlName="periodicity"
           placeholder="Выберите из списка"
           label="Периодичность"
           [list]="data.depositPeriodicity"></input-select>

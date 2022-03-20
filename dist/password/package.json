@@ -1,6 +1,6 @@
 {
   "name": "password",
-  "version": "0.0.0-watch+1647272381593",
+  "version": "0.0.0-watch+1647523427824",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

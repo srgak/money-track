@@ -6,24 +6,28 @@
         <h1>Авторизация</h1>
       </div>
       <div class="col-12">
-        <lib-field formControlName="login"
+        <lib-field class="input"
+          formControlName="login"
           placeholder="loginName"
           mask="S*"
           label="Логин"></lib-field>
         <val-errors controlName="login"></val-errors>
       </div>
       <div class="col-12">
-        <input-password formControlName="password"
+        <input-password class="input"
+          formControlName="password"
           placeholder="123"
           label="Пароль"></input-password>
         <val-errors controlName="password"></val-errors>
       </div>
       <div class="col-6">
         <button type="submit"
+          class="button"
           nz-button>Войти</button>
       </div>
       <div class="col-6">
         <button type="button"
+          class="button"
           nz-button
          (click)="data.needReg = true">Регистрация</button>
       </div>

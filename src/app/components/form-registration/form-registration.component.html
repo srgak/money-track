@@ -6,21 +6,24 @@
         <h1>Регистрация пользователя</h1>
       </div>
       <div class="col-12">
-        <input-autocomplete formControlName="firstName"
+        <input-autocomplete class="input"
+          formControlName="firstName"
           placeholder="Иван"
           label="Имя"
           [reqLink]="reqLinkList.firstName"></input-autocomplete>
         <val-errors controlName="firstName"></val-errors>
       </div>
       <div class="col-12">
-        <input-autocomplete formControlName="lastName"
+        <input-autocomplete class="input"
+          formControlName="lastName"
           placeholder="Иванов"
           label="Фамилия"
           [reqLink]="reqLinkList.lastName"></input-autocomplete>
         <val-errors controlName="lastName"></val-errors>
       </div>
       <div class="col-12">
-        <input-autocomplete formControlName="patronymic"
+        <input-autocomplete class="input"
+          formControlName="patronymic"
           placeholder="Иванович"
           label="Отчество"
           [reqLink]="reqLinkList.patronymic"></input-autocomplete>
@@ -38,14 +41,16 @@
         </nz-radio-group>
       </div>
       <div class="col-12">
-        <lib-field formControlName="login"
+        <lib-field class="input"
+          formControlName="login"
           placeholder="loginName"
           mask="S*"
           label="Придумайте логин"></lib-field>
         <val-errors controlName="login"></val-errors>
       </div>
       <div class="col-12">
-        <input-password formControlName="password"
+        <input-password class="input"
+          formControlName="password"
           placeholder="123"
           label="Пароль"></input-password>
         <val-errors controlName="password">

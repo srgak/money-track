@@ -46,6 +46,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
     this.startControl.valueChanges
       .subscribe(val => {
+        this.search(val);
         if(this.onChange) {
           this.onChange(val);
         }

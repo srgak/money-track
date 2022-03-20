@@ -38,8 +38,10 @@ p {
 }
 
 .input {
-  margin-bottom: 10px;
-  position: relative;
+  &__field {
+    margin-bottom: 10px;
+    position: relative;
+  }
   input,
   .ant-picker {
     background: transparent;
@@ -176,6 +178,14 @@ p {
     }
     &:after {
       transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  &.ng-invalid.ng-touched {
+    input,
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+    .ant-input, .ant-input-affix-wrapper,
+    .ant-picker {
+      border-bottom-color: @Scream-1-hex;
     }
   }
 }

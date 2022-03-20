@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, EventEmitter} from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -24,6 +24,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   public startControl: FormControl = new FormControl();
   private onChange: Function;
   private onTouch: Function;
+  public isShow: boolean;
 
   writeValue(value: string): void {
     this.startControl.setValue(value);
@@ -41,6 +42,15 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         this.onChange(val);
       }
     });
+  }
+
+  change(event: string) {
+    if(event === 'other') {
+      console.log(event);
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
   }
 
 }

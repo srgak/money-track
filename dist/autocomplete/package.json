@@ -1,6 +1,6 @@
 {
   "name": "autocomplete",
-  "version": "0.0.0-watch+1647272380486",
+  "version": "0.0.0-watch+1647674148366",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

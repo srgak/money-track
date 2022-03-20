@@ -17,6 +17,7 @@ export class FormWalletComponent implements OnInit {
     name: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
+    typeOther: new FormControl(''),
     currency: new FormControl('', Validators.required)
   });
 
@@ -40,6 +41,8 @@ export class FormWalletComponent implements OnInit {
       this.data.setLocStore();
       this.walletForm.reset();
       this.router.navigate(['/wallets']);
+    } else {
+      this.walletForm.markAllAsTouched();
     }
   }
 

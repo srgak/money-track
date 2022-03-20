@@ -34,6 +34,10 @@
       "select": [
         "dist/select/select",
         "dist/select"
+      ],
+      "transliteration": [
+        "dist/transliteration/transliteration",
+        "dist/transliteration"
       ]
     },
     "noImplicitOverride": true,

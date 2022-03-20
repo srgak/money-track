@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CommonModule } from '@angular/common';
 import { RiseInputModule } from 'dist/rise-input';
+import { TransliterationModule } from 'dist/transliteration';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { RiseInputModule } from 'dist/rise-input';
     CommonModule,
     ReactiveFormsModule,
     NzSelectModule,
-    RiseInputModule
+    RiseInputModule,
+    TransliterationModule,
+    NzAutocompleteModule
   ],
   exports: [
     AutocompleteComponent

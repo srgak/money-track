@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -41,6 +41,7 @@ export class FieldComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.startControl.valueChanges.subscribe(val => {
+      // console.log(val);
       if(this.onChange) {
         this.onChange(val);
       }

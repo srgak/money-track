@@ -2,14 +2,17 @@ import * as i0 from '@angular/core';
 import { Injectable, forwardRef, Component, Input, NgModule } from '@angular/core';
 import { catchError, throwError, map, of, BehaviorSubject, debounceTime } from 'rxjs';
 import * as i1 from '@angular/common/http';
-import * as i3 from '@angular/forms';
+import * as i4 from '@angular/forms';
 import { FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import * as i2 from 'ng-zorro-antd/select';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import * as i4 from 'dist/rise-input';
+import * as i3 from 'dist/transliteration';
+import { TransliterationModule } from 'dist/transliteration';
+import * as i5 from 'dist/rise-input';
 import { RiseInputModule } from 'dist/rise-input';
-import * as i5 from '@angular/common';
+import * as i6 from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 class AutocompleteService {
     constructor(http) {
@@ -57,6 +60,7 @@ class AutocompleteComponent {
     ngOnInit() {
         this.startControl.valueChanges
             .subscribe(val => {
+            this.search(val);
             if (this.onChange) {
                 this.onChange(val);
             }
@@ -86,7 +90,7 @@ AutocompleteComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", 
             useExisting: forwardRef(() => AutocompleteComponent),
             multi: true
         }
-    ], ngImport: i0, template: "<div class=\"input\">\n  <nz-select [formControl]=\"startControl\"\n    [activeInput]=\"placeholder\"\n    nzDropdownClassName=\"input__dropdown\"\n    nzAllowClear\n    nzShowSearch\n    nzServerSearch\n    (nzOnSearch)=\"search($event)\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-option *ngFor=\"let item of list;\"\n      [nzValue]=\"item\"\n      [nzLabel]=\"item\"></nz-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-option nzDisabled\n        nzCustomContent>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-option>\n    </ng-template>\n  </nz-select>\n  <label>{{label}}</label>\n</div>", components: [{ type: i2.NzSelectComponent, selector: "nz-select", inputs: ["nzId", "nzSize", "nzOptionHeightPx", "nzOptionOverflowSize", "nzDropdownClassName", "nzDropdownMatchSelectWidth", "nzDropdownStyle", "nzNotFoundContent", "nzPlaceHolder", "nzMaxTagCount", "nzDropdownRender", "nzCustomTemplate", "nzSuffixIcon", "nzClearIcon", "nzRemoveIcon", "nzMenuItemSelectedIcon", "nzTokenSeparators", "nzMaxTagPlaceholder", "nzMaxMultipleCount", "nzMode", "nzFilterOption", "compareWith", "nzAllowClear", "nzBorderless", "nzShowSearch", "nzLoading", "nzAutoFocus", "nzAutoClearSearchValue", "nzServerSearch", "nzDisabled", "nzOpen", "nzBackdrop", "nzOptions", "nzShowArrow"], outputs: ["nzOnSearch", "nzScrollToBottom", "nzOpenChange", "nzBlur", "nzFocus"], exportAs: ["nzSelect"] }, { type: i2.NzOptionComponent, selector: "nz-option", inputs: ["nzLabel", "nzValue", "nzDisabled", "nzHide", "nzCustomContent"], exportAs: ["nzOption"] }], directives: [{ type: i3.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i3.FormControlDirective, selector: "[formControl]", inputs: ["formControl", "disabled", "ngModel"], outputs: ["ngModelChange"], exportAs: ["ngForm"] }, { type: i4.RiseInputDirective, selector: "[activeInput]", inputs: ["activeInput"] }, { type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+    ], ngImport: i0, template: "<div class=\"input__field\">\n  <nz-select [formControl]=\"startControl\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    nzDropdownClassName=\"input__dropdown\"\n    nzAllowClear\n    nzShowSearch\n    nzServerSearch\n    transliteration\n    (nzOnSearch)=\"search($event)\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-option *ngFor=\"let item of list;\"\n      [nzValue]=\"item\"\n      [nzLabel]=\"item\"></nz-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-option nzDisabled\n        nzCustomContent>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-option>\n    </ng-template>\n  </nz-select>\n  <label>{{label}}</label>\n</div>", components: [{ type: i2.NzSelectComponent, selector: "nz-select", inputs: ["nzId", "nzSize", "nzOptionHeightPx", "nzOptionOverflowSize", "nzDropdownClassName", "nzDropdownMatchSelectWidth", "nzDropdownStyle", "nzNotFoundContent", "nzPlaceHolder", "nzMaxTagCount", "nzDropdownRender", "nzCustomTemplate", "nzSuffixIcon", "nzClearIcon", "nzRemoveIcon", "nzMenuItemSelectedIcon", "nzTokenSeparators", "nzMaxTagPlaceholder", "nzMaxMultipleCount", "nzMode", "nzFilterOption", "compareWith", "nzAllowClear", "nzBorderless", "nzShowSearch", "nzLoading", "nzAutoFocus", "nzAutoClearSearchValue", "nzServerSearch", "nzDisabled", "nzOpen", "nzBackdrop", "nzOptions", "nzShowArrow"], outputs: ["nzOnSearch", "nzScrollToBottom", "nzOpenChange", "nzBlur", "nzFocus"], exportAs: ["nzSelect"] }, { type: i2.NzOptionComponent, selector: "nz-option", inputs: ["nzLabel", "nzValue", "nzDisabled", "nzHide", "nzCustomContent"], exportAs: ["nzOption"] }], directives: [{ type: i3.TransliterationDirective, selector: "[transliteration]" }, { type: i4.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i4.FormControlDirective, selector: "[formControl]", inputs: ["formControl", "disabled", "ngModel"], outputs: ["ngModelChange"], exportAs: ["ngForm"] }, { type: i5.RiseInputDirective, selector: "[activeInput]", inputs: ["activeInput"] }, { type: i6.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i6.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteComponent, decorators: [{
             type: Component,
             args: [{ selector: 'input-autocomplete', styles: [], providers: [
@@ -95,7 +99,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                             useExisting: forwardRef(() => AutocompleteComponent),
                             multi: true
                         }
-                    ], template: "<div class=\"input\">\n  <nz-select [formControl]=\"startControl\"\n    [activeInput]=\"placeholder\"\n    nzDropdownClassName=\"input__dropdown\"\n    nzAllowClear\n    nzShowSearch\n    nzServerSearch\n    (nzOnSearch)=\"search($event)\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-option *ngFor=\"let item of list;\"\n      [nzValue]=\"item\"\n      [nzLabel]=\"item\"></nz-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-option nzDisabled\n        nzCustomContent>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-option>\n    </ng-template>\n  </nz-select>\n  <label>{{label}}</label>\n</div>" }]
+                    ], template: "<div class=\"input__field\">\n  <nz-select [formControl]=\"startControl\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    nzDropdownClassName=\"input__dropdown\"\n    nzAllowClear\n    nzShowSearch\n    nzServerSearch\n    transliteration\n    (nzOnSearch)=\"search($event)\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-option *ngFor=\"let item of list;\"\n      [nzValue]=\"item\"\n      [nzLabel]=\"item\"></nz-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-option nzDisabled\n        nzCustomContent>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-option>\n    </ng-template>\n  </nz-select>\n  <label>{{label}}</label>\n</div>" }]
         }], ctorParameters: function () { return [{ type: AutocompleteService }]; }, propDecorators: { placeholder: [{
                 type: Input
             }], label: [{
@@ -110,12 +114,16 @@ AutocompleteModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versi
 AutocompleteModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteModule, declarations: [AutocompleteComponent], imports: [CommonModule,
         ReactiveFormsModule,
         NzSelectModule,
-        RiseInputModule], exports: [AutocompleteComponent] });
+        RiseInputModule,
+        TransliterationModule,
+        NzAutocompleteModule], exports: [AutocompleteComponent] });
 AutocompleteModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteModule, imports: [[
             CommonModule,
             ReactiveFormsModule,
             NzSelectModule,
-            RiseInputModule
+            RiseInputModule,
+            TransliterationModule,
+            NzAutocompleteModule
         ]] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteModule, decorators: [{
             type: NgModule,
@@ -127,7 +135,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         CommonModule,
                         ReactiveFormsModule,
                         NzSelectModule,
-                        RiseInputModule
+                        RiseInputModule,
+                        TransliterationModule,
+                        NzAutocompleteModule
                     ],
                     exports: [
                         AutocompleteComponent

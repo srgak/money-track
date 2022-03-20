@@ -1,10 +1,12 @@
-<div class="input">
+<div class="input__field">
   <nz-select [formControl]="startControl"
     [activeInput]="placeholder"
+    mask="A*"
     nzDropdownClassName="input__dropdown"
     nzAllowClear
     nzShowSearch
     nzServerSearch
+    transliteration
     (nzOnSearch)="search($event)">
     <ng-container *ngIf="!data.isLoading; else status">
       <nz-option *ngFor="let item of list;"

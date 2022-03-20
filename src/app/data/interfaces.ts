@@ -18,6 +18,7 @@ export interface Wallet {
   img: string;
   name: string;
   type: string;
+  typeOther?: string;
   price: number;
   currency: string;
   operationList: WalletOperation[];
@@ -33,6 +34,7 @@ export interface WalletOperation {
 export interface Currency {
   name: string;
   value: string;
+  other?: boolean;
 }
 
 export interface MoneyBox {

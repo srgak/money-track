@@ -33,6 +33,8 @@ export class FormAuthComponent implements OnInit {
           invalidLogin: 'Неверное имя пользователя или пароль.'
         });
       }
+    } else {
+      this.authForm.markAllAsTouched();
     }
   }
 

@@ -12,20 +12,29 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <lib-field formControlName="name"
+          <lib-field class="input"
+            formControlName="name"
             placeholder="Мой счёт"
             label="Название"></lib-field>
           <val-errors controlName="name"></val-errors>
         </div>
         <div class="col-12 form-wallet__select">
-          <input-select formControlName="type"
+          <input-select class="row input"
+            formControlName="type"
             placeholder="Выберите из списка"
             label="Вид счёта"
-            [list]="data.moneBoxList"></input-select>
+            [list]="data.moneBoxList">
+            <div class="col-12">
+              <lib-field formControlName="typeOther"
+              placeholder="Введите, если нет варианта в списе"
+              label="Иное"></lib-field>
+            </div>
+          </input-select>
           <val-errors controlName="type"></val-errors>
         </div>
         <div class="col-12">
-          <lib-field formControlName="price"
+          <lib-field class="input"
+            formControlName="price"
             placeholder="1000"
             mask="separator.2"
             maskThousand=" "
@@ -33,10 +42,12 @@
           <val-errors controlName="price"></val-errors>
         </div>
         <div class="col-12 form-wallet__select">
-          <input-select formControlName="currency"
+          <input-select class="row input"
+            formControlName="currency"
             placeholder="Выберите из списка"
             label="Валюта"
-            [list]="data.currencyList"></input-select>
+            [list]="data.currencyList">
+          </input-select>
           <val-errors controlName="currency"></val-errors>
         </div>
       </div>

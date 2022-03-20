@@ -9,12 +9,12 @@ class RiseInputDirective {
         this.input = this.el.nativeElement;
     }
     onFocus() {
-        this.input.closest('.input').classList.add('input_active');
+        this.input.closest('.input__field').classList.add('input_active');
         this.input.placeholder = this.input.parentNode.nextSibling && this.input.parentNode.nextSibling.innerText ? '' : this.placeholder;
     }
     onBlur() {
         if (!this.control.value) {
-            this.input.closest('.input').classList.remove('input_active');
+            this.input.closest('.input__field').classList.remove('input_active');
             this.input.placeholder = '';
         }
         if (this.input.parentNode.nextSibling && this.input.parentNode.nextSibling.innerText)
