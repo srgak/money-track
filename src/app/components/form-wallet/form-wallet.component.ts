@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/data/data.service';
-import { Wallet, WalletOperation } from 'src/app/data/interfaces';
+import { Wallet } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-form-wallet',
@@ -20,10 +20,14 @@ export class FormWalletComponent implements OnInit {
     typeOther: new FormControl(''),
     currency: new FormControl('', Validators.required)
   });
-
   public isChange: boolean = false;
+  public currentTemplate: string;
   private id: number;
 
+  public setTemplate(name: string) {
+    this.walletForm.get('typeOther').reset();
+    this.currentTemplate = name;
+  }
   public addWallet(): void {
     if(this.walletForm.valid) {
       //подготовить данные

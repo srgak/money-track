@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpService } from './http.service';
-import { Capitalization, Currency, Menu, MoneyBox, User, Wallet } from './interfaces';
+import { Capitalization, ListItem, Menu, MoneyBox, User, Wallet } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,28 @@ export class DataService {
 
   public needReg: boolean = true;
   public userData: User | null = null;
+  public userContactList: ListItem[] = [
+    {
+      name: 'Электронная почта',
+      value: 'email',
+      otherBlock: 'contactEmail'
+    },
+    {
+      name: 'Мобильный телефон',
+      value: 'phone',
+      otherBlock: 'contactPhone'
+    },
+    {
+      name: 'Телеграм',
+      value: 'telegram',
+      otherBlock: 'contactTelegram'
+    },
+    {
+      name: 'ВК',
+      value: 'vk',
+      otherBlock: 'contactVK'
+    }
+  ];
   public menuData: Menu[] = [
     {
       name: 'Профиль',
@@ -51,10 +73,11 @@ export class DataService {
     {
       value: 'other',
       name: 'Иное',
+      otherBlock: 'otherField',
       imgLink: ''
     }
   ];
-  public currencyList: Currency[] = [
+  public currencyList: ListItem[] = [
     {
       name: 'Российский рубль (₽)',
       value: '₽'

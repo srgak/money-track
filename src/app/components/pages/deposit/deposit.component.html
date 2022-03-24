@@ -9,7 +9,8 @@
   <app-form-deposit (onUpdatePrice)="outputPrice($event)"></app-form-deposit>
   <div class="container">
     <div class="deposit-chart">
-      <canvas #chartEl></canvas>
+      <lib-chart #chart 
+      [settings]="chartSettings"></lib-chart>
       <div class="deposit-chart__content deposit-chart__content_center">
         <div class="row">
           <div class="col-12 d-flex justify-content-center deposit__value">

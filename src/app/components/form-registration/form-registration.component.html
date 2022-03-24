@@ -41,6 +41,51 @@
         </nz-radio-group>
       </div>
       <div class="col-12">
+        <input-select class="row input"
+          formGroupName="contact"
+          placeholder="Выберите из списка"
+          label="Обратная связь"
+          [list]="data.userContactList"
+          (onChangeTemplate)="setContactTemplate($event)">
+          <ng-container [ngSwitch]="contactTemplate">
+            <div class="col-12"
+              *ngSwitchCase="'contactEmail'">
+              <input-autocomplete class="input"
+                formControlName="email"
+                placeholder="ya@ya.ru"
+                label="Электронная почта"
+                lang="en"
+                [reqLink]="reqLinkList.patronymic"></input-autocomplete>
+            </div>
+            <div class="col-12"
+              *ngSwitchCase="'contactPhone'">
+              <lib-field class="input"
+                formControlName="phone"
+                placeholder="+7 (000) 000-00-00"
+                mask="(000) 000-00-00"
+                maskPrefix="+7"
+                label="Номер телефона"></lib-field>
+            </div>
+            <div class="col-12"
+              *ngSwitchCase="'contactTelegram'">
+              <lib-field class="input"
+                formControlName="telegram"
+                placeholder="telegram-nickname"
+                mask="S*"
+                label="Имя профиля"></lib-field>
+            </div>
+            <div class="col-12"
+              *ngSwitchCase="'contactVK'">
+              <lib-field class="input"
+                formControlName="vk"
+                placeholder="id123"
+                mask="A*"
+                label="Id во вконтакте"></lib-field>
+            </div>
+          </ng-container>
+        </input-select>
+      </div>
+      <div class="col-12">
         <lib-field class="input"
           formControlName="login"
           placeholder="loginName"

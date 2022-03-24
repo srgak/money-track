@@ -22,12 +22,18 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   @Input() public placeholder: string;
   @Input() public label: string;
   @Input() public reqLink: string;
+  @Input() public lang: string;
 
   public startControl: FormControl = new FormControl();
   private onChange: Function;
   private onTouch: Function;
   public list: string[] = [];
-  private searchChanges = new BehaviorSubject('');
+  private saved: string = '';
+
+  public saveValue(value) {
+    this.saved = value;
+    this.list = [];
+  }
 
   writeValue(value: string): void {
     this.startControl.setValue(value);
@@ -39,27 +45,19 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  search(value: string) {
-    this.searchChanges.next(value);
-  }
-
   ngOnInit(): void {
     this.startControl.valueChanges
-      .subscribe(val => {
-        this.search(val);
-        if(this.onChange) {
-          this.onChange(val);
-        }
-      });
-
-    this.searchChanges
-      .asObservable()
       .pipe(
         debounceTime(300),
+        map(val => !val ? '' : val),
         map(val => val.toLowerCase())
       )
       .subscribe(val => {
-        this.data
+        if(this.onChange) {
+          this.onChange(val);
+        }
+        if(val !== this.saved.toLowerCase()) {
+          this.data
           .getSortedNames(this.reqLink, val)
           .subscribe({
             next: val => {
@@ -70,6 +68,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
               this.data.isError = true;
             }
           });
+        }
       });
   }
 }

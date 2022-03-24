@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data/data.service';
-import { Currency } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-form-currency',

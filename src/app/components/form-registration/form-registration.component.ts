@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, map } from 'rxjs';
 import { DataService } from 'src/app/data/data.service';
 import { HttpService } from 'src/app/data/http.service';
 import { User } from 'src/app/data/interfaces';
@@ -13,13 +12,20 @@ import { User } from 'src/app/data/interfaces';
 export class FormRegistrationComponent implements OnInit {
 
   constructor(public data: DataService, private http: HttpService) { }
+
   public regForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     patronymic: new FormControl('', Validators.required),
     gender: new FormControl('man', Validators.required),
     login: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, this.data.validatePassword])
+    password: new FormControl('', [Validators.required, this.data.validatePassword]),
+    contact: new FormGroup({
+      email: new FormControl(''),
+      phone: new FormControl(''),
+      telegram: new FormControl(''),
+      vk: new FormControl('')
+    }),
   });
   public passwordVisible = false;
   public reqLinkList = {
@@ -27,6 +33,7 @@ export class FormRegistrationComponent implements OnInit {
     lastName: './assets/json/data-surname.json',
     patronymic: './assets/json/data-patronymic.json'
   };
+  public contactTemplate: string;
 
   public addUser(): void {
     if(this.regForm.valid) {
@@ -44,6 +51,10 @@ export class FormRegistrationComponent implements OnInit {
     } else {
       this.regForm.markAllAsTouched();
     }
+  }
+  public setContactTemplate(name: string): void {
+    this.regForm.get('contact').reset();
+    this.contactTemplate = name;
   }
 
   ngOnInit(): void {

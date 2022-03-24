@@ -7,6 +7,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SelectModule } from 'select';
 import { ValdemortModule } from 'ngx-valdemort';
 import { AdditionalModule } from 'dist/additional';
+import { ChartModule } from 'dist/chart';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AdditionalModule } from 'dist/additional';
     DatePickerModule,
     SelectModule,
     AdditionalModule,
+    ChartModule,
     ValdemortModule,
 
     NzRadioModule

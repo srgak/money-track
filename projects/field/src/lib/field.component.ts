@@ -22,6 +22,7 @@ export class FieldComponent implements OnInit, ControlValueAccessor {
   @Input() public label: string;
   @Input() public patterns;
   @Input() public maskSuffix: string = '';
+  @Input() public maskPrefix: string = '';
   @Input() public maskThousand: string;
   @Input() public readonly: boolean;
 
@@ -41,7 +42,6 @@ export class FieldComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.startControl.valueChanges.subscribe(val => {
-      // console.log(val);
       if(this.onChange) {
         this.onChange(val);
       }

@@ -1,28 +1,26 @@
 <div class="input__field">
-  <nz-select [formControl]="startControl"
+  <input nz-input
+    [formControl]="startControl"
+    [nzAutocomplete]="auto"
     [activeInput]="placeholder"
     mask="A*"
-    nzDropdownClassName="input__dropdown"
-    nzAllowClear
-    nzShowSearch
-    nzServerSearch
-    transliteration
-    (nzOnSearch)="search($event)">
+    [transliteration]="lang">
+  <nz-autocomplete #auto
+    nzOverlayClassName="input__dropdown">
     <ng-container *ngIf="!data.isLoading; else status">
-      <nz-option *ngFor="let item of list;"
-      [nzValue]="item"
-      [nzLabel]="item"></nz-option>
+      <nz-auto-option *ngFor="let item of list;"
+        [nzValue]="item"
+        (click)="saveValue(item)">{{item}}</nz-auto-option>
     </ng-container>
     <ng-template #status>
-      <nz-option nzDisabled
-        nzCustomContent>
+      <nz-auto-option nzDisabled>
         <div *ngIf="!data.isError; else error"
           class="input__status input__status_loading"></div>
         <ng-template #error>
           <div class="input__status input__status_error">Возникла ошибка</div>
         </ng-template>
-      </nz-option>
+      </nz-auto-option>
     </ng-template>
-  </nz-select>
+  </nz-autocomplete>
   <label>{{label}}</label>
 </div>

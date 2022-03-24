@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, EventEmitter} from '@angular/core';
+import { Component, forwardRef, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -20,11 +20,11 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() public placeholder: string;
   @Input() public label: string;
   @Input() public list;
+  @Output() public onChangeTemplate: EventEmitter<string> = new EventEmitter();
   
   public startControl: FormControl = new FormControl();
   private onChange: Function;
   private onTouch: Function;
-  public isShow: boolean;
 
   writeValue(value: string): void {
     this.startControl.setValue(value);
@@ -45,12 +45,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
   change(event: string) {
-    if(event === 'other') {
-      console.log(event);
-      this.isShow = true;
-    } else {
-      this.isShow = false;
-    }
+    this.onChangeTemplate.emit(this.list.filter(item => item.value === event)[0]?.otherBlock);
   }
 
 }

@@ -8,6 +8,7 @@ export interface User {
   lastName: string;
   patronymic: string;
   gender: string;
+  email: string;
   login: string;
   password: string;
   walletList: Wallet[];
@@ -31,15 +32,13 @@ export interface WalletOperation {
   date: string;
 }
 
-export interface Currency {
+export interface ListItem {
   name: string;
   value: string;
-  other?: boolean;
+  otherBlock?: string;
 }
 
-export interface MoneyBox {
-  value: string;
-  name: string;
+export interface MoneyBox extends ListItem {
   imgLink: string;
 }
 

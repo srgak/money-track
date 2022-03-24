@@ -15,6 +15,10 @@
         "dist/autocomplete/autocomplete",
         "dist/autocomplete"
       ],
+      "chart": [
+        "dist/chart/chart",
+        "dist/chart"
+      ],
       "date-picker": [
         "dist/date-picker/date-picker",
         "dist/date-picker"
