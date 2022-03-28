@@ -16,25 +16,29 @@ export class DataService {
     {
       name: 'Электронная почта',
       value: 'email',
-      otherBlock: 'contactEmail'
+      otherBlock: true
     },
     {
       name: 'Мобильный телефон',
       value: 'phone',
-      otherBlock: 'contactPhone'
+      otherBlock: true
     },
     {
       name: 'Телеграм',
       value: 'telegram',
-      otherBlock: 'contactTelegram'
+      otherBlock: true
     },
     {
       name: 'ВК',
       value: 'vk',
-      otherBlock: 'contactVK'
+      otherBlock: true
     }
   ];
   public menuData: Menu[] = [
+    {
+      name: 'Тестовая страница',
+      link: '/test'
+    },
     {
       name: 'Профиль',
       link: '/account'
@@ -73,7 +77,7 @@ export class DataService {
     {
       value: 'other',
       name: 'Иное',
-      otherBlock: 'otherField',
+      otherBlock: true,
       imgLink: ''
     }
   ];
@@ -134,12 +138,7 @@ export class DataService {
     userList.splice(index, 1, userData);
     localStorage.setItem('userList', JSON.stringify(userList));
   }
-  public validatePassword(control: FormControl): Object | null {
-    const { value } = control
-    const minLength = 6;
-    return value && value.length < minLength? 
-      { incorrectPassword: `Пароль не соответствует требованиям. Пароль должен быть не менее ${minLength} символов` } : null;
-  }
+  
 
   public calculateProfit(price, percent, period): number {
     return Math.round(price * percent * period / 365 / 100);

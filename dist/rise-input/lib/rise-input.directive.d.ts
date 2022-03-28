@@ -7,6 +7,7 @@ export declare class RiseInputDirective implements AfterViewInit {
     constructor(el: ElementRef, control: NgControl);
     private input;
     placeholder: string;
+    prefix: string;
     onFocus(): void;
     onBlur(): void;
     onNzOpen(event: any): void;
@@ -14,5 +15,5 @@ export declare class RiseInputDirective implements AfterViewInit {
     onNzBlur(): void;
     ngAfterViewInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RiseInputDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<RiseInputDirective, "[activeInput]", never, { "placeholder": "activeInput"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<RiseInputDirective, "[activeInput]", never, { "placeholder": "activeInput"; "prefix": "prefix"; }, {}, never>;
 }

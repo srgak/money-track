@@ -9,6 +9,12 @@ const routes: Routes = [
     path: '', component: LoginComponent, pathMatch: 'full'
   },
   {
+    path: 'test',
+    pathMatch: 'full',
+    loadChildren: () => import('./components/pages/test-page/test-page.module').then(m => m.TestPageModule),
+    canLoad: [IsLoggedGuard]
+  },
+  {
     path: 'account',
     pathMatch: 'full',
     loadChildren: () => import('./components/pages/account/account.module').then(m => m.AccountModule),

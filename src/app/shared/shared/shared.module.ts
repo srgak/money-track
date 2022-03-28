@@ -8,7 +8,7 @@ import { SelectModule } from 'select';
 import { ValdemortModule } from 'ngx-valdemort';
 import { AdditionalModule } from 'dist/additional';
 import { ChartModule } from 'dist/chart';
-
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
   declarations: [],
@@ -24,7 +24,8 @@ import { ChartModule } from 'dist/chart';
     ChartModule,
     ValdemortModule,
 
-    NzRadioModule
+    NzRadioModule,
+    NzCollapseModule
   ]
 })
 export class SharedModule { }

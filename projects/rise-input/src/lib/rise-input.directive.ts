@@ -10,6 +10,7 @@ export class RiseInputDirective implements AfterViewInit {
   private input = this.el.nativeElement;
 
   @Input('activeInput') public placeholder: string;
+  @Input() public prefix: string; 
   @HostListener('focus') onFocus(): void {
     this.input.closest('.input__field').classList.add('input_active');
     this.input.placeholder = this.input.parentNode.nextSibling && this.input.parentNode.nextSibling.innerText ? '' : this.placeholder;
@@ -28,12 +29,12 @@ export class RiseInputDirective implements AfterViewInit {
     this.onFocus();
   }
   @HostListener('nzBlur') onNzBlur(): void {
-    setTimeout(()=>this.onBlur());
+    setTimeout(()=>this.onBlur(), 1000);
   }
 
   ngAfterViewInit(): void {
     this.input = this.input.children.length ? this.input.querySelector('input') : this.input;
-    if (this.control.value) {
+    if (this.control.value || this.prefix) {
       this.onFocus();
     }
   }

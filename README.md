@@ -111,6 +111,7 @@ this.chart.update();
 |label|Название поля|
 |patterns|Паттерн(шаблон) для маски|
 |maskSuffix|Строка, отображающееся после введённого значения|
+|maskPrefix|Строка, отображающееся до введённого значения|
 |maskThousand|Разделить между разрядами числа каждые 3 разпяда|
 |readonly|Установка инпута в положение только для чтения|
 Примеры использования:
@@ -178,7 +179,9 @@ public customPatternList: any[] = [
 |placeholder|Надпись плейсхолдера для инпута|
 |label|Название поля|
 |list|Сам список, представляющий массив объектов со свойствами value и name строкового типа|
-|onChangeTemplate|Событие, вызывающееся при смене элемента селекта. При наличии у выбранного элемента свойства otherBlock, его значение передаётся в родительский компонент|
+|controlsGroup|Свойсво, использующееся в компоненте для отчистки форм-группы. Используется в случае подключения вариантов селекта, при выборе которых появляются дополнительные поля.|
+|templateList|Список элементов (дополнительных полей) в виде шаблонных переменных|
+
 Примеры использования:
 1. Список с выбром
 * разметка
@@ -208,14 +211,16 @@ public list = [
 * разметка
 ```html
 <input-select class="row input"
-  formGroupName="contact"
+  formControlName="contact"
+  formGroupName="contactAdd"
   placeholder="Выберите из списка"
   label="Обратная связь"
   [list]="list"
-  (onChangeTemplate)="setTemplate($event)">
-  <ng-container [ngSwitch]="currentTemplate">
-    <div class="col-12"
-      *ngSwitchCase="'contactPhone'">
+  [controlsGroup]="formGroup.get('contactAdd')"
+  [templateList]="[contact1, contact2]">
+  <ng-container>
+    <div class="col-12 d-none"
+      #contact1>
       <lib-field class="input"
         formControlName="phone"
         placeholder="+7 (000) 000-00-00"
@@ -223,8 +228,8 @@ public list = [
         maskPrefix="+7"
         label="Номер телефона"></lib-field>
     </div>
-    <div class="col-12"
-      *ngSwitchCase="'contactVK'">
+    <div class="col-12 d-none"
+      #contact2>
       <lib-field class="input"
         formControlName="vk"
         placeholder="id123"
@@ -237,10 +242,6 @@ public list = [
 * логика
 ```typescript
 public currentTemplate: string; //наименование отображаемого шаблона
-public setTemplate(name: string) {
-  this.formGroup.get('contact').reset(); //очистить форм-группу/контрол
-  this.currentTemplate = name;
-}
 public list = [
   {
     name: 'Не указывать',
@@ -249,12 +250,12 @@ public list = [
   {
     name: 'Мобильный телефон',
     value: 'phone',
-    otherBlock: 'contactPhone'
+    otherBlock: true
   },
   {
     name: 'ВК',
     value: 'vk',
-    otherBlock: 'contactVK'
+    otherBlock: true
   }
 ];
 ```

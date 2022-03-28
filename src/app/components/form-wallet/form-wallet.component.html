@@ -24,15 +24,13 @@
             placeholder="Выберите из списка"
             label="Вид счёта"
             [list]="data.moneBoxList"
-            (onChangeTemplate)="setTemplate($event)">
-            <ng-container [ngSwitch]="currentTemplate">
-              <div class="col-12"
-                *ngSwitchCase="'otherField'">
-                <lib-field formControlName="typeOther"
-                  placeholder="Введите, если нет варианта в списе"
-                  label="Иное"></lib-field>
-              </div>
-            </ng-container>
+            [templateList]="[other]">
+            <div class="col-12 d-none"
+              #other>
+              <lib-field formControlName="typeOther"
+                placeholder="Введите, если нет варианта в списе"
+                label="Иное"></lib-field>
+            </div>
           </input-select>
           <val-errors controlName="type"></val-errors>
         </div>

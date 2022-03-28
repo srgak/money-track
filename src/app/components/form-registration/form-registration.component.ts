@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/data/data.service';
 import { HttpService } from 'src/app/data/http.service';
 import { User } from 'src/app/data/interfaces';
+import { ValidatorsService } from 'src/app/data/validators.service';
 
 @Component({
   selector: 'app-form-registration',
@@ -11,7 +12,7 @@ import { User } from 'src/app/data/interfaces';
 })
 export class FormRegistrationComponent implements OnInit {
 
-  constructor(public data: DataService, private http: HttpService) { }
+  constructor(public data: DataService, private validators: ValidatorsService) { }
 
   public regForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -19,7 +20,7 @@ export class FormRegistrationComponent implements OnInit {
     patronymic: new FormControl('', Validators.required),
     gender: new FormControl('man', Validators.required),
     login: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, this.data.validatePassword]),
+    password: new FormControl('', [Validators.required, this.validators.validatePassword]),
     contact: new FormGroup({
       email: new FormControl(''),
       phone: new FormControl(''),

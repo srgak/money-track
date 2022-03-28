@@ -35,7 +35,7 @@ export interface WalletOperation {
 export interface ListItem {
   name: string;
   value: string;
-  otherBlock?: string;
+  otherBlock?: boolean;
 }
 
 export interface MoneyBox extends ListItem {

@@ -27,17 +27,17 @@ class RiseInputDirective {
         this.onFocus();
     }
     onNzBlur() {
-        setTimeout(() => this.onBlur());
+        setTimeout(() => this.onBlur(), 1000);
     }
     ngAfterViewInit() {
         this.input = this.input.children.length ? this.input.querySelector('input') : this.input;
-        if (this.control.value) {
+        if (this.control.value || this.prefix) {
             this.onFocus();
         }
     }
 }
 RiseInputDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: RiseInputDirective, deps: [{ token: i0.ElementRef }, { token: i1.NgControl }], target: i0.ɵɵFactoryTarget.Directive });
-RiseInputDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.0", type: RiseInputDirective, selector: "[activeInput]", inputs: { placeholder: ["activeInput", "placeholder"] }, host: { listeners: { "focus": "onFocus()", "blur": "onBlur()", "nzOnOpenChange": "onNzOpen($event)", "nzFocus": "onNzFocus()", "nzBlur": "onNzBlur()" } }, ngImport: i0 });
+RiseInputDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.0", type: RiseInputDirective, selector: "[activeInput]", inputs: { placeholder: ["activeInput", "placeholder"], prefix: "prefix" }, host: { listeners: { "focus": "onFocus()", "blur": "onBlur()", "nzOnOpenChange": "onNzOpen($event)", "nzFocus": "onNzFocus()", "nzBlur": "onNzBlur()" } }, ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: RiseInputDirective, decorators: [{
             type: Directive,
             args: [{
@@ -46,6 +46,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i1.NgControl }]; }, propDecorators: { placeholder: [{
                 type: Input,
                 args: ['activeInput']
+            }], prefix: [{
+                type: Input
             }], onFocus: [{
                 type: HostListener,
                 args: ['focus']

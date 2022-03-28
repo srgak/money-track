@@ -16,6 +16,7 @@ import { MenuComponent } from './components/menu/menu.component';
 //сервисы
 import { DataService } from './data/data.service';
 import { HttpService } from './data/http.service';
+import { ValidatorsService } from './data/validators.service';
 
 //директивы
 import { FixBlockDirective } from './directives/fix-block.directive';
@@ -41,6 +42,7 @@ import { WalletsModule } from './components/pages/wallets/wallets.module';
 import { AccountModule } from './components/pages/account/account.module';
 import { CurrencyModule } from './components/pages/currency/currency.module';
 import { DepositModule } from './components/pages/deposit/deposit.module';
+import { TestPageModule } from './components/pages/test-page/test-page.module';
 
 @NgModule({
   declarations: [
@@ -68,17 +70,18 @@ import { DepositModule } from './components/pages/deposit/deposit.module';
     SelectModule,
     PasswordModule,
     AutocompleteModule,
-    // AdditionalModule,
     //свои страницы
     WalletsModule,
     AccountModule,
     CurrencyModule,
-    DepositModule
+    DepositModule,
+    TestPageModule
   ],
   providers: [ 
     DataService,
     IsLoggedGuard,
-    HttpService
+    HttpService,
+    ValidatorsService
   ],
   bootstrap: [AppComponent]
 })
