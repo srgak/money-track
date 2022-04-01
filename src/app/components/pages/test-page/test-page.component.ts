@@ -13,6 +13,13 @@ export class TestPageComponent implements OnInit {
   constructor(private validators: ValidatorsService) { }
 
   public form: FormGroup = new FormGroup({
+    additional: new FormGroup({
+      additionalField: new FormControl('')
+    }),
+    additional2: new FormGroup({
+      additionalField: new FormControl('')
+    }),
+    name: new FormControl(''),
     birthday: new FormControl('', [this.validators.validateBirthday]),
     personalData: new FormGroup({
       birthday: new FormControl('', this.validators.validateBirthday),
@@ -24,19 +31,10 @@ export class TestPageComponent implements OnInit {
       vk: new FormControl('')
     })
   });
-  public list1: ListItem[] = [
-    {
-      name: 'Пункт 1',
-      value: 'item 1'
-    },
-    {
-      name: 'Пункт 2',
-      value: 'item 2'
-    },
-    {
-      name: 'Пункт 3',
-      value: 'item 3'
-    }
+  public list1: string[] = [
+    'Пункт 1',
+    'Пункт 2',
+    'Пункт 3'
   ];
   public list2: ListItem[] = [
     {
@@ -57,7 +55,7 @@ export class TestPageComponent implements OnInit {
   public currentTemplate: string;
 
   ngOnInit(): void {
-    this.form.get('birthday').markAsTouched();
+    this.form.markAllAsTouched();
   }
 
 }

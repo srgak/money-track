@@ -1,6 +1,11 @@
 import { Component, forwardRef, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+interface ListItem {
+  name: string;
+  value: string;
+  otherBlock?: string;
+};
 @Component({
   selector: 'input-select',
   templateUrl: './select.component.html',
@@ -24,9 +29,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() public templateList: Element[] = [];
   
   public startControl: FormControl = new FormControl();
+  public isStringList: boolean;
   private onChange: Function;
   private onTouch: Function;
-  private templateNameList;
+  private templateIndexList;
 
   writeValue(value: string): void {
     this.startControl.setValue(value);
@@ -39,19 +45,20 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
   
   ngOnInit(): void {
+    this.isStringList = this.list.every(item => typeof item === 'string');
     this.startControl.valueChanges.subscribe(val => {
       if(this.onChange) {
         this.onChange(val);
       }
     });
-    this.templateNameList = this.list.filter(item => item.otherBlock);
+    this.templateIndexList = this.list.filter(item => item.otherBlock);
   }
 
   change(event: string) {
     if(this.templateList.length) {
       this.templateList.forEach(item => item.classList.add('d-none'));
       this.templateList[
-        this.templateNameList.findIndex(item => item.value === event)
+        this.templateIndexList.findIndex(item => item.value === event)
       ]?.classList.remove('d-none');
     }
     if(this.controlsGroup) {

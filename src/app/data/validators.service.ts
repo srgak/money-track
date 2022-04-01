@@ -8,6 +8,7 @@ export class ValidatorsService {
 
   constructor() { }
 
+  //валидация пароля
   public validatePassword(control: FormControl): Object | null {
     const { value } = control
     const minLength = 6;
@@ -15,6 +16,7 @@ export class ValidatorsService {
       { incorrectPassword: `Пароль не соответствует требованиям. Пароль должен быть не менее ${minLength} символов` } : null;
   }
 
+  //валидация дня рождения
   public validateBirthday(control: FormControl): Object | null {
     const { value } = control;
     const oldDate = new Date('1900-01-01');
@@ -32,5 +34,13 @@ export class ValidatorsService {
     return value.length === 8 &&
       !(oldDate.getTime() < currentDate.getTime() && currentDate.getTime() < newDate.getTime()) ?
       { incorrectDate: 'Неправильно указана дата рождения' } : null;
+  }
+
+  //валидация числа
+  public validateNumber(control: FormControl): Object | null {
+    const { value } = control;
+
+    return value.length && +value.substring(0, 1) === 0 ?
+      { incorrectNumber: 'Число не должно начинаться с 0' } : null;
   }
 }

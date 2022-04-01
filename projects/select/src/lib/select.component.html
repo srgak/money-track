@@ -4,10 +4,16 @@
       [activeInput]="placeholder"
       nzDropdownClassName="input__dropdown"
       (ngModelChange)="change($event)">
-      <nz-option *ngFor="let item of list;"
-        [nzValue]="item.value"
-        [nzLabel]="item.name"
-        [nzHide]="item.hide"></nz-option>
+      <ng-container *ngIf="isStringList; else objList">
+        <nz-option *ngFor="let item of list"
+          [nzValue]="item"
+          [nzLabel]="item"></nz-option>
+      </ng-container>
+      <ng-template #objList>
+        <nz-option *ngFor="let item of list;"
+          [nzValue]="item.value"
+          [nzLabel]="item.name"></nz-option>
+      </ng-template>
     </nz-select>
     <label>{{label}}</label>
   </div>

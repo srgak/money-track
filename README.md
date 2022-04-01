@@ -5,20 +5,25 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### additional
 Состоит из чекбокса и дополнительного контента. Последний описывается внутри тегов компонента и показывается при значении checked у чекбокса. В случае если дополнительным контентом являются поля реактивной формы, то в тег компонента можно прописывать formGroupName, чтобы обернуть дополнительные контролы в отдельную группу. Из сторонних библиотек использует `NzCheckboxModule`.
-Параметры для передачи отсутствуют.
+Параметры для передачи:
+|Название|Описание|
+| ----------- | ----------- |
+|label|Название, отображаемое рядом с чекбоксом|
+|isReverse|Обозначение обратного чекбокса. В таком случае дополнительные поля показываются при снятии checked|
+|controlsGroup|Свойсво, использующееся в компоненте для отчистки форм-группы|
+
 Примеры использования:
-1. При нажатии на чекбокс появляется/скрывается дополнительное поле с выпадающим списком
+1. При нажатии на чекбокс появляется/скрывается дополнительное поле
 ```html
 <input-additional class="row align-items-center"
-  formGroupName="capitalization"
-  (onResetControls)="resetControls($event, 'capitalization')">
+  label="Чекбокс"
+  formGroupName="additional"
+  [controlsGroup]="form.get('additional')">
   <div class="col-6">
-    <input-select class="row input"
-      formControlName="periodicity"
-      placeholder="Выберите из списка"
-      label="Периодичность"
-      [list]="data.depositPeriodicity"></input-select>
-    <val-errors controlName="periodicity"></val-errors>
+    <lib-field class="input"
+      formControlName="additionalField"
+      placeholder="test text"
+      label="Введите надпись"></lib-field>
   </div>
 </input-additional>
 ```
@@ -33,6 +38,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 |label|Название поля|
 |reqLink|Ссылка запроса на бэк|
 |lang|Наименование языка для транслитерации|
+|isOnlySelect|Свойство, запрещающее оставлять своё значение, и если не выбрать что-то из списка, то поле очищается.|
 Примеры использования:
 1. Поле с вводом имени
 ```html
@@ -178,7 +184,7 @@ public customPatternList: any[] = [
 |formControl|Название контрола|
 |placeholder|Надпись плейсхолдера для инпута|
 |label|Название поля|
-|list|Сам список, представляющий массив объектов со свойствами value и name строкового типа|
+|list|Сам список. Существует 2 варианта списка:<br> 1) Массив из строчных элементов; <br> 2) Массив объектов, состоящий из свойств:<br>* name - надпись, отображающееся на странице в элементе списка;<br> * value - value, который при выборе элемента списка записывается как значение для formControl;<br> * otherBlock - метка, говорящая о том, нужно ли для данного элемента списка показывать дополнительное поле. Необязатальеный параметр.|
 |controlsGroup|Свойсво, использующееся в компоненте для отчистки форм-группы. Используется в случае подключения вариантов селекта, при выборе которых появляются дополнительные поля.|
 |templateList|Список элементов (дополнительных полей) в виде шаблонных переменных|
 
@@ -187,23 +193,17 @@ public customPatternList: any[] = [
 * разметка
 ```html
 <input-select class="row input"
-  formControlName="currency"
   placeholder="Выберите из списка"
-  label="Валюта"
+  label="Список"
   [list]="list">
 </input-select>
 ```
 * логика
 ```typescript
-public list = [
-  {
-    name: 'Российский рубль (₽)',
-    value: '₽'
-  },
-  {
-    name: 'Американский доллар ($)',
-    value: '$'
-  }
+public list: string[] = [
+  'Пункт 1',
+  'Пункт 2',
+  'Пункт 3'
 ];
 ```
 

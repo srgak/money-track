@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'input-additional',
@@ -7,17 +8,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AdditionalComponent implements OnInit {
 
-  @Output() onResetControls = new EventEmitter<boolean>();
+  @Input() label: string;
+  @Input() isReverse: boolean = false;
+  @Input() controlsGroup: AbstractControl;
 
   constructor() { }
 
   public isOpen: boolean = false;
+  public isChecked: boolean;
 
   public change(): void {
-    this.onResetControls.emit(this.isOpen);
+    this.isOpen = !this.isOpen;
+    if(!this.isOpen) this.controlsGroup.reset();
   }
 
   ngOnInit(): void {
+    this.isChecked = this.isReverse;
   }
 
 }

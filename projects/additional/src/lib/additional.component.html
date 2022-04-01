@@ -1,6 +1,6 @@
 <div class="col-12">
   <label nz-checkbox
-  [(ngModel)]="isOpen"
-  (ngModelChange)="change()">Капитализация</label>
+  [(ngModel)]="isChecked"
+  (ngModelChange)="change()">{{label}}</label>
 </div>
 <ng-content *ngIf="isOpen"></ng-content>

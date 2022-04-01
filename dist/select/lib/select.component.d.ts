@@ -9,9 +9,10 @@ export declare class SelectComponent implements OnInit, ControlValueAccessor {
     controlsGroup: AbstractControl;
     templateList: Element[];
     startControl: FormControl;
+    isStringList: boolean;
     private onChange;
     private onTouch;
-    private templateNameList;
+    private templateIndexList;
     writeValue(value: string): void;
     registerOnChange(fn: Function): void;
     registerOnTouched(fn: Function): void;

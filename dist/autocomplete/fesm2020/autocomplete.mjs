@@ -40,8 +40,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
 
 class AutocompleteComponent {
-    constructor(data) {
+    constructor(data, el) {
         this.data = data;
+        this.el = el;
+        this.isOnlySelect = false;
         this.startControl = new FormControl();
         this.list = [];
         this.saved = '';
@@ -49,6 +51,10 @@ class AutocompleteComponent {
     saveValue(value) {
         this.saved = value;
         this.list = [];
+    }
+    blur() {
+        if (this.isOnlySelect && this.startControl.value !== this.saved)
+            this.startControl.reset();
     }
     writeValue(value) {
         this.startControl.setValue(value);
@@ -82,14 +88,14 @@ class AutocompleteComponent {
         });
     }
 }
-AutocompleteComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteComponent, deps: [{ token: AutocompleteService }], target: i0.ɵɵFactoryTarget.Component });
-AutocompleteComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: AutocompleteComponent, selector: "input-autocomplete", inputs: { placeholder: "placeholder", label: "label", reqLink: "reqLink", lang: "lang" }, providers: [
+AutocompleteComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteComponent, deps: [{ token: AutocompleteService }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+AutocompleteComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: AutocompleteComponent, selector: "input-autocomplete", inputs: { placeholder: "placeholder", label: "label", reqLink: "reqLink", lang: "lang", isOnlySelect: "isOnlySelect" }, providers: [
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => AutocompleteComponent),
             multi: true
         }
-    ], ngImport: i0, template: "<div class=\"input__field\">\n  <input nz-input\n    [formControl]=\"startControl\"\n    [nzAutocomplete]=\"auto\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    [transliteration]=\"lang\">\n  <nz-autocomplete #auto\n    nzOverlayClassName=\"input__dropdown\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-auto-option *ngFor=\"let item of list;\"\n        [nzValue]=\"item\"\n        (click)=\"saveValue(item)\">{{item}}</nz-auto-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-auto-option nzDisabled>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-auto-option>\n    </ng-template>\n  </nz-autocomplete>\n  <label>{{label}}</label>\n</div>", components: [{ type: i2.NzAutocompleteComponent, selector: "nz-autocomplete", inputs: ["nzWidth", "nzOverlayClassName", "nzOverlayStyle", "nzDefaultActiveFirstOption", "nzBackfill", "compareWith", "nzDataSource"], outputs: ["selectionChange"], exportAs: ["nzAutocomplete"] }, { type: i2.NzAutocompleteOptionComponent, selector: "nz-auto-option", inputs: ["nzValue", "nzLabel", "nzDisabled"], outputs: ["selectionChange", "mouseEntered"], exportAs: ["nzAutoOption"] }], directives: [{ type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "disabled"], exportAs: ["nzInput"] }, { type: i4.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { type: i2.NzAutocompleteTriggerDirective, selector: "input[nzAutocomplete], textarea[nzAutocomplete]", inputs: ["nzAutocomplete"], exportAs: ["nzAutocompleteTrigger"] }, { type: i4.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i4.FormControlDirective, selector: "[formControl]", inputs: ["formControl", "disabled", "ngModel"], outputs: ["ngModelChange"], exportAs: ["ngForm"] }, { type: i5.RiseInputDirective, selector: "[activeInput]", inputs: ["activeInput", "prefix"] }, { type: i6.TransliterationDirective, selector: "[transliteration]", inputs: ["transliteration"] }, { type: i7.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+    ], ngImport: i0, template: "<div class=\"input__field\">\n    <input nz-input\n    [formControl]=\"startControl\"\n    [nzAutocomplete]=\"auto\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    [transliteration]=\"lang\"\n    (blur)=\"blur()\">\n  <nz-autocomplete #auto\n    nzOverlayClassName=\"input__dropdown\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-auto-option *ngFor=\"let item of list;\"\n        [nzValue]=\"item\"\n        (click)=\"saveValue(item)\">{{item}}</nz-auto-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-auto-option nzDisabled>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-auto-option>\n    </ng-template>\n  </nz-autocomplete>\n  <label>{{label}}</label>\n</div>", components: [{ type: i2.NzAutocompleteComponent, selector: "nz-autocomplete", inputs: ["nzWidth", "nzOverlayClassName", "nzOverlayStyle", "nzDefaultActiveFirstOption", "nzBackfill", "compareWith", "nzDataSource"], outputs: ["selectionChange"], exportAs: ["nzAutocomplete"] }, { type: i2.NzAutocompleteOptionComponent, selector: "nz-auto-option", inputs: ["nzValue", "nzLabel", "nzDisabled"], outputs: ["selectionChange", "mouseEntered"], exportAs: ["nzAutoOption"] }], directives: [{ type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "disabled"], exportAs: ["nzInput"] }, { type: i4.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { type: i2.NzAutocompleteTriggerDirective, selector: "input[nzAutocomplete], textarea[nzAutocomplete]", inputs: ["nzAutocomplete"], exportAs: ["nzAutocompleteTrigger"] }, { type: i4.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i4.FormControlDirective, selector: "[formControl]", inputs: ["formControl", "disabled", "ngModel"], outputs: ["ngModelChange"], exportAs: ["ngForm"] }, { type: i5.RiseInputDirective, selector: "[activeInput]", inputs: ["activeInput", "prefix"] }, { type: i6.TransliterationDirective, selector: "[transliteration]", inputs: ["transliteration"] }, { type: i7.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AutocompleteComponent, decorators: [{
             type: Component,
             args: [{ selector: 'input-autocomplete', styles: [], providers: [
@@ -98,14 +104,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                             useExisting: forwardRef(() => AutocompleteComponent),
                             multi: true
                         }
-                    ], template: "<div class=\"input__field\">\n  <input nz-input\n    [formControl]=\"startControl\"\n    [nzAutocomplete]=\"auto\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    [transliteration]=\"lang\">\n  <nz-autocomplete #auto\n    nzOverlayClassName=\"input__dropdown\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-auto-option *ngFor=\"let item of list;\"\n        [nzValue]=\"item\"\n        (click)=\"saveValue(item)\">{{item}}</nz-auto-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-auto-option nzDisabled>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-auto-option>\n    </ng-template>\n  </nz-autocomplete>\n  <label>{{label}}</label>\n</div>" }]
-        }], ctorParameters: function () { return [{ type: AutocompleteService }]; }, propDecorators: { placeholder: [{
+                    ], template: "<div class=\"input__field\">\n    <input nz-input\n    [formControl]=\"startControl\"\n    [nzAutocomplete]=\"auto\"\n    [activeInput]=\"placeholder\"\n    mask=\"A*\"\n    [transliteration]=\"lang\"\n    (blur)=\"blur()\">\n  <nz-autocomplete #auto\n    nzOverlayClassName=\"input__dropdown\">\n    <ng-container *ngIf=\"!data.isLoading; else status\">\n      <nz-auto-option *ngFor=\"let item of list;\"\n        [nzValue]=\"item\"\n        (click)=\"saveValue(item)\">{{item}}</nz-auto-option>\n    </ng-container>\n    <ng-template #status>\n      <nz-auto-option nzDisabled>\n        <div *ngIf=\"!data.isError; else error\"\n          class=\"input__status input__status_loading\"></div>\n        <ng-template #error>\n          <div class=\"input__status input__status_error\">\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430</div>\n        </ng-template>\n      </nz-auto-option>\n    </ng-template>\n  </nz-autocomplete>\n  <label>{{label}}</label>\n</div>" }]
+        }], ctorParameters: function () { return [{ type: AutocompleteService }, { type: i0.ElementRef }]; }, propDecorators: { placeholder: [{
                 type: Input
             }], label: [{
                 type: Input
             }], reqLink: [{
                 type: Input
             }], lang: [{
+                type: Input
+            }], isOnlySelect: [{
                 type: Input
             }] } });
 

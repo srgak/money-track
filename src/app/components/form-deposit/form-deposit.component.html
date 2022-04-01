@@ -30,7 +30,7 @@
     </div>
     <input-additional class="row align-items-center"
       formGroupName="capitalization"
-      (onResetControls)="resetControls($event, 'capitalization')">
+      [controlsGroup]="depositForm.get('capitalization')">
       <div class="col-6">
         <input-select class="row input"
           formControlName="periodicity"

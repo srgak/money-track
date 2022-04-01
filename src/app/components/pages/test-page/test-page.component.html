@@ -7,17 +7,42 @@
       <div class="col-12">
         <nz-collapse>
           <nz-collapse-panel [nzHeader]="'additional'">
-
+            <input-additional class="row align-items-center"
+              label="Чекбокс"
+              formGroupName="additional"
+              [controlsGroup]="form.get('additional')">
+              <div class="col-6">
+                <lib-field class="input"
+                  formControlName="additionalField"
+                  placeholder="test text"
+                  label="Введите надпись"></lib-field>
+              </div>
+            </input-additional>
+            <input-additional class="row align-items-center"
+              label="Обратный чекбокс"
+              formGroupName="additional"
+              [controlsGroup]="form.get('additional2')"
+              [isReverse]="true">
+              <div class="col-6">
+                <lib-field class="input"
+                  formControlName="additionalField"
+                  placeholder="test text"
+                  label="Введите надпись"></lib-field>
+              </div>
+            </input-additional>
           </nz-collapse-panel>
           <nz-collapse-panel [nzHeader]="'autocomplete'">
             <input-autocomplete class="input"
+              formControlName="name"
               placeholder="Иван"
               label="Имя"
-              [reqLink]="'./assets/json/data-names.json'"></input-autocomplete>
+              [reqLink]="'./assets/json/data-names.json'"
+              [isOnlySelect]="true"></input-autocomplete>
               <p>
                 Текстовое поле с возможностью ввода текста
                 и выбора одного из предложенных вариантов.
                 Работает транслитерация из английского в русский.
+                Если не 
               </p>
             <input-autocomplete class="input"
               placeholder="ya@ya.ru"
@@ -31,7 +56,9 @@
               </p>
           </nz-collapse-panel>
           <nz-collapse-panel [nzHeader]="'date-picker'">
-            
+            <input-date-picker class="input"
+              label="Выберите дату"
+              placeholder="02.02.2022"></input-date-picker>
           </nz-collapse-panel>
           <nz-collapse-panel [nzHeader]="'field'">
             <lib-field class="input"

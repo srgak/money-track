@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, debounceTime, map, of, switchMap } from 'rxjs';
 import { AutocompleteService } from './autocomplete.service';
@@ -17,22 +17,27 @@ import { AutocompleteService } from './autocomplete.service';
 })
 export class AutocompleteComponent implements OnInit, ControlValueAccessor {
 
-  constructor(public data: AutocompleteService) { }
+  constructor(public data: AutocompleteService, private el: ElementRef) { }
 
   @Input() public placeholder: string;
   @Input() public label: string;
   @Input() public reqLink: string;
   @Input() public lang: string;
+  @Input() public isOnlySelect: boolean = false;
 
   public startControl: FormControl = new FormControl();
+  public list: string[] = [];
   private onChange: Function;
   private onTouch: Function;
-  public list: string[] = [];
   private saved: string = '';
 
   public saveValue(value) {
     this.saved = value;
     this.list = [];
+  }
+  blur() {
+    if(this.isOnlySelect && this.startControl.value !== this.saved) 
+      this.startControl.reset();
   }
 
   writeValue(value: string): void {
@@ -58,16 +63,16 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
         }
         if(val !== this.saved.toLowerCase()) {
           this.data
-          .getSortedNames(this.reqLink, val)
-          .subscribe({
-            next: val => {
-              this.data.isLoading = false;
-              this.list = val;
-            },
-            error: () => {
-              this.data.isError = true;
-            }
-          });
+            .getSortedNames(this.reqLink, val)
+            .subscribe({
+              next: val => {
+                this.data.isLoading = false;
+                this.list = val;
+              },
+              error: () => {
+                this.data.isError = true;
+              }
+            });
         }
       });
   }

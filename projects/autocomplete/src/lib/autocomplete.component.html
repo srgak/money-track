@@ -1,10 +1,11 @@
 <div class="input__field">
-  <input nz-input
+    <input nz-input
     [formControl]="startControl"
     [nzAutocomplete]="auto"
     [activeInput]="placeholder"
     mask="A*"
-    [transliteration]="lang">
+    [transliteration]="lang"
+    (blur)="blur()">
   <nz-autocomplete #auto
     nzOverlayClassName="input__dropdown">
     <ng-container *ngIf="!data.isLoading; else status">

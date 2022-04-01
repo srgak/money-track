@@ -7,7 +7,7 @@ import { FieldModule } from 'field';
 import { PasswordModule } from 'dist/password';
 import { AutocompleteModule } from 'dist/autocomplete';
 import { SelectModule } from 'select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PasswordModule,
     AutocompleteModule,
     SelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class TestPageModule { }

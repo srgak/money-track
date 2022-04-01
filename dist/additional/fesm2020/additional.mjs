@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Component, Output, NgModule } from '@angular/core';
+import { Injectable, Component, Input, NgModule } from '@angular/core';
 import * as i1 from 'ng-zorro-antd/checkbox';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import * as i2 from '@angular/forms';
@@ -21,22 +21,29 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
 
 class AdditionalComponent {
     constructor() {
-        this.onResetControls = new EventEmitter();
+        this.isReverse = false;
         this.isOpen = false;
     }
     change() {
-        this.onResetControls.emit(this.isOpen);
+        this.isOpen = !this.isOpen;
+        if (!this.isOpen)
+            this.controlsGroup.reset();
     }
     ngOnInit() {
+        this.isChecked = this.isReverse;
     }
 }
 AdditionalComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AdditionalComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-AdditionalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: AdditionalComponent, selector: "input-additional", outputs: { onResetControls: "onResetControls" }, ngImport: i0, template: "<div class=\"col-12\">\n  <label nz-checkbox\n  [(ngModel)]=\"isOpen\"\n  (ngModelChange)=\"change()\">\u041A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F</label>\n</div>\n<ng-content *ngIf=\"isOpen\"></ng-content>", components: [{ type: i1.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }], directives: [{ type: i2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i2.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+AdditionalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: AdditionalComponent, selector: "input-additional", inputs: { label: "label", isReverse: "isReverse", controlsGroup: "controlsGroup" }, ngImport: i0, template: "<div class=\"col-12\">\n  <label nz-checkbox\n  [(ngModel)]=\"isChecked\"\n  (ngModelChange)=\"change()\">{{label}}</label>\n</div>\n<ng-content *ngIf=\"isOpen\"></ng-content>", components: [{ type: i1.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }], directives: [{ type: i2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i2.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: AdditionalComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'input-additional', styles: [], template: "<div class=\"col-12\">\n  <label nz-checkbox\n  [(ngModel)]=\"isOpen\"\n  (ngModelChange)=\"change()\">\u041A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F</label>\n</div>\n<ng-content *ngIf=\"isOpen\"></ng-content>" }]
-        }], ctorParameters: function () { return []; }, propDecorators: { onResetControls: [{
-                type: Output
+            args: [{ selector: 'input-additional', styles: [], template: "<div class=\"col-12\">\n  <label nz-checkbox\n  [(ngModel)]=\"isChecked\"\n  (ngModelChange)=\"change()\">{{label}}</label>\n</div>\n<ng-content *ngIf=\"isOpen\"></ng-content>" }]
+        }], ctorParameters: function () { return []; }, propDecorators: { label: [{
+                type: Input
+            }], isReverse: [{
+                type: Input
+            }], controlsGroup: [{
+                type: Input
             }] } });
 
 class AdditionalModule {
