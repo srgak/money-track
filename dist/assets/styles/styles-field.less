@@ -13,7 +13,6 @@
     transition: border 0.3s;
     cursor: pointer;
     text-overflow: ellipsis;
-    &:hover,
     &:focus {
       border-color: #133840;
     }
@@ -25,12 +24,6 @@
     }
     &[type='password'] {
       letter-spacing: 3px;
-    }
-    &:hover {
-      & ~ .field__clear {
-        opacity: 1;
-        visibility: visible;
-      }
     }
   }
   &__label {
@@ -118,8 +111,9 @@
     }
     &__close {
       margin-left: 10px;
+      pointer-events: none;
     }
-    &:hover {
+    &.active {
       flex-wrap: wrap;
       grid-gap: 10px;
       top: 0;
@@ -140,6 +134,9 @@
           &__item {
             margin-right: 0;
             white-space: normal;
+          }
+          &__close {
+            pointer-events: all;
           }
         }
       }
@@ -246,7 +243,7 @@
     opacity: 0;
     visibility: visible;
     transition: 0.3s;
-    &:hover {
+    &.active {
       opacity: 1;
       visibility: visible;
     }
