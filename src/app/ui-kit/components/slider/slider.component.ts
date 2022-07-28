@@ -43,6 +43,7 @@ export class SliderComponent implements AfterContentInit {
     this.elStatusBar = this.el.querySelector('.field-range__status-bar');
     this.control = this.formControl.control;
 
+    this.renderer2.setAttribute(this.elInput, 'inputmode', 'numeric');
     this.renderer2.addClass(this.elInput, 'field__input');
 
     setTimeout(() => {

@@ -17,12 +17,13 @@ export class SelectComponent implements OnInit, AfterContentInit {
   @ContentChild(FormControlName) private readonly formControl: FormControlName;
   @ContentChild(SelectMultipleDirective) public readonly multiple: SelectMultipleDirective;
   //поле
-  private elInput: Element;
+  private elInput: HTMLInputElement;
   private control: AbstractControl;
   private value: string | string[];
   //селект
   private elSelect: Element;
   private elSelectList: Element[];
+  private isActiveSelect: boolean = false;
   //список
   private readonly initList$: Subject<ListItem> = new Subject();
   private readonly list: ListItem[] = [];
@@ -63,7 +64,7 @@ export class SelectComponent implements OnInit, AfterContentInit {
         label: null, 
         value: null
       };
-      
+
     }
   }
 
@@ -111,10 +112,17 @@ export class SelectComponent implements OnInit, AfterContentInit {
     });
 
     //подписка на события
-    this.renderer2.listen(this.elInput, 'focus', () => {
-      this.renderer2.addClass(this.elSelect, 'active');
+    this.renderer2.listen(this.elInput, 'click', () => {
+      this.isActiveSelect = !this.isActiveSelect;
+      if(this.isActiveSelect) {
+        this.renderer2.addClass(this.elSelect, 'active');
+      } else {
+        this.renderer2.removeClass(this.elSelect, 'active');
+        this.elInput.blur();
+      }
     });
     this.renderer2.listen(this.elInput, 'blur', () => {
+      this.isActiveSelect = false;
       this.renderer2.removeClass(this.elSelect, 'active');
     });
     this.selectComList.forEach((component: SelectItemComponent) => {
