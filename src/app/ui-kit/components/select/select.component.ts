@@ -23,7 +23,7 @@ export class SelectComponent implements OnInit, AfterContentInit {
   //селект
   private elSelect: Element;
   private elSelectList: Element[];
-  private isActiveSelect: boolean = false;
+  private isActive: boolean = false;
   //список
   private readonly initList$: Subject<ListItem> = new Subject();
   private readonly list: ListItem[] = [];
@@ -113,8 +113,8 @@ export class SelectComponent implements OnInit, AfterContentInit {
 
     //подписка на события
     this.renderer2.listen(this.elInput, 'click', () => {
-      this.isActiveSelect = !this.isActiveSelect;
-      if(this.isActiveSelect) {
+      this.isActive = !this.isActive;
+      if(this.isActive) {
         this.renderer2.addClass(this.elSelect, 'active');
       } else {
         this.renderer2.removeClass(this.elSelect, 'active');
@@ -122,7 +122,7 @@ export class SelectComponent implements OnInit, AfterContentInit {
       }
     });
     this.renderer2.listen(this.elInput, 'blur', () => {
-      this.isActiveSelect = false;
+      this.isActive = false;
       this.renderer2.removeClass(this.elSelect, 'active');
     });
     this.selectComList.forEach((component: SelectItemComponent) => {

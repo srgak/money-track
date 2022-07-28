@@ -10,7 +10,6 @@ export class InputClearDirective implements OnInit {
   private control: AbstractControl;
   private elClear: Element;
   private elFieldContainer: Element;
-  private elArrow: Element;
 
   constructor(
     private elRef: ElementRef,
@@ -31,7 +30,6 @@ export class InputClearDirective implements OnInit {
     this.control = this.ngControl.control;
     this.elClear = this.renderer2.createElement('button');
     this.elFieldContainer = this.renderer2.parentNode(this.elInput);
-    this.elArrow = this.elFieldContainer.querySelector('.field__arrow');
 
     this.renderer2.addClass(this.elClear, 'field__clear');
     this.renderer2.appendChild(this.elFieldContainer, this.elClear);
@@ -40,14 +38,6 @@ export class InputClearDirective implements OnInit {
       this.renderer2.removeClass(this.elClear, 'active');
       this.control.reset();
     });
-    if(this.elArrow) {
-      this.renderer2.listen(this.elInput, 'mouseenter', () => {
-        this.renderer2.setStyle(this.elArrow, 'display', 'none');
-      });
-      this.renderer2.listen(this.elInput, 'mouseleave', () => {
-        this.renderer2.setStyle(this.elArrow, 'display', 'block');
-      });
-    }
   }
 
 }
