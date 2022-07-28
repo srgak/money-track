@@ -1,0 +1,21 @@
+<div class="field">
+  <div class="field__container">
+    <ng-content></ng-content>
+
+    <div class="field-range">
+      <input class="field-range__input"
+        type="range"
+        [min]="rangeMin"
+        [max]="rangeMax">
+      <span class="field-range__status-bar"></span>
+    </div>
+    <div class="field-range-label">
+      <span>
+        {{labelMin}}
+      </span>
+      <span>
+        {{labelMax}}
+      </span>
+    </div>
+  </div>
+</div>

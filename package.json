@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,6 +20,7 @@
     "@angular/router": "~13.1.0",
     "bootstrap-4-grid": "^3.4.0",
     "chart.js": "^3.7.1",
+    "moment": "<=2.29.1",
     "ng-zorro-antd": "^13.0.1",
     "ngx-mask": "^13.1.1",
     "ngx-valdemort": "^7.0.0",

@@ -39,6 +39,10 @@
         "dist/select/select",
         "dist/select"
       ],
+      "sms-code": [
+        "dist/sms-code/sms-code",
+        "dist/sms-code"
+      ],
       "transliteration": [
         "dist/transliteration/transliteration",
         "dist/transliteration"

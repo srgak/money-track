@@ -2,6 +2,8 @@
 @import './assets/styles/variables.less';
 @import './assets/styles/zorro.less';
 
+@import './assets/styles/styles-field.less';
+
 * {
   box-sizing:border-box;
   padding: 0;
@@ -13,9 +15,11 @@
 body {
   background: @Scream-2-hex;
   color: @Scream-4-hex;
+  font-size: 18px;
 }
 button {
   cursor: pointer;
+  font-size: 18px;
 }
 a {
   color: @white;
@@ -26,8 +30,16 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-p {
+ul, p {
   margin: 0;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+ul {
+  list-style: none;
 }
 
 .button {
@@ -37,169 +49,175 @@ p {
   border: 1px solid @white;
 }
 
-.input {
-  &__field {
-    margin-bottom: 10px;
-    position: relative;
-  }
-  input,
-  .ant-picker {
-    background: transparent;
-  }
-  .ant-picker {
-    padding: 0;
-  }
-  input {
-    font-size: 16px;
-    padding: 10px 0;
-    color: @white;
-  }
-  label {
-    position: absolute;
-    left: 0;
-    font-size: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: .3s;
-    color: @Scream-4-hex;
-  }
-  &__dropdown {
-    &.ant-select-dropdown,
-    .ant-select-dropdown{
-      border: 1px solid @Scream-5-hex;
-      background: @Scream-2-hex;
-      padding: 0;
-      margin-top: 0;
-      border-radius: 0 0 5px 5px;
-    }
-    .ant-select-item {
-      color: @Scream-4-hex;
-      font-size: 16px;
-    }
-    .ant-select-item-option-active {
-      background: @Scream-3-hex;
-    }
-  }
-  &__date-picker {
-    .ant-picker {
-      &-panel {
-        border-color: @Scream-3-hex;
-        &-container {
-          background: @Scream-2-hex;
-        }
-        .ant-picker-footer {
-          border-top-color: @Scream-3-hex;
-        }
-      }
-      &-header {
-        border-bottom-color: @Scream-3-hex;
-        button {
-          color: @Scream-5-hex;
-        }
-      }
-      &-content {
-        th {
-          color: @Scream-4-hex;
-        }
-      }
-      &-cell {
-        color: @Scream-4-hex;
-        &-disabled {
-          opacity: .25;
-        }
-        &-in-view.ant-picker-cell {
-          .ant-picker-cell-inner {
-            border: 1px solid transparent;
-          }
-          &-selected .ant-picker-cell-inner {
-            background: @Scream-1-hex;
-          }
-          &-today .ant-picker-cell-inner::before {
-            border-color: @Scream-1-hex;
-          }
-        }
-      }
-      &-today-btn {
-        color: @Scream-5-hex;
-      }
-    }
-  }
-  &_active {
-    label,
-    textarea + label {
-      font-size: 12px;
-      top: 8px;
-    }
-  }
-  &__error {
-    color: @Scream-1-hex;
-    margin-bottom: 10px;
-  }
-  &__status {
-    &_loading {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 3px solid @Scream-5-hex;
-      border-top-color: transparent;
-      animation: loading 1s linear infinite;
-    }
-    &_error {
-      position: relative;
-      color: @Scream-1-hex;
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 3px;
-        background: @Scream-1-hex;
-        top: 50%;
-        left: 50%;
-      }
-      &:before {
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-      &:after {
-        transform: translate(-50%, -50%) rotate(-45deg);
-      }
-    }
-  }
-  &__clear {
-    position: relative;
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 3px;
-      background: @Scream-1-hex;
-      top: 50%;
-      left: 50%;
-    }
-    &:before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-    &:after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-  }
-  &.ng-invalid.ng-touched {
-    input,
-    .ant-select:not(.ant-select-customize-input) .ant-select-selector,
-    .ant-input, .ant-input-affix-wrapper,
-    .ant-picker {
-      border-bottom-color: @Scream-1-hex;
-    }
-  }
-}
+// .input {
+//   margin-bottom: 10px;
+//   position: relative;
+//   &__field {
+//     font-size: 18px;
+//     padding: 10px;
+//     color: @white;
+//     &.ant-picker {
+//       background: transparent;
+//       padding: 10px 0;
+//       input {
+//         color: @Scream-4-hex !important;
+//       }
+//     }
+//     &.ant-select {
+//       border-bottom: 1px solid @Scream-4-hex;
+//     }
+//   }
+//   label {
+//     position: absolute;
+//     left: 10px;
+//     font-size: 16px;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     pointer-events: none;
+//     transition: .3s;
+//     color: @Scream-4-hex;
+//   }
+//   &__dropdown {
+//     &.ant-select-dropdown,
+//     .ant-select-dropdown {
+//       border: 1px solid @Scream-5-hex;
+//       background: @Scream-2-hex;
+//       padding: 0;
+//       margin-top: 0;
+//       border-radius: 0 0 5px 5px;
+//     }
+//     .ant-select-item {
+//       color: @Scream-4-hex;
+//       font-size: 16px;
+//     }
+//     .ant-select-item-option-active {
+//       background: @Scream-3-hex;
+//     }
+//   }
+//   &__date-picker {
+//     .ant-picker {
+//       &-panel {
+//         border-color: @Scream-3-hex;
+//         &-container {
+//           background: @Scream-2-hex;
+//         }
+//         .ant-picker-footer {
+//           border-top-color: @Scream-3-hex;
+//         }
+//       }
+//       &-header {
+//         border-bottom-color: @Scream-3-hex;
+//         button {
+//           color: @Scream-5-hex;
+//         }
+//       }
+//       &-content {
+//         th {
+//           color: @Scream-4-hex;
+//         }
+//       }
+//       &-cell {
+//         color: @Scream-4-hex;
+//         &-disabled {
+//           opacity: .25;
+//         }
+//         &-in-view.ant-picker-cell {
+//           .ant-picker-cell-inner {
+//             border: 1px solid transparent;
+//           }
+//           &-selected .ant-picker-cell-inner {
+//             background: @Scream-1-hex;
+//           }
+//           &-today .ant-picker-cell-inner::before {
+//             border-color: @Scream-1-hex;
+//           }
+//         }
+//       }
+//       &-today-btn {
+//         color: @Scream-5-hex;
+//       }
+//       &-input {
+//         & > input {
+//           color: @Scream-4-hex !important;
+//         }
+//       }
+//     }
+//   }
+//   &_active {
+//     & + label,
+//     & + textarea + label {
+//       font-size: 12px;
+//       top: 8px;
+//     }
+//   }
+//   &__error {
+//     color: @Scream-1-hex;
+//     margin-bottom: 10px;
+//   }
+//   &__status {
+//     &_loading {
+//       width: 20px;
+//       height: 20px;
+//       border-radius: 50%;
+//       border: 3px solid @Scream-5-hex;
+//       border-top-color: transparent;
+//       animation: loading 1s linear infinite;
+//     }
+//     &_error {
+//       position: relative;
+//       color: @Scream-1-hex;
+//       &:before,
+//       &:after {
+//         content: '';
+//         position: absolute;
+//         width: 20px;
+//         height: 3px;
+//         background: @Scream-1-hex;
+//         top: 50%;
+//         left: 50%;
+//       }
+//       &:before {
+//         transform: translate(-50%, -50%) rotate(45deg);
+//       }
+//       &:after {
+//         transform: translate(-50%, -50%) rotate(-45deg);
+//       }
+//     }
+//   }
+//   &__clear {
+//     position: relative;
+//     &:before,
+//     &:after {
+//       content: '';
+//       position: absolute;
+//       width: 20px;
+//       height: 3px;
+//       background: @Scream-1-hex;
+//       top: 50%;
+//       left: 50%;
+//     }
+//     &:before {
+//       transform: translate(-50%, -50%) rotate(45deg);
+//     }
+//     &:after {
+//       transform: translate(-50%, -50%) rotate(-45deg);
+//     }
+//   }
+//   &.ng-invalid.ng-touched {
+//     input,
+//     .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+//     .ant-input, .ant-input-affix-wrapper,
+//     .ant-picker {
+//       border-bottom-color: @Scream-1-hex;
+//     }
+//   }
+// }
 
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes loading {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }

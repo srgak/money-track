@@ -1,5 +1,75 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
-<val-default-errors>
-  <ng-template valError="required" let-label>Обязательное поле</ng-template>
-</val-default-errors>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ui-accordion title="Нажми на меня">
+        <!-- <img src="https://placekitten.com/300/300" alt="изображение котика"> -->
+        <p>
+          Котик обыкновенный. Обитает дома.
+        </p>
+      </ui-accordion>      
+    </div>
+  </div>
+  <form [formGroup]="form">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col">
+        <ui-field>
+          <input type="text"
+            #input
+            placeholder="Пример"
+            formControlName="fieldSimple"
+            uiInputLabel="Название поля"
+            uiInputHelp="Подсказка"
+            uiInputClear>
+        </ui-field>
+      </div>
+      <div class="col">
+        <ui-field>
+          <input type="password"
+            #input
+            formControlName="fieldPassword"
+            uiInputPasswd
+            uiInputLabel="Пароль">
+        </ui-field>
+      </div>
+      <div class="col-12">
+        <ui-slider [rangeMin]="50000"
+          [rangeMax]="1400000"
+          labelMin="Минимально 50 000"
+          labelMax="Максимально 1 400 000">
+          <input type="text"
+            #input
+            mask="separator"
+            thousandSeparator=" "
+            formControlName="fieldSlider"
+            uiInputLabel="Название">
+        </ui-slider>
+      </div>
+      <div class="col-md col-12">
+        <ui-select>
+          <input type="text"
+            #input
+            formControlName="selectSimple"
+            uiInputLabel="Увлечение"
+            uiInputHelp="Выберите одно из списка"
+            uiInputClear>
+          <ui-select-item *ngFor="let item of selectSimpleList"
+            [value]="item.id"
+            [label]="item.name"></ui-select-item>
+        </ui-select>
+      </div>
+      <div class="col-md col-12">
+        <ui-select>
+          <input type="text"
+            #input
+            formControlName="selectMultiple"
+            uiInputLabel="Увлечения"
+            uiInputHelp="Выберите несколько из списка"
+            uiSelectMultiple>
+          <ui-select-item *ngFor="let item of selectSimpleList"
+            [value]="item.id"
+            [label]="item.name"></ui-select-item>
+        </ui-select>
+      </div>
+    </div>
+  </form>
+</div>

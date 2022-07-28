@@ -38,6 +38,26 @@ export interface ListItem {
   otherBlock?: boolean;
 }
 
+export interface Task {
+  task: string;
+  priority: string;
+  dateReminder: Date;
+  filter: string;
+  category: number;
+}
+
+export interface TaskFilter {
+  param: string;
+  name: string;
+  active: boolean;
+}
+
+export interface Category {
+  name: string;
+  id: number;
+  active: boolean;
+}
+
 export interface MoneyBox extends ListItem {
   imgLink: string;
 }

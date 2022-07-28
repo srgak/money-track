@@ -1,0 +1,13 @@
+<div class="input__field">
+  <input type="text"
+    [formControl]="startControl"
+    nz-input
+    maxlength="4"
+    activeInput
+    mask="0000"
+    #txt>
+  <label>Код из смс</label>
+</div>
+<p>{{timeCount}}</p>
+<button (click)="getCode()"
+  *ngIf="isShowBtn">Запросить код повторно</button>

@@ -8,10 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //компоненты 
 import { AppComponent } from './app.component';
-import { FormRegistrationComponent } from './components/form-registration/form-registration.component';
-import { FormAuthComponent } from './components/form-auth/form-auth.component';
-import { LoginComponent } from './components/login/login.component';
-import { MenuComponent } from './components/menu/menu.component';
+// import { MenuComponent } from './components/menu/menu.component';
 
 //сервисы
 import { DataService } from './data/data.service';
@@ -20,6 +17,7 @@ import { ValidatorsService } from './data/validators.service';
 
 //директивы
 import { FixBlockDirective } from './directives/fix-block.directive';
+import { StatusCircleDirective } from './directives/status-circle.directive';
 
 //ng-zorro
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -32,26 +30,30 @@ import { IsLoggedGuard } from './guards/is-logged.guard';
 import { ValdemortModule } from 'ngx-valdemort';
 
 //свои библиотеки
-import { FieldModule } from 'field';
-import { DatePickerModule } from 'dist/date-picker';
-import { SelectModule } from 'select';
-import { PasswordModule } from 'dist/password';
-import { AutocompleteModule } from 'dist/autocomplete';
+import { UiKitModule } from './components/ui-kit/ui-kit.module';
+import { SelectModule } from './ui-kit/components/select/select.module';
+import { AccordionModule } from './ui-kit/components/accordion/accordion.module';
 
-import { WalletsModule } from './components/pages/wallets/wallets.module';
-import { AccountModule } from './components/pages/account/account.module';
-import { CurrencyModule } from './components/pages/currency/currency.module';
-import { DepositModule } from './components/pages/deposit/deposit.module';
-import { TestPageModule } from './components/pages/test-page/test-page.module';
+import { NgxMaskModule } from 'ngx-mask';
+import { InputLabelDirective } from './ui-kit/directives/input-label/input-label.directive';
+import { FieldModule } from './ui-kit/components/field/field.module';
+import { InputHelpDirective } from './ui-kit/directives/input-help/input-help.directive';
+import { InputPasswdDirective } from './ui-kit/directives/input-passwd/input-passwd.directive';
+import { SliderModule } from './ui-kit/components/slider/slider.module';
+import { SelectMultipleDirective } from './ui-kit/directives/select-multiple/select-multiple.directive';
+import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FixBlockDirective,
-    FormRegistrationComponent,
-    FormAuthComponent,
-    LoginComponent,
-    MenuComponent
+    StatusCircleDirective,
+    InputLabelDirective,
+    InputHelpDirective,
+    InputPasswdDirective,
+    SelectMultipleDirective,
+    InputClearDirective
   ],
   imports: [
     BrowserModule,
@@ -65,17 +67,14 @@ import { TestPageModule } from './components/pages/test-page/test-page.module';
 
     ValdemortModule,
     //свои библиотеки
+    AccordionModule,
     FieldModule,
-    DatePickerModule,
     SelectModule,
-    PasswordModule,
-    AutocompleteModule,
+    SliderModule,
     //свои страницы
-    WalletsModule,
-    AccountModule,
-    CurrencyModule,
-    DepositModule,
-    TestPageModule
+
+    UiKitModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [ 
     DataService,
