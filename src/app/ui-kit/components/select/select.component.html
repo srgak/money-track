@@ -3,7 +3,7 @@
     <ng-content select="input"></ng-content>
     <ng-container *ngIf="multiple; else noSetting">
       <div class="field-tag"
-        (click)="multiple.showTagList()">
+        (click)="multiple.showTagList($event)">
         <span class="field-tag__item"
           *ngFor="let item of multiple.tagList; let i = index;">
           {{item.label}}

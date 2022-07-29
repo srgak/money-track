@@ -45,6 +45,7 @@ export class SelectMultipleDirective implements OnInit {
     this.tagList.splice(index, 1);
     this.renderer2.removeClass(el, 'active');
     this.control.setValue(this.tagList.length ? this.valueList : null);
+    if(!this.tagList.length) this.renderer2.removeClass(this.elFieldTag, 'active');
   }
 
   //добавить тег
@@ -59,13 +60,16 @@ export class SelectMultipleDirective implements OnInit {
     }
   }
 
-  public showTagList(): void {
-    if(!this.elFieldTag) this.elFieldTag = this.renderer2.nextSibling(this.elInput);
-    this.isActive = !this.isActive;
-    if(this.isActive) {
-      this.renderer2.addClass(this.elFieldTag, 'active');
-    } else {
-      this.renderer2.removeClass(this.elFieldTag, 'active');
+  public showTagList(event): void {
+    if(!event.target.classList.contains('field-tag__close')) {
+      if(!this.elFieldTag) this.elFieldTag = this.renderer2.nextSibling(this.elInput);
+      
+      this.isActive = !this.isActive;
+      if(this.isActive) {
+        this.renderer2.addClass(this.elFieldTag, 'active');
+      } else {
+        this.renderer2.removeClass(this.elFieldTag, 'active');
+      }
     }
   }
 
