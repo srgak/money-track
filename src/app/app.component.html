@@ -44,7 +44,7 @@
             uiInputLabel="Название">
         </ui-slider>
       </div>
-      <div class="col-md col-12">
+      <div class="col-md-6 col-12">
         <ui-select>
           <input type="text"
             #input
@@ -57,18 +57,25 @@
             [label]="item.name"></ui-select-item>
         </ui-select>
       </div>
-      <div class="col-md col-12">
-        <ui-select>
+      <div class="col-md-6 col-12">
+        <ui-select [isMultiple]="true">
           <input type="text"
             #input
             formControlName="selectMultiple"
             uiInputLabel="Увлечения"
-            uiInputHelp="Выберите несколько из списка"
-            uiSelectMultiple>
+            uiInputHelp="Выберите несколько из списка">
           <ui-select-item *ngFor="let item of selectSimpleList"
             [value]="item.id"
             [label]="item.name"></ui-select-item>
         </ui-select>
+      </div>
+      <div class="col-md-6 col-12">
+        <ui-clock>
+          <input type="text"
+            #input
+            formControlName="clock"
+            uiInputLabel="Времечко">
+        </ui-clock>
       </div>
     </div>
   </form>

@@ -1,17 +1,8 @@
 <div class="field">
   <div class="field__container">
     <ng-content select="input"></ng-content>
-    <ng-container *ngIf="multiple; else noSetting">
-      <div class="field-tag"
-        (click)="multiple.showTagList($event)">
-        <span class="field-tag__item"
-          *ngFor="let item of multiple.tagList; let i = index;">
-          {{item.label}}
-          <button type="button"
-            class="field-tag__close"
-            (click)="multiple.deleteTag(i)">x</button>
-        </span>
-      </div>
+    <ng-container *ngIf="isMultiple; else noSetting">
+      <ui-select-tags></ui-select-tags>
     </ng-container>
     <ng-template #noSetting>
       <span class="field__title">{{listItem.label}}</span>

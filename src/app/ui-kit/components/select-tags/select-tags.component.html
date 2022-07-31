@@ -1,0 +1,11 @@
+<div class="field-tag"
+  (click)="showTagList($event)">
+  <span class="field-tag__item"
+    *ngFor="let item of tagList; let i = index;">
+    {{item.label}}
+    <button type="button"
+      class="field-tag__close"
+      *ngIf="isActive"
+      (click)="deleteTag(i)">x</button>
+  </span>
+</div>

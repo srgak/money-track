@@ -1,21 +1,22 @@
-import { AfterContentInit, Component, ContentChild, ContentChildren, ElementRef, OnInit, QueryList, Renderer2 } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, ContentChildren, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild } from '@angular/core';
 import { AbstractControl, FormControlName } from '@angular/forms';
 import { debounceTime, map, Subject } from 'rxjs';
-import { SelectMultipleDirective } from '../../directives/select-multiple/select-multiple.directive';
 import { ListItem, ListItemInfo } from '../../models/models';
 import { SelectItemComponent } from '../select-item/select-item.component';
+import { SelectTagsComponent } from '../select-tags/select-tags.component';
 
 @Component({
   selector: 'ui-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.less'],
 })
-export class SelectComponent implements OnInit, AfterContentInit {
+export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit {
 
+  @Input() isMultiple: boolean = false;
   @ContentChildren(SelectItemComponent) private readonly selectComList: QueryList<SelectItemComponent>;
   @ContentChild('input') private readonly inputRef: ElementRef;
   @ContentChild(FormControlName) private readonly formControl: FormControlName;
-  @ContentChild(SelectMultipleDirective) public readonly multiple: SelectMultipleDirective;
+  @ViewChild(SelectTagsComponent) public selectTagsCom: SelectTagsComponent;
   //поле
   private elInput: HTMLInputElement;
   private control: AbstractControl;
@@ -40,8 +41,8 @@ export class SelectComponent implements OnInit, AfterContentInit {
   //выброр элемента
   private chooseItem(val: ListItemInfo): void {
     if(val.itemInfo && val.el) {
-      if(this.multiple) {
-        this.multiple.addTag(val);
+      if(this.isMultiple) {
+        this.selectTagsCom.addTag(val);
       } else {
         this.changeItem(val);
       }
@@ -117,7 +118,6 @@ export class SelectComponent implements OnInit, AfterContentInit {
       if(this.isActive) {
         this.renderer2.addClass(this.elSelect, 'active');
       } else {
-        this.renderer2.removeClass(this.elSelect, 'active');
         this.elInput.blur();
       }
     });
@@ -131,14 +131,21 @@ export class SelectComponent implements OnInit, AfterContentInit {
         this.chooseItem(val);
       });
     });
-    if(this.multiple) {
-      this.multiple.onGetEl.subscribe((val: ListItem) => {
-        const index = this.list.findIndex((item: ListItem) => item.value === val.value);
-        this.multiple.deletedEl = this.elSelectList[index];
-      });
-    }
+
     this.control.valueChanges.subscribe(val => {
       if(!val) this.changeItem();
     });
+  }
+
+  ngAfterViewInit(): void {
+    if(this.isMultiple) {
+      this.selectTagsCom.onUpdateValue$.subscribe((val: string[] | null) => {
+        this.control.setValue(val);
+      });
+      this.selectTagsCom.onDeleteTag$.subscribe((tagListItem: ListItem) => {
+        const index = this.list.findIndex((item: ListItem) => item.value === tagListItem.value);
+        this.renderer2.removeClass(this.elSelectList[index], 'active');
+      });
+    }
   }
 }

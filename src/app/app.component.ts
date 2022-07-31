@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
     fieldSlider: new FormControl(500000),
     fieldPassword: new FormControl(),
     selectSimple: new FormControl('2'),
-    selectMultiple: new FormControl()
+    selectMultiple: new FormControl(),
+    clock: new FormControl()
   });
 
   public selectSimpleList = [

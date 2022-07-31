@@ -40,8 +40,8 @@ import { FieldModule } from './ui-kit/components/field/field.module';
 import { InputHelpDirective } from './ui-kit/directives/input-help/input-help.directive';
 import { InputPasswdDirective } from './ui-kit/directives/input-passwd/input-passwd.directive';
 import { SliderModule } from './ui-kit/components/slider/slider.module';
-import { SelectMultipleDirective } from './ui-kit/directives/select-multiple/select-multiple.directive';
 import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear.directive';
+import { ClockModule } from './ui-kit/components/clock/clock.module';
 
 
 @NgModule({
@@ -52,8 +52,7 @@ import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear
     InputLabelDirective,
     InputHelpDirective,
     InputPasswdDirective,
-    SelectMultipleDirective,
-    InputClearDirective
+    InputClearDirective,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +70,7 @@ import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear
     FieldModule,
     SelectModule,
     SliderModule,
+    ClockModule,
     //свои страницы
 
     UiKitModule,

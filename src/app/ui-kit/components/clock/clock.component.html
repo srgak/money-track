@@ -1,0 +1,45 @@
+<div class="field">
+  <div class="field__container">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="field-clock"
+    [ngClass]="{'active': isActiveClock}">
+    <div class="field-clock__hour"
+      [ngClass]="{'active': isActiveHour}">
+      <div class="field-clock__in">
+        <div class="field-clock__circle"
+          *ngFor="let circle of countHourAM; let i = index"
+          [class]="'field-clock__circle_' + (i + 1)">
+          <span class="field-clock__circle-count"
+            *ngFor="let hour of circle"
+            (click)="chooseHour(hour)">{{hour}}</span>
+        </div>
+      </div>
+      <div class="field-clock__out">
+        <div class="field-clock__circle"
+          *ngFor="let circle of countHourPM; let i = index"
+          [class]="'field-clock__circle_' + (i + 1)">
+          <span class="field-clock__circle-count"
+            *ngFor="let hour of circle"
+            (click)="chooseHour(hour)">{{hour}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="field-clock__minute"
+      [ngClass]="{'active': isActiveMinute}">
+      <div class="field-clock__out">
+        <div class="field-clock__circle"
+          *ngFor="let circle of countMinute; let i = index"
+          [class]="'field-clock__circle_' + (i + 1)">
+          <span class="field-clock__circle-count"
+            *ngFor="let minute of circle"
+            (click)="chooseMinute(minute)">{{minute}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="field-clock__total-time">
+      {{time}}
+    </div>
+  </div>
+</div>
