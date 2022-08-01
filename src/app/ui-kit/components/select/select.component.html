@@ -10,7 +10,8 @@
     <img class="field__arrow" src="../../../../assets/img/arrow-down.svg" alt="icon-down">
   </div>
 
-  <ul class="field-list">
+  <ul class="field-list"
+    [ngClass]="{'active': isActiveSelect}">
     <ng-content select="ui-select-item"></ng-content>
   </ul>
 </div>
