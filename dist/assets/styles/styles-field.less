@@ -19,6 +19,19 @@
   }
   &__container {
     position: relative;
+    &_arrow {
+      &:before {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        background: url('../img/arrow-down.svg') no-repeat center/cover;
+      }
+    }
   }
   &__input {
     width: 100%;
@@ -66,14 +79,6 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  &__arrow {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    pointer-events: none;
-  }
   &-list {
     border: 1px solid #FEFFFF;
     background: @Scream-2-hex;
@@ -89,6 +94,10 @@
       li {
         padding: 10px;
         cursor: pointer;
+        &.disabled {
+          pointer-events: none;
+          opacity: .5;
+        }
       }
       &:hover,
       &.active {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, EventEmitter } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ListItem, ListItemInfo } from '../../models/models';
 
 @Component({
@@ -10,9 +10,10 @@ export class SelectItemComponent implements OnInit {
 
   constructor(private elRef: ElementRef) { }
 
-  @Input() public value: string | number;
+  @Input() public value: any;
   @Input() public label: string;
-  public readonly onChangeItem: EventEmitter<ListItemInfo> = new EventEmitter<ListItemInfo>();
+  @Input() public isDisabled?: boolean = false;
+  @Output() public readonly onChangeItem: EventEmitter<ListItemInfo> = new EventEmitter();
 
   public itemEl: Element = this.elRef.nativeElement;
   public item: ListItem;
@@ -20,12 +21,11 @@ export class SelectItemComponent implements OnInit {
   public chooseItem(): void {
     this.onChangeItem.emit({
       itemInfo: this.item,
-      el: this.itemEl
+      el: this.itemEl 
     });
   }
 
   ngOnInit(): void {
-    this.value = this.value.toString();
     this.item = {
       value: this.value,
       label: this.label

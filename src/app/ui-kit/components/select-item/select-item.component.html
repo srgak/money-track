@@ -1,3 +1,4 @@
-<li (click)="chooseItem()">
+<li (click)="chooseItem()"
+  [ngClass]="{'disabled': isDisabled}">
   {{label}}
 </li>

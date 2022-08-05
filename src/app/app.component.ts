@@ -4,7 +4,6 @@ import { ValdemortConfig } from 'ngx-valdemort';
 import { StorageService } from './data/storage.service';
 import { MethodsService } from './data/methods.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ExtraDate } from 'src/assets/scripts/dateExtra';
 
 @Component({
   selector: 'app-root',
@@ -20,37 +19,39 @@ export class AppComponent implements OnInit {
     fieldSimple: new FormControl(),
     fieldSlider: new FormControl(500000),
     fieldPassword: new FormControl(),
-    selectSimple: new FormControl('2'),
+    selectSimple: new FormControl(2),
     selectMultiple: new FormControl(),
     clock: new FormControl()
   });
 
   public selectSimpleList = [
     {
-      id: 1,
-      name: 'Фторография'
+      value: 1,
+      label: 'Фторография'
     },
     {
-      id: 2,
-      name: 'Плавание'
+      value: 2,
+      label: 'Плавание'
     },
     {
-      id: 3,
-      name: 'Программирование'
+      value: 3,
+      label: 'Программирование'
     },
     {
-      id: 4,
-      name: 'Рисование'
+      value: 4,
+      label: 'Рисование'
     },
     {
-      id: 5,
-      name: 'Вышивка крестом'
+      value: 5,
+      label: 'Вышивка крестом'
+    },
+    {
+      value: 6,
+      label: 'Disabled',
+      disabled: true
     }
   ];
 
   ngOnInit(): void {
-    this.form.get('selectMultiple').valueChanges.subscribe(val => {
-      console.log(val);
-    });
   }
 }

@@ -1,5 +1,5 @@
 <div class="field">
-  <div class="field__container">
+  <div class="field__container field__container_arrow">
     <ng-content select="input"></ng-content>
     <ng-container *ngIf="isMultiple; else noSetting">
       <ui-select-tags></ui-select-tags>
@@ -7,11 +7,15 @@
     <ng-template #noSetting>
       <span class="field__title">{{listItem.label}}</span>
     </ng-template>
-    <img class="field__arrow" src="../../../../assets/img/arrow-down.svg" alt="icon-down">
   </div>
 
   <ul class="field-list"
-    [ngClass]="{'active': isActiveSelect}">
-    <ng-content select="ui-select-item"></ng-content>
+    [ngClass]="{'active': isActiveSelect$ | async}">
+    <ui-select-item class="field-list__item"
+      *ngFor="let item of list$ | async"
+      [value]="item.value"
+      [label]="item.label"
+      [isDisabled]="item.disabled"
+      (onChangeItem)="changeItem($event)"></ui-select-item>
   </ul>
 </div>

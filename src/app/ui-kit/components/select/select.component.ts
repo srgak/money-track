@@ -1,146 +1,141 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChild, ContentChildren, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AbstractControl, FormControlName } from '@angular/forms';
-import { debounceTime, map, Subject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ListItem, ListItemInfo } from '../../models/models';
-import { SelectItemComponent } from '../select-item/select-item.component';
 import { SelectTagsComponent } from '../select-tags/select-tags.component';
 
 @Component({
   selector: 'ui-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 
-  @Input() isMultiple: boolean = false;
-  @ContentChildren(SelectItemComponent) private readonly selectComList: QueryList<SelectItemComponent>;
+  @Input() public isMultiple?: boolean = false;
+  @Input() public list: ListItem[];
+  public readonly list$: BehaviorSubject<ListItem[]> = new BehaviorSubject([]);
   @ContentChild('input') private readonly inputRef: ElementRef;
   @ContentChild(FormControlName) private readonly formControl: FormControlName;
-  @ViewChild(SelectTagsComponent) public selectTagsCom: SelectTagsComponent;
+  @ViewChild(SelectTagsComponent) public selectTags: SelectTagsComponent;
   //поле
   private elInput: HTMLInputElement;
   private control: AbstractControl;
-  private value: string | string[];
+  private value: any | any[];
   //селект
   private elSelect: Element;
   private elSelectList: Element[];
-  public isActiveSelect: boolean = false;
+  public isActiveSelect$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   //список
-  private readonly initList$: Subject<ListItem> = new Subject();
-  private readonly list: ListItem[] = [];
   public listItem: ListItem = {
     label: null,
     value: null
   };
+  private readonly subs: Subscription = new Subscription();
 
   constructor(
     private readonly renderer2: Renderer2, 
-    private readonly elRef: ElementRef
+    private readonly elRef: ElementRef,
+    private readonly cdr: ChangeDetectorRef
   ) { }
 
-  //выброр элемента
-  private chooseItem(val: ListItemInfo): void {
-    if(val.itemInfo && val.el) {
-      if(this.isMultiple) {
-        this.selectTagsCom.addTag(val);
-      } else {
-        this.changeItem(val);
-      }
+  //снять выбранный элемент
+  private markItem(target: ListItem, add: boolean = true): void {
+    const index = this.list.findIndex(item => item.value === target.value);
+    if(add) {
+      this.renderer2.addClass(this.elSelectList[index], 'active');
     } else {
-      this.control.setValue(null);
+      this.renderer2.removeClass(this.elSelectList[index], 'active');
     }
+  }
+
+  //инициализация входящих значений
+  private initInputValue(value: any | any[]): void {
+    const index = this.list.findIndex(item => item.value === value);
+    const item = this.list[index];
+    const el = this.elSelectList[index];
+    this.changeItem({
+      itemInfo: item,
+      el: el
+    });
   }
 
   //поменять элемент списка
-  private changeItem(value: ListItemInfo | null = null): void {
+  public changeItem(item: ListItemInfo): void {
+    if(this.isMultiple) {
+      this.selectTags.chooseMultipleItem(item.itemInfo, item.el.classList.contains('active'));
+    } else {
+      this.chooseSimpleItem(item.itemInfo);
+    }
+  };
+
+  private chooseSimpleItem(val: ListItem): void {
     this.elSelectList.forEach((el: Element) => {
       this.renderer2.removeClass(el, 'active');
     });
-    if(value) {
-      this.listItem = {...value.itemInfo};
-      this.control.setValue(this.listItem.value);
-      this.renderer2.addClass(value.el, 'active');
-    } else {
-      this.listItem = {
-        label: null, 
-        value: null
-      };
-
-    }
+    this.listItem = {...val};
+    this.markItem(val);
+    this.control.setValue(this.listItem.value);
   }
 
   ngOnInit(): void {
-    this.initList$.pipe(
-      map((item: ListItem) => {
-        this.list.push(item);
-
-        return this.list;
-      }),
-      debounceTime(100)
-    ).subscribe((list: ListItem[]) => {
-      if (this.value) {
-        const arr = !Array.isArray(this.value) ? this.value.split('') : this.value;
-        arr.forEach(valItem => {
-          const index = list.findIndex((item: ListItem) => item.value === valItem.toString());
-          const item = list[index];
-          this.chooseItem({
-            itemInfo: item,
-            el: this.elSelectList[index]
-          });
-        });
-      }
-    });
+    if(this.list) {
+      this.list$.next(this.list);
+    }
   }
 
   ngAfterContentInit(): void {
     //присваивание
     this.elInput = this.inputRef.nativeElement;
     this.control = this.formControl.control;
-    this.elSelect = this.elRef.nativeElement.querySelector('.field-list');
-    this.elSelectList = Array.from(this.elSelect.children);
-    if(Array.isArray(this.control.value)) {
-      this.value = this.control.value;
-    } else {
-      this.value = this.control.value ? this.control.value.toString() : '';
-    }
 
     //рендеринг
     this.renderer2.addClass(this.elInput, 'field__input');
     this.renderer2.addClass(this.elInput, 'field__input_text-transparent');
-    this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
-    this.elSelectList.forEach(item => {
-      this.renderer2.addClass(item, 'field-list__item');
-    });
+    // this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
 
     //подписка на события
     this.renderer2.listen(document, 'click', (event) => {
       const el = event.target;
 
-      if(el !== this.elInput) this.isActiveSelect = false;
-      if(el === this.elInput) this.isActiveSelect = !this.isActiveSelect;
-      if(!this.isActiveSelect) this.elInput.blur();
-    });
-    this.selectComList.forEach((component: SelectItemComponent) => {
-      this.initList$.next(component.item);
-      component.onChangeItem.subscribe((val: ListItemInfo) => {
-        this.chooseItem(val);
-      });
-    });
-
-    this.control.valueChanges.subscribe(val => {
-      if(!val) this.changeItem();
+      if(el !== this.elInput) this.isActiveSelect$.next(false);
+      if(el === this.elInput) this.isActiveSelect$.next(!this.isActiveSelect$.value);
+      if(!this.isActiveSelect$.value) this.elInput.blur();
     });
   }
 
   ngAfterViewInit(): void {
+    this.elSelect = this.elRef.nativeElement.querySelector('.field-list');
+    this.elSelectList = Array.from(this.elSelect.children);
+    this.value = this.control.value;
+
     if(this.isMultiple) {
-      this.selectTagsCom.onUpdateValue$.subscribe((val: string[] | null) => {
-        this.control.setValue(val);
-      });
-      this.selectTagsCom.onDeleteTag$.subscribe((tagListItem: ListItem) => {
-        const index = this.list.findIndex((item: ListItem) => item.value === tagListItem.value);
-        this.renderer2.removeClass(this.elSelectList[index], 'active');
-      });
+      this.subs.add(
+        this.selectTags.onChangeValue.subscribe(val => {
+          this.control.setValue(val);
+        })
+      );
+      this.subs.add(
+        this.selectTags.onMarkItem.subscribe(val => {
+          this.markItem(val.item, val.add);
+        })
+      );
     }
+
+    if(this.value) {
+      if(Array.isArray(this.value)) {
+        this.value.forEach(item => {
+          this.initInputValue(item);
+        });
+      } else {
+        this.initInputValue(this.value);
+      }
+      
+      this.cdr.detectChanges();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }
