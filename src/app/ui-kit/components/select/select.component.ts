@@ -2,6 +2,7 @@ import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetecto
 import { AbstractControl, FormControlName } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ListItem, ListItemInfo } from '../../models/models';
+import { Dropdown } from '../../scripts/dropdown';
 import { SelectTagsComponent } from '../select-tags/select-tags.component';
 
 @Component({
@@ -25,7 +26,7 @@ export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit,
   //селект
   private elSelect: Element;
   private elSelectList: Element[];
-  public isActiveSelect$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public dropdown: Dropdown;
   //список
   public listItem: ListItem = {
     label: null,
@@ -88,20 +89,12 @@ export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit,
     //присваивание
     this.elInput = this.inputRef.nativeElement;
     this.control = this.formControl.control;
+    this.dropdown = new Dropdown(this.elInput, this.isMultiple ? '.field-list' : null);
 
     //рендеринг
     this.renderer2.addClass(this.elInput, 'field__input');
     this.renderer2.addClass(this.elInput, 'field__input_text-transparent');
-    // this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
-
-    //подписка на события
-    this.renderer2.listen(document, 'click', (event) => {
-      const el = event.target;
-
-      if(el !== this.elInput) this.isActiveSelect$.next(false);
-      if(el === this.elInput) this.isActiveSelect$.next(!this.isActiveSelect$.value);
-      if(!this.isActiveSelect$.value) this.elInput.blur();
-    });
+    this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
   }
 
   ngAfterViewInit(): void {

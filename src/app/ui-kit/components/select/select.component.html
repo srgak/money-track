@@ -10,7 +10,7 @@
   </div>
 
   <ul class="field-list"
-    [ngClass]="{'active': isActiveSelect$ | async}">
+    [ngClass]="{'active': dropdown.activeFlag$ | async}">
     <ui-select-item class="field-list__item"
       *ngFor="let item of list$ | async"
       [value]="item.value"

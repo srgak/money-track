@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
+import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ListItem } from '../../models/models';
 
@@ -7,9 +7,9 @@ import { ListItem } from '../../models/models';
   templateUrl: './select-tags.component.html',
   styleUrls: ['./select-tags.component.less'],
 })
-export class SelectTagsComponent implements OnInit {
+export class SelectTagsComponent implements OnInit, DoCheck {
 
-  public readonly tagList$: BehaviorSubject<ListItem[]> = new BehaviorSubject([]);
+  public readonly tagList: ListItem[] = [];
   public isActive: boolean = false;
   public readonly onChangeValue: EventEmitter<any[]> = new EventEmitter();
   public readonly onMarkItem: EventEmitter<{item: ListItem, add: boolean}> = new EventEmitter();
@@ -19,7 +19,7 @@ export class SelectTagsComponent implements OnInit {
   //получить список значений для контрола
   private get valueList(): any[] {
     const arr = [];
-    this.tagList$.value.forEach(item => {
+    this.tagList.forEach(item => {
       arr.push(item.value);
     });
 
@@ -34,29 +34,24 @@ export class SelectTagsComponent implements OnInit {
 
   //удалить тег
   public deleteTag(index: number): void {
-    const arr = this.tagList$.value;
-    const target = arr[index];
-    arr.splice(index, 1);
-    this.tagList$.next(arr);
-    this.onChangeValue.emit(arr.length ? this.valueList : null);
+    const target = this.tagList[index];
+    this.tagList.splice(index, 1);
+    this.onChangeValue.emit(this.tagList.length ? this.valueList : null);
     this.onMarkItem.emit({
       item: target,
       add: false
     });
-    this.isActive = !!arr.length;
+    this.isActive = !!this.tagList.length;
   }
 
   //добавить тег
   public chooseMultipleItem(val: ListItem, elContains: boolean): void {
-    const arr = this.tagList$.value;
-
     if(elContains) {
-      const index = arr.findIndex(item => item.value === val.value);
-      arr.splice(index, 1);
+      const index = this.tagList.findIndex(item => item.value === val.value);
+      this.tagList.splice(index, 1);
     } else {
-      arr.push(val);
+      this.tagList.push(val);
     }
-    this.tagList$.next(arr);
     this.onMarkItem.emit({
       item: val,
       add: !elContains
@@ -66,6 +61,9 @@ export class SelectTagsComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+  ngDoCheck(): void {
+      console.log(123);
   }
 
 }

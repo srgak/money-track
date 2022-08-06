@@ -1,18 +1,22 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, FormControlName } from '@angular/forms';
+import { Dropdown } from '../../scripts/dropdown';
 
 @Component({
   selector: 'ui-clock',
   templateUrl: './clock.component.html',
-  styleUrls: ['./clock.component.less']
+  styleUrls: ['./clock.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClockComponent implements OnInit, AfterContentInit {
+export class ClockComponent implements OnInit, AfterContentInit, DoCheck {
   @ContentChild('input') private inputRef: ElementRef;
   @ContentChild(FormControlName) private readonly formControl: FormControlName;
 
   private elInput: HTMLInputElement;
   private control: AbstractControl;
-  public isActiveClock: boolean = false;
+  // public isActiveClock: boolean = false;
+  // public isActiveClock$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public dropdown: Dropdown;
   public isActiveHour: boolean = true;
   public isActiveMinute: boolean = false;
   public readonly countHourAM: string[][] = [
@@ -44,8 +48,8 @@ export class ClockComponent implements OnInit, AfterContentInit {
     this.time += value;
     this.control.setValue(this.time);
     this.isActiveMinute = false;
-    this.isActiveClock = false;
     this.isActiveHour = true;
+    this.dropdown.activeFlag$.next(false);
   }
 
   ngOnInit(): void {
@@ -53,16 +57,14 @@ export class ClockComponent implements OnInit, AfterContentInit {
   ngAfterContentInit(): void {
     this.elInput = this.inputRef.nativeElement;
     this.control = this.formControl.control;
+    this.dropdown = new Dropdown(this.elInput, '.field-clock');
 
     this.renderer2.addClass(this.elInput, 'field__input');
     this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
 
-    this.renderer2.listen(document, 'click', (event) => {
-      const el = event.target;
-
-      if(!el.closest('.field-clock') && el !== this.elInput) this.isActiveClock = false;
-      if(el === this.elInput) this.isActiveClock = !this.isActiveClock;
-      if(!this.isActiveClock) this.elInput.blur();
-    });
+    
+  }
+  ngDoCheck(): void {
+      // console.log(123);
   }
 }

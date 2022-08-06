@@ -2,7 +2,7 @@
   [ngClass]="{'active': isActive}"
   (click)="showTagList($event)">
   <span class="field-tag__item"
-    *ngFor="let item of tagList$ | async; let i = index;">
+    *ngFor="let item of tagList; let i = index;">
     {{item.label}}
     <button type="button"
       class="field-tag__close"

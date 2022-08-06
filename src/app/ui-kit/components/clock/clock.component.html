@@ -4,7 +4,7 @@
   </div>
 
   <div class="field-clock"
-    [ngClass]="{'active': isActiveClock}">
+    [ngClass]="{'active': dropdown.activeFlag$ | async}">
     <div class="field-clock__hour"
       [ngClass]="{'active': isActiveHour}">
       <div class="field-clock__in">
