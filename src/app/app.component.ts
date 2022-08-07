@@ -49,6 +49,30 @@ export class AppComponent implements OnInit {
       value: 6,
       label: 'Disabled',
       disabled: true
+    },
+    {
+      value: '',
+      label: 'foo1'
+    },
+    {
+      value: '',
+      label: 'foo2'
+    },
+    {
+      value: '',
+      label: 'foo3'
+    },
+    {
+      value: '',
+      label: 'foo4'
+    },
+    {
+      value: '',
+      label: 'foo5'
+    },
+    {
+      value: '',
+      label: 'foo6'
     }
   ];
 

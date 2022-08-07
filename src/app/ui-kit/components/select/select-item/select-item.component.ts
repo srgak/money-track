@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ListItem, ListItemInfo } from '../../models/models';
+import { ListItem, ListItemInfo } from '../../../models/models';
 
 @Component({
   selector: 'ui-select-item',

@@ -1,0 +1,27 @@
+<div class="field">
+  <div class="field__container">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="field-clock"
+    [ngClass]="{'active': dropdown.activeFlag$ | async}">
+    <div class="field-clock__hour"
+      [ngClass]="{'active': isActiveHour}">
+      <ui-clock-panel class="field-clock__in"
+        [valueList]="countHourAM"
+        (onChangeValue)="chooseHour($event)"></ui-clock-panel>
+      <ui-clock-panel class="field-clock__out"
+        [valueList]="countHourPM"
+        (onChangeValue)="chooseHour($event)"></ui-clock-panel>
+    </div>
+    <div class="field-clock__minute"
+      [ngClass]="{'active': isActiveMinute}">
+      <ui-clock-panel class="field-clock__out"
+        [valueList]="countMinute"
+        (onChangeValue)="chooseMinute($event)"></ui-clock-panel>
+    </div>
+    <div class="field-clock__total-time">
+      {{time}}
+    </div>
+  </div>
+</div>

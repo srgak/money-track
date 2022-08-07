@@ -11,7 +11,7 @@
   </div>
   <form [formGroup]="form">
     <div class="row" style="margin-top: 20px;">
-      <div class="col">
+      <div class="col-md-6 col-12">
         <ui-field>
           <input type="text"
             #input
@@ -22,7 +22,7 @@
             uiInputClear>
         </ui-field>
       </div>
-      <div class="col">
+      <div class="col-md-6 col-12">
         <ui-field>
           <input type="password"
             #input
@@ -70,6 +70,13 @@
             formControlName="clock"
             uiInputLabel="Времечко">
         </ui-clock>
+      </div>
+      <div class="col-md-6 col-12">
+        <p>datepicker coming soon...</p>
+      </div>
+
+      <div class="col-12">
+        autofocus component coming soon...
       </div>
     </div>
   </form>

@@ -1,13 +1,12 @@
-import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { ListItem } from '../../models/models';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ListItem } from '../../../models/models';
 
 @Component({
   selector: 'ui-select-tags',
   templateUrl: './select-tags.component.html',
   styleUrls: ['./select-tags.component.less'],
 })
-export class SelectTagsComponent implements OnInit, DoCheck {
+export class SelectTagsComponent implements OnInit {
 
   public readonly tagList: ListItem[] = [];
   public isActive: boolean = false;
@@ -61,9 +60,6 @@ export class SelectTagsComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     
-  }
-  ngDoCheck(): void {
-      console.log(123);
   }
 
 }

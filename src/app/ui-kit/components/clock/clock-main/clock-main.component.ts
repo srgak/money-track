@@ -1,21 +1,19 @@
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, FormControlName } from '@angular/forms';
-import { Dropdown } from '../../scripts/dropdown';
+import { Dropdown } from '../../../scripts/dropdown';
 
 @Component({
   selector: 'ui-clock',
-  templateUrl: './clock.component.html',
-  styleUrls: ['./clock.component.less'],
+  templateUrl: './clock-main.component.html',
+  styleUrls: ['./clock-main.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClockComponent implements OnInit, AfterContentInit, DoCheck {
+export class ClockMainComponent implements OnInit, AfterContentInit, DoCheck {
   @ContentChild('input') private inputRef: ElementRef;
   @ContentChild(FormControlName) private readonly formControl: FormControlName;
 
   private elInput: HTMLInputElement;
   private control: AbstractControl;
-  // public isActiveClock: boolean = false;
-  // public isActiveClock$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public dropdown: Dropdown;
   public isActiveHour: boolean = true;
   public isActiveMinute: boolean = false;

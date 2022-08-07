@@ -31,7 +31,7 @@ import { ValdemortModule } from 'ngx-valdemort';
 
 //свои библиотеки
 import { UiKitModule } from './components/ui-kit/ui-kit.module';
-import { SelectModule } from './ui-kit/components/select/select.module';
+import { SelectMainModule } from './ui-kit/components/select/select-main/select-main.module';
 import { AccordionModule } from './ui-kit/components/accordion/accordion.module';
 
 import { NgxMaskModule } from 'ngx-mask';
@@ -41,7 +41,7 @@ import { InputHelpDirective } from './ui-kit/directives/input-help/input-help.di
 import { InputPasswdDirective } from './ui-kit/directives/input-passwd/input-passwd.directive';
 import { SliderModule } from './ui-kit/components/slider/slider.module';
 import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear.directive';
-import { ClockModule } from './ui-kit/components/clock/clock.module';
+import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main.module';
 
 
 @NgModule({
@@ -68,9 +68,9 @@ import { ClockModule } from './ui-kit/components/clock/clock.module';
     //свои библиотеки
     AccordionModule,
     FieldModule,
-    SelectModule,
+    SelectMainModule,
     SliderModule,
-    ClockModule,
+    ClockMainModule,
     //свои страницы
 
     UiKitModule,

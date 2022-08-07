@@ -1,0 +1,7 @@
+<div class="field-clock__circle"
+  *ngFor="let circle of valueList; let i = index"
+  [class]="'field-clock__circle_' + (i + 1)">
+  <span class="field-clock__circle-count"
+    *ngFor="let item of circle"
+    (click)="chooseItem(item)">{{item}}</span>
+</div>

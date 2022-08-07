@@ -1,17 +1,17 @@
 import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AbstractControl, FormControlName } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ListItem, ListItemInfo } from '../../models/models';
-import { Dropdown } from '../../scripts/dropdown';
+import { ListItem, ListItemInfo } from '../../../models/models';
+import { Dropdown } from '../../../scripts/dropdown';
 import { SelectTagsComponent } from '../select-tags/select-tags.component';
 
 @Component({
   selector: 'ui-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.less'],
+  templateUrl: './select-main.component.html',
+  styleUrls: ['./select-main.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
+export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 
   @Input() public isMultiple?: boolean = false;
   @Input() public list: ListItem[];
