@@ -72,7 +72,13 @@
         </ui-clock>
       </div>
       <div class="col-md-6 col-12">
-        <p>datepicker coming soon...</p>
+        <ui-date-main formControlName="date">
+          <input type="text"
+            readonly
+            #input
+            mask="00.00.0000"
+            uiInputLabel="Дата">
+        </ui-date-main>
       </div>
 
       <div class="col-12">

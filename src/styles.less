@@ -20,6 +20,10 @@ body {
 button {
   cursor: pointer;
   font-size: 18px;
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
 }
 a {
   color: @white;

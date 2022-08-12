@@ -42,6 +42,7 @@ import { InputPasswdDirective } from './ui-kit/directives/input-passwd/input-pas
 import { SliderModule } from './ui-kit/components/slider/slider.module';
 import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear.directive';
 import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main.module';
+import { DateMainModule } from './ui-kit/components/date/date-main/date-main.module';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main
     SelectMainModule,
     SliderModule,
     ClockMainModule,
+    DateMainModule,
     //свои страницы
 
     UiKitModule,

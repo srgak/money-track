@@ -384,4 +384,86 @@
       font-size: 22px;
     }
   }
+  &-calendar {
+    border: 1px solid #FEFFFF;
+    background: @Scream-2-hex;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0;
+    transition: 0.3s;
+    position: absolute;
+    z-index: 1;
+    &.active {
+      margin-top: 10px;
+      opacity: 1;
+      visibility: visible;
+    }
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #FEFFFF;
+    }
+    &__change {
+      display: inline-flex;
+      // align-items: center;
+      &-year,
+      &-month {
+        border: 1px solid #FEFFFF;
+        cursor: pointer;
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+    &__info {
+      width: 100%;
+      span {
+        display: inline-block;
+        width: 50%;
+        text-align: left;
+        &:first-child {
+          text-align: right;
+          padding-right: 5px;
+        }
+        &:last-child {
+          padding-left: 5px;
+        }
+      }
+    }
+    &__body {
+      padding: 10px;
+    }
+    &-week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 10px;
+      &__day {
+        text-align: center;
+      }
+    }
+    &-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 10px;
+      &__btn {
+        width: 30px;
+        height: 30px;
+        transition: 0.3s;
+        &:hover,
+        &.active {
+          background: @Scream-3-hex;
+        }
+      }
+    }
+    &__footer {
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid @Scream-4-hex;
+    }
+    &__today-btn {
+      padding: 10px 0;
+    }
+  }
 }

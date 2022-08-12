@@ -1,0 +1,18 @@
+<div class="field-calendar__body">
+  <div class="field-calendar-week">
+    <div class="field-calendar-week__day"
+      *ngFor="let item of dayNameList">
+      {{item}}
+    </div>
+  </div>
+  <div class="field-calendar-days">
+    <button class="field-calendar-days__btn"
+      type="button"
+      *ngFor="let item of dayList"
+      [ngClass]="{'active': item.active}"
+      [disabled]="item.disabled"
+      (click)="chooseDay(item.value)">
+      {{item.value}}
+    </button>
+  </div>
+</div>

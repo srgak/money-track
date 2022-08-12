@@ -1,0 +1,26 @@
+<div class="field-calendar__header">
+  <div class="field-calendar__change field-calendar__change_prev">
+    <button class="field-calendar__change-year"
+      (click)="changeYear()">
+      &lt;&lt;
+    </button>
+    <button class="field-calendar__change-month"
+      (click)="changeMonth()">
+      &lt;
+    </button>
+  </div>
+  <div class="field-calendar__info">
+    <span>{{date.nameMonth}}</span>
+    <span>{{date.year}}</span>
+  </div>
+  <div class="field-calendar__change field-calendar__change_next">
+    <button class="field-calendar__change-month"
+      (click)="changeMonth('next')">
+      >
+    </button>
+    <button class="field-calendar__change-year"
+      (click)="changeYear('next')">
+      >>
+    </button>
+  </div>
+</div>

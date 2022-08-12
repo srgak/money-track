@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
     fieldPassword: new FormControl(),
     selectSimple: new FormControl(2),
     selectMultiple: new FormControl(),
-    clock: new FormControl()
+    clock: new FormControl(),
+    date: new FormControl(new Date(2022, 6, 1))
   });
 
   public selectSimpleList = [
@@ -77,5 +78,8 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.form.get('date').valueChanges.subscribe(val => {
+      console.log(val);
+    });
   }
 }

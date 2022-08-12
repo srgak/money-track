@@ -1,0 +1,16 @@
+<div class="field">
+  <div class="field__container">
+    <ng-content select="input"></ng-content>
+  </div>
+
+  <div class="field-calendar"
+    [ngClass]="{'active': dropdown.activeFlag$ | async}">
+    <ui-date-header [date]="mainDate"
+      (onChange)="renderDays()"></ui-date-header>
+    <ui-date-body
+      [dayList]="dayList"
+      (onChangeDay)="changeDay($event)"></ui-date-body>
+    <ui-date-footer
+      (onChange)="setToday()"></ui-date-footer>
+  </div>
+</div>
