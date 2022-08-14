@@ -43,6 +43,8 @@ import { SliderModule } from './ui-kit/components/slider/slider.module';
 import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear.directive';
 import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main.module';
 import { DateMainModule } from './ui-kit/components/date/date-main/date-main.module';
+import { AutofocusModule } from './ui-kit/components/autofocus/autofocus.module';
+
 
 
 @NgModule({
@@ -73,6 +75,7 @@ import { DateMainModule } from './ui-kit/components/date/date-main/date-main.mod
     SliderModule,
     ClockMainModule,
     DateMainModule,
+    AutofocusModule,
     //свои страницы
 
     UiKitModule,

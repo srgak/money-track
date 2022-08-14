@@ -3,7 +3,8 @@ import { DataService } from './data/data.service';
 import { ValdemortConfig } from 'ngx-valdemort';
 import { StorageService } from './data/storage.service';
 import { MethodsService } from './data/methods.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidateBirthday } from './ui-kit/validators/validator-birthday';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,13 @@ export class AppComponent implements OnInit {
     selectSimple: new FormControl(2),
     selectMultiple: new FormControl(),
     clock: new FormControl(),
-    date: new FormControl(new Date(2022, 6, 1))
+    date: new FormControl(),
+    autofocusGroup: new FormGroup({
+      control1: new FormControl(null, [Validators.required, ValidateBirthday()]),
+      control2: new FormControl(),
+      control3: new FormControl(),
+      control4: new FormControl(),
+    })
   });
 
   public selectSimpleList = [

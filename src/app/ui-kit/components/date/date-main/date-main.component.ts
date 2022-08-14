@@ -6,11 +6,6 @@ import { DateDay } from 'src/app/ui-kit/models/models';
 import { copyDate, DateExtra } from 'src/app/ui-kit/scripts/dateExtra';
 import { Dropdown } from 'src/app/ui-kit/scripts/dropdown';
 
-enum locales {
-  'ru' = 'ru',
-  'en' = 'en-US'
-};
-
 @Component({
   selector: 'ui-date-main',
   templateUrl: './date-main.component.html',
@@ -80,8 +75,8 @@ export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, C
   //поменять день и задать дату в поле
   public changeDay(day?: number): void {
     this.mainDate.setDate(day || +this.mainDate.day);
-    this.renderer2.setProperty(this.elInput, 'value', this.datePipe.transform(this.mainDate.info, this.format));
-    this.control.setValue(this.mainDate.info);
+    this.renderer2.setProperty(this.elInput, 'value', this.datePipe.transform(this.mainDate, this.format));
+    this.control.setValue(this.mainDate);
     this.dropdown.activeFlag$.next(false);
     this.saveDate();
   }
@@ -137,7 +132,10 @@ export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, C
 
   //задать сегодняшний день
   public setToday(): void {
-    this.mainDate.reinit();
+    const date = new Date();
+    this.mainDate.setFullYear(date.getFullYear());
+    this.mainDate.setMonth(date.getMonth());
+    this.mainDate.setDate(date.getDate());
     this.changeDay();
     this.renderDays();
   }
@@ -159,6 +157,7 @@ export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, C
   //инициализация
   private initDate(): void {
     this.mainDate = new DateExtra(this.control.value || new Date());
+    this.mainDate.resetTime();
     this.saveDate();
     this.renderDays();
   }

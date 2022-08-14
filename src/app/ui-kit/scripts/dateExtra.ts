@@ -1,27 +1,26 @@
-export class DateExtra {
-  public info: Date;
+export class DateExtra extends Date {
   public locale: string;
 
-  constructor(date: string | Date ) {
-    this.reinit(date);
+  constructor(date: string | Date) {
+    super(date);
     this.locale = 'default';
   }
 
   public get year(): string {
-    return `${this.info.getFullYear()}`;
+    return `${this.getFullYear()}`;
   }
 
   public get month(): string {
-    return this.info.toLocaleDateString(this.locale, {month: '2-digit'});
+    return this.toLocaleDateString(this.locale, {month: '2-digit'});
   }
 
   public get day(): string {
-    return this.info.toLocaleDateString(this.locale, {day: '2-digit'});
+    return this.toLocaleDateString(this.locale, {day: '2-digit'});
   }
   
   //день недели
   public get dayOfWeek(): number {
-    return !this.info.getDay() ? 7 : this.info.getDay();
+    return !this.getDay() ? 7 : this.getDay();
   }
   
   //количество дней в месяце
@@ -35,7 +34,7 @@ export class DateExtra {
 
   //корректная ли дата
   public get isIncorrect(): boolean {
-    return isNaN(this.info.getDay());
+    return isNaN(this.getDay());
   }
 
   //возраст
@@ -49,30 +48,24 @@ export class DateExtra {
 
   //название месяца
   public get nameMonth(): string {
-    return this.info.toLocaleDateString('default', {month: 'long'});
+    return this.toLocaleDateString('default', {month: 'long'});
   }
 
   //название дня недели
   public get nameWeekDay(): string {
-    return this.info.toLocaleDateString('default', {weekday: 'short'});
+    return this.toLocaleDateString('default', {weekday: 'short'});
   }
 
-  reinit(date?: string | Date) {
-    this.info = new Date(date || new Date());
-    this.info.setHours(0);
-    this.info.setMinutes(0);
-    this.info.setSeconds(0);
-    this.info.setMilliseconds(0);
-  }
-
-  //задать день
-  public setDate(num: number): void {
-    this.info.setDate(num);
+  public resetTime(): void {
+    this.setHours(0);
+    this.setMinutes(0);
+    this.setSeconds(0);
+    this.setMilliseconds(0);
   }
 
   //находиться ли созданная дата до переданной
   public isBefore(date: Date): boolean {
-    const timeOur: number = this.info.getTime();
+    const timeOur: number = this.getTime();
     const timeInput: number = date.getTime();
 
     return timeOur < timeInput;
@@ -80,7 +73,7 @@ export class DateExtra {
 
   //находиться ли созданная дата после переданной
   public isAfter(date: Date): boolean {
-    const timeOur: number = this.info.getTime();
+    const timeOur: number = this.getTime();
     const timeInput: number = date.getTime();
 
     return timeOur > timeInput;
@@ -88,7 +81,7 @@ export class DateExtra {
 
   //находится ли созданная дата между переданными
   public isBetween(date1: Date, date2: Date): boolean {
-    const timeOur: number = this.info.getTime();
+    const timeOur: number = this.getTime();
     const timeInput1: number = date1.getTime();
     const timeInput2: number = date2.getTime();
 
@@ -96,7 +89,7 @@ export class DateExtra {
   }
 
   isSame(date: Date): boolean {
-    const timeOur: number = this.info.getTime();
+    const timeOur: number = this.getTime();
     const timeInput: number = date.getTime();
 
     return timeOur === timeInput;
@@ -104,24 +97,22 @@ export class DateExtra {
 
   //переключить на следующий год
   public nextYear(): void {
-    this.info.setFullYear(+this.year + 1);
+    this.setFullYear(+this.year + 1);
   }
 
   //переключить на следующий гмесяц
   public nextMonth(): void {
-    this.info.setMonth(+this.month);
-    if(!this.info.getMonth()) this.nextYear();
+    this.setMonth(+this.month);
   }
 
   //переключение на предыдущий год
   public previousYear(): void {
-    this.info.setFullYear(+this.year - 1);
+    this.setFullYear(+this.year - 1);
   }
 
   //переключение на предыдущий год
   public previousMonth(): void {
-    this.info.setMonth(+this.month - 2);
-    if(this.info.getMonth() === 11) this.previousYear();
+    this.setMonth(+this.month - 2);
   }
 }
 
