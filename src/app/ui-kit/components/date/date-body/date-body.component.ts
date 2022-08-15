@@ -7,9 +7,7 @@ import { DateDay } from 'src/app/ui-kit/models/models';
   styleUrls: ['./date-body.component.less']
 })
 export class DateBodyComponent implements OnInit {
-  @Input() public dayNameList: string[] = [
-    'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
-  ];
+  @Input() public dayNameList: string[];
   @Input() public dayList?: DateDay[];
   @Output() public onChangeDay: EventEmitter<number> = new EventEmitter();
 

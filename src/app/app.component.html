@@ -45,20 +45,20 @@
         </ui-slider>
       </div>
       <div class="col-md-6 col-12">
-        <ui-select [list]="selectSimpleList">
+        <ui-select [list]="selectSimpleList"
+          formControlName="selectSimple">
           <input type="text"
             #input
-            formControlName="selectSimple"
             uiInputLabel="Увлечение"
             uiInputHelp="Выберите одно из списка">
         </ui-select>
       </div>
       <div class="col-md-6 col-12">
         <ui-select [list]="selectSimpleList" 
-          [isMultiple]="true">
+          [isMultiple]="true"
+          formControlName="selectMultiple">
           <input type="text"
             #input
-            formControlName="selectMultiple"
             uiInputLabel="Увлечения"
             uiInputHelp="Выберите несколько из списка">
         </ui-select>
@@ -97,10 +97,10 @@
         </ui-field>
       </ui-autofocus-mark>
       <ui-autofocus-mark class="col-md-6 col-12">
-        <ui-select [list]="selectSimpleList">
+        <ui-select [list]="selectSimpleList"
+          formControlName="control2">
           <input type="text"
             #input
-            formControlName="control2"
             uiInputLabel="Увлечение"
             uiInputHelp="Выберите одно из списка">
         </ui-select>

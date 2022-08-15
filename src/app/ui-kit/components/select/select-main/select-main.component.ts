@@ -1,5 +1,5 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { AbstractControl, FormControlName } from '@angular/forms';
+import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ListItem, ListItemInfo } from '../../../models/models';
 import { Dropdown } from '../../../scripts/dropdown';
@@ -9,45 +9,54 @@ import { SelectTagsComponent } from '../select-tags/select-tags.component';
   selector: 'ui-select',
   templateUrl: './select-main.component.html',
   styleUrls: ['./select-main.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SelectMainComponent),
+      multi: true
+    }
+  ]
 })
-export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
+export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 
   @Input() public isMultiple?: boolean = false;
   @Input() public list: ListItem[];
   public readonly list$: BehaviorSubject<ListItem[]> = new BehaviorSubject([]);
   @ContentChild('input') private readonly inputRef: ElementRef;
-  @ContentChild(FormControlName) private readonly formControl: FormControlName;
   @ViewChild(SelectTagsComponent) public selectTags: SelectTagsComponent;
   //поле
   private elInput: HTMLInputElement;
-  private control: AbstractControl;
+  private control: FormControl = new FormControl();
   private value: any | any[];
   //селект
   private elSelect: Element;
   private elSelectList: Element[];
   public dropdown: Dropdown;
-  //список
-  public listItem: ListItem = {
-    label: null,
-    value: null
-  };
   private readonly subs: Subscription = new Subscription();
 
   constructor(
     private readonly renderer2: Renderer2, 
-    private readonly elRef: ElementRef,
-    private readonly cdr: ChangeDetectorRef
+    private readonly elRef: ElementRef
   ) { }
 
-  //снять выбранный элемент
-  private markItem(target: ListItem, add: boolean = true): void {
-    const index = this.list.findIndex(item => item.value === target.value);
-    if(add) {
-      this.renderer2.addClass(this.elSelectList[index], 'active');
-    } else {
-      this.renderer2.removeClass(this.elSelectList[index], 'active');
-    }
+  private onTouched:() => void = () => {};
+  private onChange:(_: any) => void = (_:any) => {};
+
+  public updateChanges(value: any) {
+    this.onChange(value);
+  }
+
+  registerOnChange(fn: any): void {
+    this.subs.add(this.control.valueChanges.subscribe(fn));
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  writeValue(value: any): void {
+    this.control.setValue(value);
   }
 
   //инициализация входящих значений
@@ -61,22 +70,33 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
     });
   }
 
+  //задать элемент
+  public setItem(item: ListItemInfo): void {
+    this.control.setValue(item.itemInfo.value);
+    this.changeItem(item);
+  }
+
   //поменять элемент списка
-  public changeItem(item: ListItemInfo): void {
+  private changeItem(item: ListItemInfo): void {
     if(this.isMultiple) {
       this.selectTags.chooseMultipleItem(item.itemInfo, item.el.classList.contains('active'));
     } else {
-      this.chooseSimpleItem(item.itemInfo);
+      this.elSelectList.forEach((el: Element) => {
+        this.renderer2.removeClass(el, 'active');
+      });
+      this.renderer2.setProperty(this.elInput, 'value', item.itemInfo.label);
+      this.markItem(item.itemInfo);
     }
   };
 
-  private chooseSimpleItem(val: ListItem): void {
-    this.elSelectList.forEach((el: Element) => {
-      this.renderer2.removeClass(el, 'active');
-    });
-    this.listItem = {...val};
-    this.markItem(val);
-    this.control.setValue(this.listItem.value);
+  //снять выбранный элемент
+  public markItem(target: ListItem, add: boolean = true): void {
+    const index = this.list.findIndex(item => item.value === target.value);
+    if(add) {
+      this.renderer2.addClass(this.elSelectList[index], 'active');
+    } else {
+      this.renderer2.removeClass(this.elSelectList[index], 'active');
+    }
   }
 
   ngOnInit(): void {
@@ -88,12 +108,10 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
   ngAfterContentInit(): void {
     //присваивание
     this.elInput = this.inputRef.nativeElement;
-    this.control = this.formControl.control;
     this.dropdown = new Dropdown(this.elInput, this.isMultiple ? '.field-list' : null);
 
     //рендеринг
     this.renderer2.addClass(this.elInput, 'field__input');
-    this.renderer2.addClass(this.elInput, 'field__input_text-transparent');
     this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
   }
 
@@ -123,8 +141,6 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
       } else {
         this.initInputValue(this.value);
       }
-      
-      this.cdr.detectChanges();
     }
   }
 

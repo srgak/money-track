@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, forwardRef, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DateDay } from 'src/app/ui-kit/models/models';
+import { UI_LANG } from 'src/app/ui-kit/models/ui-lang';
 import { copyDate, DateExtra } from 'src/app/ui-kit/scripts/dateExtra';
 import { Dropdown } from 'src/app/ui-kit/scripts/dropdown';
+import { LocaleDateService } from 'src/app/ui-kit/services/locale-date.service';
 
 @Component({
   selector: 'ui-date-main',
@@ -37,13 +39,10 @@ export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, C
   private dayNextMonthList: DateDay[] = [];
   public control: FormControl = new FormControl();
   private subs: Subscription = new Subscription();
-  public monthList: string[] = [
-    'январь', 'ферваль', 'март', 'арпель',
-    'май', 'июнь', 'июль', 'август',
-    'сентярь', 'октябрь', 'ноябрь', 'декабрь'
-  ];
 
   constructor(
+    @Inject(UI_LANG) public readonly locale: string,
+    public readonly localeData: LocaleDateService,
     private readonly renderer2: Renderer2,
     private readonly datePipe: DatePipe
   ) {}
@@ -157,6 +156,7 @@ export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, C
   //инициализация
   private initDate(): void {
     this.mainDate = new DateExtra(this.control.value || new Date());
+    this.mainDate.locale = this.locale;
     this.mainDate.resetTime();
     this.saveDate();
     this.renderDays();

@@ -8,9 +8,11 @@
     <ui-date-header [date]="mainDate"
       (onChange)="renderDays()"></ui-date-header>
     <ui-date-body
+      [dayNameList]="localeData.dayName[locale]"
       [dayList]="dayList"
       (onChangeDay)="changeDay($event)"></ui-date-body>
     <ui-date-footer
+      [currentDayName]="localeData.currentDayName[locale]"
       (onChange)="setToday()"></ui-date-footer>
   </div>
 </div>

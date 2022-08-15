@@ -44,6 +44,7 @@ import { InputClearDirective } from './ui-kit/directives/input-clear/input-clear
 import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main.module';
 import { DateMainModule } from './ui-kit/components/date/date-main/date-main.module';
 import { AutofocusModule } from './ui-kit/components/autofocus/autofocus.module';
+import { UI_LANG } from './ui-kit/models/ui-lang';
 
 
 
@@ -85,7 +86,11 @@ import { AutofocusModule } from './ui-kit/components/autofocus/autofocus.module'
     DataService,
     IsLoggedGuard,
     HttpService,
-    ValidatorsService
+    ValidatorsService,
+    {
+      provide: UI_LANG,
+      useValue: 'ru'
+    }
   ],
   bootstrap: [AppComponent]
 })

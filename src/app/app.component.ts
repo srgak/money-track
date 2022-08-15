@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DataService } from './data/data.service';
 import { ValdemortConfig } from 'ngx-valdemort';
 import { StorageService } from './data/storage.service';
@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.form.get('date').valueChanges.subscribe(val => {
+    this.form.get('selectSimple').valueChanges.subscribe(val => {
       console.log(val);
     });
   }

@@ -1,12 +1,9 @@
 <div class="field">
   <div class="field__container field__container_arrow">
     <ng-content select="input"></ng-content>
-    <ng-container *ngIf="isMultiple; else noSetting">
+    <ng-container *ngIf="isMultiple">
       <ui-select-tags></ui-select-tags>
     </ng-container>
-    <ng-template #noSetting>
-      <span class="field__title">{{listItem.label}}</span>
-    </ng-template>
   </div>
 
   <ul class="field-list"
@@ -16,6 +13,6 @@
       [value]="item.value"
       [label]="item.label"
       [isDisabled]="item.disabled"
-      (onChangeItem)="changeItem($event)"></ui-select-item>
+      (onChangeItem)="setItem($event)"></ui-select-item>
   </ul>
 </div>

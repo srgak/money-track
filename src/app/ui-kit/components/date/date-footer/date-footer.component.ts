@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./date-footer.component.less']
 })
 export class DateFooterComponent implements OnInit {
+  @Input() public currentDayName: string;
   @Output() public onChange: EventEmitter<null> = new EventEmitter();
 
   public chooseDate(): void {

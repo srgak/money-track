@@ -11,11 +11,11 @@ export class DateExtra extends Date {
   }
 
   public get month(): string {
-    return this.toLocaleDateString(this.locale, {month: '2-digit'});
+    return this.toLocaleDateString('en', {month: '2-digit'});
   }
 
   public get day(): string {
-    return this.toLocaleDateString(this.locale, {day: '2-digit'});
+    return this.toLocaleDateString('en', {day: '2-digit'});
   }
   
   //день недели
@@ -48,12 +48,12 @@ export class DateExtra extends Date {
 
   //название месяца
   public get nameMonth(): string {
-    return this.toLocaleDateString('default', {month: 'long'});
+    return this.toLocaleDateString(this.locale, {month: 'long'});
   }
 
   //название дня недели
   public get nameWeekDay(): string {
-    return this.toLocaleDateString('default', {weekday: 'short'});
+    return this.toLocaleDateString(this.locale, {weekday: 'short'});
   }
 
   public resetTime(): void {
