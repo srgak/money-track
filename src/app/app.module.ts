@@ -11,9 +11,9 @@ import { AppComponent } from './app.component';
 // import { MenuComponent } from './components/menu/menu.component';
 
 //сервисы
-import { DataService } from './data/data.service';
-import { HttpService } from './data/http.service';
-import { ValidatorsService } from './data/validators.service';
+import { DataService } from './services/data/data.service';
+import { HttpService } from './services/http.service';
+import { ValidatorsService } from './services/validators.service';
 
 //директивы
 import { FixBlockDirective } from './directives/fix-block.directive';

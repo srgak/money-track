@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { DataService } from './data/data.service';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from './services/data/data.service';
 import { ValdemortConfig } from 'ngx-valdemort';
-import { StorageService } from './data/storage.service';
-import { MethodsService } from './data/methods.service';
+import { StorageService } from './services/storage.service';
+import { MethodsService } from './services/methods.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateBirthday } from './ui-kit/validators/validator-birthday';
 
@@ -13,7 +13,7 @@ import { ValidateBirthday } from './ui-kit/validators/validator-birthday';
 })
 export class AppComponent implements OnInit {
   constructor(private config: ValdemortConfig, public data: DataService, private store: StorageService, private methods: MethodsService) {
-    config.errorClasses = 'input__error'
+    config.errorClasses = 'input__error';
   }
 
   public form: FormGroup = new FormGroup({
@@ -29,7 +29,9 @@ export class AppComponent implements OnInit {
       control2: new FormControl(),
       control3: new FormControl(),
       control4: new FormControl(),
-    })
+    }),
+
+    testControl: new FormControl(null, [Validators.requiredTrue])
   });
 
   public selectSimpleList = [
@@ -85,8 +87,6 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.form.get('selectSimple').valueChanges.subscribe(val => {
-      console.log(val);
-    });
+
   }
 }

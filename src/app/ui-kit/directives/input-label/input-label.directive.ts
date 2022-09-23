@@ -19,11 +19,11 @@ export class InputLabelDirective implements OnInit {
     this.elLabel = renderer2.createElement('label');
   }
 
-  @HostListener('focus') onFocus(): void {
+  @HostListener('focus') private onFocus(): void {
     this.renderer2.addClass(this.elField, 'active');
   }
-  @HostListener('blur') onBlur(): void {
-    if(!this.elInput.value) {
+  @HostListener('blur') private onBlur(): void {
+    if(!this.control.value) {
       this.renderer2.removeClass(this.elField, 'active');
     }
   }

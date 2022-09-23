@@ -28,6 +28,9 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
+  "overrides": {
+    "node-ipc": "9.2.1"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.1",
     "@angular/cli": "~13.1.1",

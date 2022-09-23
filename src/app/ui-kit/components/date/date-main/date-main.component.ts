@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, forwardRef, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MaskPipe } from 'ngx-mask';
 import { Subscription } from 'rxjs';
 import { DateDay } from 'src/app/ui-kit/models/models';
 import { UI_LANG } from 'src/app/ui-kit/models/ui-lang';
