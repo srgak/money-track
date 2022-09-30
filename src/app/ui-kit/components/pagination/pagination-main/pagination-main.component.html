@@ -3,26 +3,31 @@
     type="button"
     *ngIf="isShowBtnPrev"
     (click)="changeNavPage()">{{textPrev}}</button>
-  <ui-pagination-btn *ngIf="isShowStart"
-    [content]="1"
-    type="extreme"
-    (onChange)="changeNumPage($event)"></ui-pagination-btn>
-  <span class="pagination__interval"
-    *ngIf="isShowIntervalPrev">...</span>
+  <div class="pagination__list">
+    <ui-pagination-btn class="pagination__page"
+      *ngIf="isShowStart"
+      [content]="1"
+      type="extreme"
+      (onChange)="changeNumPage($event)"></ui-pagination-btn>
+    <span class="pagination__interval"
+      *ngIf="isShowIntervalPrev">...</span>
 
-  <ui-pagination-btn *ngFor="let item of listVisible"
-    [active]="item.isActive"
-    [content]="item.num"
-    type="num"
-    (onChange)="changeNumPage($event)"></ui-pagination-btn>
+    <ui-pagination-btn class="pagination__page"
+      *ngFor="let item of listVisible"
+      [active]="item.isActive"
+      [content]="item.num"
+      type="num"
+      (onChange)="changeNumPage($event)"></ui-pagination-btn>
 
-  <span class="pagination__interval"
-    *ngIf="isSwhoIntervalNext">...</span>
+    <span class="pagination__interval"
+      *ngIf="isSwhoIntervalNext">...</span>
 
-  <ui-pagination-btn *ngIf="isShowEnd"
-    [content]="total"
-    type="extreme"
-    (onChange)="changeNumPage($event)"></ui-pagination-btn>
+    <ui-pagination-btn class="pagination__page"
+      *ngIf="isShowEnd"
+      [content]="total"
+      type="extreme"
+      (onChange)="changeNumPage($event)"></ui-pagination-btn>
+  </div>
   <button class="pagination__arrow"
     type="button"
     *ngIf="isShowBtnNext"
