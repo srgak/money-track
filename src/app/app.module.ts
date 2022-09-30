@@ -45,6 +45,7 @@ import { ClockMainModule } from './ui-kit/components/clock/clock-main/clock-main
 import { DateMainModule } from './ui-kit/components/date/date-main/date-main.module';
 import { AutofocusModule } from './ui-kit/components/autofocus/autofocus.module';
 import { UI_LANG } from './ui-kit/models/ui-lang';
+import { PaginationMainModule } from './ui-kit/components/pagination/pagination-main/pagination-main.module';
 
 
 
@@ -77,6 +78,7 @@ import { UI_LANG } from './ui-kit/models/ui-lang';
     ClockMainModule,
     DateMainModule,
     AutofocusModule,
+    PaginationMainModule,
     //свои страницы
 
     UiKitModule,

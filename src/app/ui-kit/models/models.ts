@@ -12,3 +12,11 @@ export interface DateDay {
   disabled: boolean;
   active?: boolean;
 }
+export interface PaginationItem {
+  num: number;
+  isActive: boolean
+}
+export interface PaginationInfo {
+  type: 'num' | 'extreme';
+  num: number;
+}

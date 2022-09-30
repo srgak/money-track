@@ -1,0 +1,25 @@
+@import './variables.less';
+
+.pagination {
+  display: inline-flex;
+  &__arrow,
+  &__interval,
+  &__page {
+    margin-right: 10px;
+  }
+  &__page,
+  &__extreme {
+    padding: 7px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
+    &:hover {
+      background: @Scream-3-hex;
+      @media(pointer: coarse) {
+        background: transparent;
+      }
+    }
+    &.active {
+      background: @Scream-1-hex;
+    }
+  }
+}

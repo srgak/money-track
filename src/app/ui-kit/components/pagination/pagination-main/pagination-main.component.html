@@ -1,0 +1,30 @@
+<div class="pagination">
+  <button class="pagination__arrow"
+    type="button"
+    *ngIf="isShowBtnPrev"
+    (click)="changeNavPage()">{{textPrev}}</button>
+  <ui-pagination-btn *ngIf="isShowStart"
+    [content]="1"
+    type="extreme"
+    (onChange)="changeNumPage($event)"></ui-pagination-btn>
+  <span class="pagination__interval"
+    *ngIf="isShowIntervalPrev">...</span>
+
+  <ui-pagination-btn *ngFor="let item of listVisible"
+    [active]="item.isActive"
+    [content]="item.num"
+    type="num"
+    (onChange)="changeNumPage($event)"></ui-pagination-btn>
+
+  <span class="pagination__interval"
+    *ngIf="isSwhoIntervalNext">...</span>
+
+  <ui-pagination-btn *ngIf="isShowEnd"
+    [content]="total"
+    type="extreme"
+    (onChange)="changeNumPage($event)"></ui-pagination-btn>
+  <button class="pagination__arrow"
+    type="button"
+    *ngIf="isShowBtnNext"
+    (click)="changeNavPage('next')">{{textNext}}</button>
+</div>
