@@ -1,0 +1,18 @@
+<form class="container"
+  [formGroup]="form">
+  <div class="row">
+    <div class="col-12">
+      <ui-slider [rangeMin]="50000"
+        [rangeMax]="1400000"
+        labelMin="Минимально 50 000"
+        labelMax="Максимально 1 400 000">
+        <input type="text"
+          #input
+          mask="separator"
+          thousandSeparator=" "
+          formControlName="control1"
+          uiInputLabel="Название">
+      </ui-slider>
+    </div>
+  </div>
+</form>

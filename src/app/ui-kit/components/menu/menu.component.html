@@ -1,0 +1,41 @@
+<div class="menu">
+  <button class="menu-burger"
+    type="button"
+    [ngClass]="{
+      'active': isActive
+    }"
+    (click)="toggleMenu()">
+    <span class="menu-burger__line"></span>
+    <span class="menu-burger__line"></span>
+    <span class="menu-burger__line"></span>
+  </button>
+  <div class="menu__content"
+    [ngClass]="{
+      'active': isActive
+    }">
+    <ul class="menu-list">
+      <li class="menu-list__item" 
+        *ngFor="let item of list">
+        <a class="menu-list__link"
+          [routerLink]="item.link || null"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }">
+          {{item.name}}
+        </a>
+        <ul class="menu-list menu-list_sub"
+          *ngIf="item.isSubMenu">
+          <li class="menu-list__item" 
+            *ngFor="let subItem of item.subList">
+            <a class="menu-list__link"
+              [routerLink]="subItem.link || null"
+              routerLinkActive="active">
+              {{subItem.name}}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

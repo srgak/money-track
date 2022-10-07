@@ -1,0 +1,14 @@
+<form class="container"
+  [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <ui-date-main formControlName="control1">
+        <input type="text"
+          readonly
+          #input
+          mask="00.00.0000"
+          uiInputLabel="Дата">
+      </ui-date-main>
+    </div>
+  </div>
+</form>

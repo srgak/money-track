@@ -123,7 +123,7 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
     if(this.isMultiple) {
       this.subs.add(
         this.selectTags.onChangeValue.subscribe(val => {
-          this.control.setValue(val.length ? val : null);
+          this.control.setValue(val || null);
         })
       );
       this.subs.add(

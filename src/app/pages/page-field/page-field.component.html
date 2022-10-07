@@ -1,0 +1,25 @@
+<form class="container"
+  [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <ui-field>
+        <input type="text"
+          #input
+          placeholder="Пример"
+          formControlName="control1"
+          uiInputLabel="Название поля"
+          uiInputHelp="Подсказка"
+          uiInputClear>
+      </ui-field>
+    </div>
+    <div class="col-md-6 col-12">
+      <ui-field>
+        <input type="password"
+          #input
+          formControlName="control2"
+          uiInputPasswd
+          uiInputLabel="Пароль">
+      </ui-field>
+    </div>
+  </div>
+</form>

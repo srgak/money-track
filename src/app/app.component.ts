@@ -5,6 +5,7 @@ import { StorageService } from './services/storage.service';
 import { MethodsService } from './services/methods.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateBirthday } from './ui-kit/validators/validator-birthday';
+import { MenuItem, MenuMain } from './ui-kit/models/models';
 
 @Component({
   selector: 'app-root',
@@ -83,6 +84,57 @@ export class AppComponent implements OnInit {
     {
       value: '',
       label: 'foo6'
+    }
+  ];
+
+  public menuList: MenuMain[] = [
+    {
+      name: 'Главная',
+      link: './'
+    },
+    {
+      name: 'Аккордион',
+      link: './accordion',
+    },
+    {
+      name: 'Подменю',
+      isSubMenu: true,
+      subList: [
+        {
+          name: 'Item1'
+        },
+        {
+          name: 'Item2'
+        }
+      ]
+    },
+    {
+      name: 'Поля',
+      link: './field'
+    },
+    {
+      name: 'Ползунок',
+      link: './slider'
+    },
+    {
+      name: 'Выпадающий список',
+      link: './dropdown-list'
+    },
+    {
+      name: 'Выдающие часы',
+      link: './dropdown-clock'
+    },
+    {
+      name: 'Выпадающий календарь',
+      link: './dropdown-date'
+    },
+    {
+      name: 'Автофокус полей',
+      link: './autofocus'
+    },
+    {
+      name: 'Пагинация',
+      link: './pagination'
     }
   ];
 

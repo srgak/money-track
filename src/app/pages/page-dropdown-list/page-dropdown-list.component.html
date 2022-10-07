@@ -1,0 +1,24 @@
+<form class="container"
+  [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <ui-select [list]="list"
+        formControlName="control1">
+        <input type="text"
+          #input
+          uiInputLabel="Увлечение"
+          uiInputHelp="Выберите одно из списка">
+      </ui-select>
+    </div>
+    <div class="col-md-6 col-12">
+      <ui-select [list]="list" 
+        [isMultiple]="true"
+        formControlName="control2">
+        <input type="text"
+          #input
+          uiInputLabel="Увлечения"
+          uiInputHelp="Выберите несколько из списка">
+      </ui-select>
+    </div>
+  </div>
+</form>

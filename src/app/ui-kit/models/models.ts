@@ -20,3 +20,11 @@ export interface PaginationInfo {
   type: 'num' | 'extreme';
   num: number;
 }
+export interface MenuItem {
+  name: string;
+  link?: string;
+}
+export interface MenuMain extends MenuItem {
+  isSubMenu?: true;
+  subList?: MenuItem[];
+}
