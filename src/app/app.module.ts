@@ -45,7 +45,7 @@ import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-cente
     ValdemortModule,
     //свои библиотеки
     MenuModule,
-    MenuCenteredModule
+    MenuCenteredModule,
     //свои страницы
   ],
   providers: [ 

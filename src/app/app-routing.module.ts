@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { IsLoggedGuard } from './guards/is-logged.guard';
+import { HasOperationsGuard } from './guards/has-operations.guard';
 
 const routes: Routes = [
   // {
@@ -48,6 +49,18 @@ const routes: Routes = [
     path: 'pagination',
     loadChildren: () => import('./pages/page-pagination/page-pagination.module').then(m => m.PagePaginationModule),
     pathMatch: 'full'
+  },
+  {
+    path: 'clock',
+    loadChildren: () => import('./pages/page-clock/page-clock.module').then(m => m.PageClockModule),
+    pathMatch: 'full'
+  },
+  {
+    path: ':merchantName',
+    loadChildren: () => import('./pages/page-clock/page-clock.module').then(m => m.PageClockModule),
+    pathMatch: 'full',
+    canActivate: [HasOperationsGuard],
+    data: {isInit: true}
   }
 ];
 
