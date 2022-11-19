@@ -102,7 +102,7 @@ export class ClockMainComponent implements OnInit, AfterViewInit {
   public changeHour(val: number = this.hour$.value): void {
     this.hour$.next(val + 1);
     this.activateElements(
-      2500,
+      3000,
       this.gearHour.nativeElement
     );
   }
