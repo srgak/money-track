@@ -21,53 +21,46 @@ export class AppComponent implements OnInit {
       link: './'
     },
     {
-      name: 'Аккордион',
-      link: './accordion',
+      name: 'Часы',
+      link: './clock'
     },
     {
-      name: 'Подменю',
-      isSubMenu: true,
+      name: 'UI',
       subList: [
         {
-          name: 'Item1'
+          name: 'Аккордион',
+          link: './accordion'
         },
         {
-          name: 'Item2'
+          name: 'Поля',
+          link: './field'
+        },
+        {
+          name: 'Ползунок',
+          link: './slider'
+        },
+        {
+          name: 'Выпадающий список',
+          link: './dropdown-list'
+        },
+        {
+          name: 'Выдающие часы',
+          link: './dropdown-clock'
+        },
+        {
+          name: 'Выпадающий календарь',
+          link: './dropdown-date'
+        },
+        {
+          name: 'Автофокус полей',
+          link: './autofocus'
+        },
+        {
+          name: 'Пагинация',
+          link: './pagination'
         }
       ]
     },
-    {
-      name: 'Поля',
-      link: './field'
-    },
-    {
-      name: 'Ползунок',
-      link: './slider'
-    },
-    {
-      name: 'Выпадающий список',
-      link: './dropdown-list'
-    },
-    {
-      name: 'Выдающие часы',
-      link: './dropdown-clock'
-    },
-    {
-      name: 'Выпадающий календарь',
-      link: './dropdown-date'
-    },
-    {
-      name: 'Автофокус полей',
-      link: './autofocus'
-    },
-    {
-      name: 'Пагинация',
-      link: './pagination'
-    },
-    {
-      name: 'Часы',
-      link: './clock'
-    }
   ];
 
   ngOnInit(): void {

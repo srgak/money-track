@@ -14,7 +14,7 @@
       'active': isActive
     }">
     <ul class="menu-list">
-      <li class="menu-list__item" 
+      <li class="menu-list__item"
         *ngFor="let item of list">
         <a class="menu-list__link"
           [routerLink]="item.link || null"
@@ -25,7 +25,7 @@
           {{item.name}}
         </a>
         <ul class="menu-list menu-list_sub"
-          *ngIf="item.isSubMenu">
+          *ngIf="item.subList">
           <li class="menu-list__item" 
             *ngFor="let subItem of item.subList">
             <a class="menu-list__link"

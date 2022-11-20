@@ -25,6 +25,5 @@ export interface MenuItem {
   link?: string;
 }
 export interface MenuMain extends MenuItem {
-  isSubMenu?: true;
   subList?: MenuItem[];
 }
