@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocaleDateService {
 
-  public dayName = {
+  public dayName: any = {
     en: [
       'Mon', 'Tue', 'Wed',
       'Thu', 'Fri', 'Sat', 'Sun'
@@ -19,7 +19,7 @@ export class LocaleDateService {
       '木', '金', '土', '日'
     ]
   };
-  public currentDayName = {
+  public currentDayName: any = {
     en: 'Today',
     ru: 'Сегодня',
     ja: '今日'

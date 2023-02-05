@@ -21,18 +21,18 @@ import { SelectTagsComponent } from '../select-tags/select-tags.component';
 export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 
   @Input() public isMultiple?: boolean = false;
-  @Input() public list: ListItem[];
-  public readonly list$: BehaviorSubject<ListItem[]> = new BehaviorSubject([]);
-  @ContentChild('input') private readonly inputRef: ElementRef;
-  @ViewChild(SelectTagsComponent) public selectTags: SelectTagsComponent;
+  @Input() public list!: ListItem[];
+  public readonly list$: BehaviorSubject<ListItem[] | null> = new BehaviorSubject<ListItem[] | null>(null);
+  @ContentChild('input') private readonly inputRef!: ElementRef;
+  @ViewChild(SelectTagsComponent) public selectTags!: SelectTagsComponent;
   //поле
-  private elInput: HTMLInputElement;
+  private elInput!: HTMLInputElement;
   private control: FormControl = new FormControl();
   private value: any | any[];
   //селект
-  private elSelect: Element;
-  private elSelectList: Element[];
-  public dropdown: Dropdown;
+  private elSelect!: Element;
+  private elSelectList!: Element[];
+  public dropdown!: Dropdown;
   private readonly subs: Subscription = new Subscription();
 
   constructor(
@@ -108,7 +108,7 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
   ngAfterContentInit(): void {
     //присваивание
     this.elInput = this.inputRef.nativeElement;
-    this.dropdown = new Dropdown(this.elInput, this.isMultiple ? '.field-list' : null);
+    this.dropdown = new Dropdown(this.elInput, this.isMultiple ? '.field-list' : '');
 
     //рендеринг
     this.renderer2.addClass(this.elInput, 'field__input');

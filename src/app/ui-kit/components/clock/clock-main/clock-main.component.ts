@@ -9,12 +9,12 @@ import { Dropdown } from '../../../scripts/dropdown';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClockMainComponent implements OnInit, AfterContentInit, DoCheck {
-  @ContentChild('input') private inputRef: ElementRef;
-  @ContentChild(FormControlName) private readonly formControl: FormControlName;
+  @ContentChild('input') private inputRef!: ElementRef;
+  @ContentChild(FormControlName) private readonly formControl!: FormControlName;
 
-  private elInput: HTMLInputElement;
-  private control: AbstractControl;
-  public dropdown: Dropdown;
+  private elInput!: HTMLInputElement;
+  private control!: AbstractControl;
+  public dropdown!: Dropdown;
   public isActiveHour: boolean = true;
   public isActiveMinute: boolean = false;
   public readonly countHourAM: string[][] = [
@@ -32,7 +32,7 @@ export class ClockMainComponent implements OnInit, AfterContentInit, DoCheck {
     ['05', '20', '35', '50'],
     ['10', '25', '40', '55']
   ];
-  public time: string;
+  public time!: string;
 
   constructor(private renderer2: Renderer2) {}
 

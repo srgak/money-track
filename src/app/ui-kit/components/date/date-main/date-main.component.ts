@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, forwardRef, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, forwardRef, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MaskPipe } from 'ngx-mask';
 import { Subscription } from 'rxjs';
 import { DateDay } from 'src/app/ui-kit/models/models';
 import { UI_LANG } from 'src/app/ui-kit/models/ui-lang';
@@ -26,14 +25,14 @@ import { LocaleDateService } from 'src/app/ui-kit/services/locale-date.service';
   ]
 })
 export class DateMainComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
-  @ContentChild('input') private readonly inputRef: ElementRef;
+  @ContentChild('input') private readonly inputRef!: ElementRef;
   @Input() public format?: string = 'dd.MM.yyyy';
 
   public viewNum: number = 1;
-  private elInput: HTMLInputElement;
-  public dropdown: Dropdown;
-  public mainDate: DateExtra;
-  private savedDate: Date;
+  private elInput!: HTMLInputElement;
+  public dropdown!: Dropdown;
+  public mainDate!: DateExtra;
+  private savedDate!: Date;
   public dayList: DateDay[] = [];
   private dayCurrMonthList: DateDay[] = [];
   private dayPrevMonthList: DateDay[] = [];

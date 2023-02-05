@@ -9,9 +9,9 @@ import { makeArray } from '../../../scripts/array';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginationMainComponent implements OnInit {
-  @Input() public total: number; //всего страниц
-  @Input() public textPrev: string; //текст для предыдущей стрелки
-  @Input() public textNext: string; //текст для следующей стрелки
+  @Input() public total!: number; //всего страниц
+  @Input() public textPrev!: string; //текст для предыдущей стрелки
+  @Input() public textNext!: string; //текст для следующей стрелки
   @Input() public interval: boolean = true; //наличие многоточий
   @Input() public extreme: boolean = true; //наличие кнопок крайних страниц
   @Input() public countVisible: number = 5; //количество видимых страниц
@@ -28,7 +28,7 @@ export class PaginationMainComponent implements OnInit {
   private countPageLast: number = Math.ceil((this.countVisible + this.countCentered) / 2) - 1; //страницы для переключения вперёд
   private listVisibleStart: PaginationItem[] = makeArray(this.countVisible, (_, i) => i + 1)
     .map(this.getPageItem); //начальные страницы
-  private listVisibleEnd: PaginationItem[]; //последние страницы
+  private listVisibleEnd!: PaginationItem[]; //последние страницы
   public listVisible: PaginationItem[] = this.listVisibleStart; //текущи1 список страниц
   private currentPage: number = 1; //текущая страница
   //находимся ли в начале списка
@@ -37,11 +37,11 @@ export class PaginationMainComponent implements OnInit {
   private isLast = (shift: number = 0): boolean => this.listVisible.some(item => item.num >= this.total - shift);
   //показать кнопку назад
   public get isShowBtnPrev(): boolean {
-    return this.textPrev && this.currentPage > 1;
+    return !!(this.textPrev && this.currentPage > 1);
   }
   //показать конпку далее
   public get isShowBtnNext(): boolean {
-    return this.textNext && this.currentPage < this.total;
+    return !!(this.textNext && this.currentPage < this.total);
   }
   //показать кнопку первой страницы
   public get isShowStart(): boolean {
@@ -83,7 +83,7 @@ export class PaginationMainComponent implements OnInit {
   }
 
   //обновить страницы
-  private updatePage(index): void {
+  private updatePage(index: number): void {
     if(index < this.countPageBegin) {
       this.updatePagePrev(index);
     }

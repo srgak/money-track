@@ -49,18 +49,6 @@ const routes: Routes = [
     path: 'pagination',
     loadChildren: () => import('./pages/page-pagination/page-pagination.module').then(m => m.PagePaginationModule),
     pathMatch: 'full'
-  },
-  {
-    path: 'clock',
-    loadChildren: () => import('./pages/page-clock/page-clock.module').then(m => m.PageClockModule),
-    pathMatch: 'full'
-  },
-  {
-    path: ':merchantName',
-    loadChildren: () => import('./pages/page-clock/page-clock.module').then(m => m.PageClockModule),
-    pathMatch: 'full',
-    canActivate: [HasOperationsGuard],
-    data: {isInit: true}
   }
 ];
 

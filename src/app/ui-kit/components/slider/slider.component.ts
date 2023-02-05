@@ -8,30 +8,30 @@ import { AbstractControl, FormControlName } from '@angular/forms';
 })
 export class SliderComponent implements AfterContentInit {
 
-  @Input() public rangeMin: number;
-  @Input() public rangeMax: number;
+  @Input() public rangeMin!: number;
+  @Input() public rangeMax!: number;
   @Input() public labelMin?: string;
   @Input() public labelMax?: string;
-  @ContentChild('input') inputRef: ElementRef;
-  @ContentChild(FormControlName) private formControl: FormControlName;
+  @ContentChild('input') inputRef!: ElementRef;
+  @ContentChild(FormControlName) private formControl!: FormControlName;
   private el: Element;
-  private elInput: Element;
-  private elInputRange: HTMLInputElement;
-  private elStatusBar: Element;
-  private control: AbstractControl;
+  private elInput!: Element;
+  private elInputRange!: HTMLInputElement;
+  private elStatusBar!: Element;
+  private control!: AbstractControl;
 
   constructor(private renderer2: Renderer2, private elRef: ElementRef) {
     this.el = elRef.nativeElement;
   }
 
-  private setValueRange(value): void {
+  private setValueRange(value: string | number): void {
     this.renderer2.setProperty(this.elInputRange, 'value', value || 0);
 
     const percent = (+value - this.rangeMin) / (this.rangeMax - this.rangeMin) * 100;
     this.renderer2.setStyle(this.elStatusBar, 'width', (percent > 100 ? 100 : percent) + '%');
   }
 
-  private correctValue(value): void {
+  private correctValue(value: number): void {
     if(value > this.rangeMax) this.control.setValue(this.rangeMax);
     if(value < this.rangeMin) this.control.setValue(this.rangeMin);
   }
@@ -39,8 +39,8 @@ export class SliderComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     //присвоить значения
     this.elInput = this.inputRef.nativeElement;
-    this.elInputRange = this.el.querySelector('.field-range__input');
-    this.elStatusBar = this.el.querySelector('.field-range__status-bar');
+    this.elInputRange = this.el.querySelector('.field-range__input')!;
+    this.elStatusBar = this.el.querySelector('.field-range__status-bar')!;
     this.control = this.formControl.control;
 
     this.renderer2.setAttribute(this.elInput, 'inputmode', 'numeric');

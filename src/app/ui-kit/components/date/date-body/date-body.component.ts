@@ -7,15 +7,18 @@ import { DateDay } from 'src/app/ui-kit/models/models';
   styleUrls: ['./date-body.component.less']
 })
 export class DateBodyComponent implements OnInit {
-  @Input() public dayNameList: string[];
+  @Input() public dayNameList!: string[];
   @Input() public dayList?: DateDay[];
   @Output() public onChangeDay: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   public chooseDay(day: number): void {
-    this.dayList.forEach(item => item.active = false);
-    this.dayList.find(item => item.value === day).active = true;
+    this.dayList?.forEach(item => item.active = false);
+    if(this.dayList) {
+      const day: any = this.dayList.find(item => item.value === day);
+      day.active = true;
+    }
     this.onChangeDay.emit(day);
   }
 

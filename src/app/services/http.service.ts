@@ -13,7 +13,7 @@ export class HttpService {
     if(param.length) {
       return this.http.get(url)
         .pipe(
-          map((res: string[]) => res.map(item => item.toLowerCase())),
+          map((res: any) => res.map((item: string) => item.toLowerCase())),
           map((data: string[]) => data.filter(item => item.includes(param)))
         );
     } else {

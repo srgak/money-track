@@ -12,7 +12,7 @@ export class StorageService {
   }
 
   getItem(name: string): any {
-    return JSON.parse(sessionStorage.getItem(name));
+    return JSON.parse(sessionStorage.getItem(name)!);
   }
 
   removeItem(name: string): void {
@@ -20,12 +20,14 @@ export class StorageService {
   }
 
   getStorage(): any {
-    const obj = {};
+    const obj: any = {};
     
     for(let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
 
-      obj[key] = this.getItem(key);
+      if(key) {
+        obj[key] = this.getItem(key);
+      }
     }
     
     return obj;

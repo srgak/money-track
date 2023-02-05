@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from './services/data/data.service';
 import { ValdemortConfig } from 'ngx-valdemort';
 import { StorageService } from './services/storage.service';
-import { MethodsService } from './services/methods.service';
 import { MenuItem, MenuMain } from './ui-kit/models/models';
 
 @Component({
@@ -11,7 +10,7 @@ import { MenuItem, MenuMain } from './ui-kit/models/models';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  constructor(private config: ValdemortConfig, public data: DataService, private store: StorageService, private methods: MethodsService) {
+  constructor(private config: ValdemortConfig, public data: DataService, private store: StorageService) {
     config.errorClasses = 'input__error';
   }
 
@@ -19,10 +18,6 @@ export class AppComponent implements OnInit {
     {
       name: 'Главная',
       link: './'
-    },
-    {
-      name: 'Часы',
-      link: './clock'
     },
     {
       name: 'UI',

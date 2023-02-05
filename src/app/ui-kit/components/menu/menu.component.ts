@@ -10,7 +10,7 @@ import { MenuMain } from '../../models/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  @Input() public list: MenuMain[];
+  @Input() public list!: MenuMain[];
 
   public isActive: boolean = false;
   private subs: Subscription = new Subscription();

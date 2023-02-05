@@ -15,7 +15,6 @@ import { ValidatorsService } from './services/validators.service';
 
 //директивы
 import { FixBlockDirective } from './directives/fix-block.directive';
-import { StatusCircleDirective } from './directives/status-circle.directive';
 
 //гарды
 import { IsLoggedGuard } from './guards/is-logged.guard';
@@ -33,8 +32,7 @@ import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-cente
 @NgModule({
   declarations: [
     AppComponent,
-    FixBlockDirective,
-    StatusCircleDirective,
+    FixBlockDirective
   ],
   imports: [
     BrowserModule,

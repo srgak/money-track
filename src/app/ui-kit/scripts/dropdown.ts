@@ -5,10 +5,10 @@ export class Dropdown {
   public readonly activeFlag$: BehaviorSubject<boolean>;
   private readonly closestString: string;
 
-  constructor(elInput, closestString?) {
+  constructor(elInput: HTMLInputElement, closestString?: string) {
     this.elInput = elInput;
-    this.activeFlag$ = new BehaviorSubject(false);
-    this.closestString = closestString;
+    this.activeFlag$ = new BehaviorSubject<boolean>(false);
+    this.closestString = closestString || '';
     this.init();
   }
 
@@ -18,7 +18,7 @@ export class Dropdown {
     })
   }
 
-  private clickHandler(event): void {
+  private clickHandler(event: any): void {
     const el = event.target;
 
     if(this.closestString) {

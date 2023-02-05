@@ -10,14 +10,14 @@ export class SelectTagsComponent implements OnInit {
 
   public readonly tagList: ListItem[] = [];
   public isActive: boolean = false;
-  public readonly onChangeValue: EventEmitter<any[]> = new EventEmitter();
+  public readonly onChangeValue: EventEmitter<ListItem[] | null> = new EventEmitter();
   public readonly onMarkItem: EventEmitter<{item: ListItem, add: boolean}> = new EventEmitter();
 
   constructor() { }
 
   //получить список значений для контрола
-  private get valueList(): any[] {
-    const arr = [];
+  private get valueList(): ListItem[] {
+    const arr: ListItem[] = [];
     this.tagList.forEach(item => {
       arr.push(item.value);
     });
@@ -25,7 +25,7 @@ export class SelectTagsComponent implements OnInit {
     return arr;
   }
 
-  public showTagList(event): void {
+  public showTagList(event: any): void {
     if(!event.target.classList.contains('field-tag__close')) {      
       this.isActive = !this.isActive;
     }

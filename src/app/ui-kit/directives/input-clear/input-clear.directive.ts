@@ -7,9 +7,9 @@ import { AbstractControl, NgControl } from '@angular/forms';
 export class InputClearDirective implements OnInit {
 
   private elInput: Element;
-  private control: AbstractControl;
-  private elClear: Element;
-  private elFieldContainer: Element;
+  private control!: AbstractControl;
+  private elClear!: Element;
+  private elFieldContainer!: Element;
 
   constructor(
     private elRef: ElementRef,
@@ -27,7 +27,7 @@ export class InputClearDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.control = this.ngControl.control;
+    this.control = this.ngControl.control!;
     this.elClear = this.renderer2.createElement('button');
     this.elFieldContainer = this.renderer2.parentNode(this.elInput);
 
