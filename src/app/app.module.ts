@@ -1,5 +1,5 @@
 //модули
-import { NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,8 @@ import { ValdemortModule } from 'ngx-valdemort';
 import { UI_LANG } from './ui-kit/models/ui-lang';
 import { MenuModule } from './ui-kit/components/menu/menu.module';
 import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-centered.module';
+import { createCustomElement } from '@angular/elements';
+import { AnketaMainComponent } from './components/anketa-main/anketa-main.component';
 
 
 
@@ -43,7 +45,7 @@ import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-cente
     ValdemortModule,
     //свои библиотеки
     MenuModule,
-    MenuCenteredModule,
+    MenuCenteredModule
     //свои страницы
   ],
   providers: [ 
@@ -56,6 +58,15 @@ import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-cente
       useValue: 'ru'
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule implements DoBootstrap {
+  constructor(
+    private injector: Injector
+  ) {}
+  
+  ngDoBootstrap(): void {
+    const el = createCustomElement(AnketaMainComponent, {injector: this.injector});
+    customElements.define('app-anketa-main', el);
+  }
+}

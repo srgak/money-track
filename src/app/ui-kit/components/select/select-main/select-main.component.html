@@ -1,18 +1,27 @@
 <div class="field">
   <div class="field__container field__container_arrow">
     <ng-content select="input"></ng-content>
-    <ng-container *ngIf="isMultiple">
+    <!-- <ng-container *ngIf="isMultiple">
       <ui-select-tags></ui-select-tags>
-    </ng-container>
+    </ng-container> -->
   </div>
 
-  <ul class="field-list"
-    [ngClass]="{'active': dropdown.activeFlag$ | async}">
-    <ui-select-item class="field-list__item"
-      *ngFor="let item of list$ | async"
-      [value]="item.value"
-      [label]="item.label"
-      [isDisabled]="item.disabled"
-      (onChangeItem)="setItem($event)"></ui-select-item>
+  <ul
+    class="field-list"
+    #selectRef
+    *ngIf="isShowList | async"
+  >
+    <li 
+      *ngFor="let item of list"
+    >
+      <button 
+        type="button"
+        class="field-list__item"
+        (click)="selectItem(item)"
+        (keypress.enter)="selectItem(item)"
+      >
+        {{item.label}}
+      </button>
+    </li>
   </ul>
 </div>

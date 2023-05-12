@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, forwardRef, HostListener, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ListItem, ListItemInfo } from '../../../models/models';
@@ -18,21 +18,26 @@ import { SelectTagsComponent } from '../select-tags/select-tags.component';
     }
   ]
 })
-export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-
-  @Input() public isMultiple?: boolean = false;
+export class SelectMainComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
   @Input() public list!: ListItem[];
-  public readonly list$: BehaviorSubject<ListItem[] | null> = new BehaviorSubject<ListItem[] | null>(null);
-  @ContentChild('input') private readonly inputRef!: ElementRef;
-  @ViewChild(SelectTagsComponent) public selectTags!: SelectTagsComponent;
+  @ContentChild('input', {static: true}) private inputRef!: ElementRef;
+  @HostListener('document:click', ['$event']) private clickOutside(event: PointerEvent): void {
+    const target = event.target as HTMLElement;
+    const isClosest = !!target.closest(this.elInput.tagName) || !!target.closest('.field-list');
+
+    if(!isClosest) {
+      this.isShowList.next(false);
+    }
+  }
   //поле
   private elInput!: HTMLInputElement;
   private control: FormControl = new FormControl();
   private value: any | any[];
   //селект
+  public isShowList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private elSelect!: Element;
-  private elSelectList!: Element[];
-  public dropdown!: Dropdown;
+  private elSelectList!: NodeListOf<Element>;
+  // public dropdown!: Dropdown;
   private readonly subs: Subscription = new Subscription();
 
   constructor(
@@ -59,88 +64,38 @@ export class SelectMainComponent implements OnInit, AfterContentInit, AfterViewI
     this.control.setValue(value);
   }
 
-  //инициализация входящих значений
-  private initInputValue(value: any | any[]): void {
-    const index = this.list.findIndex(item => item.value === value);
-    const item = this.list[index];
-    const el = this.elSelectList[index];
-    this.changeItem({
-      itemInfo: item,
-      el: el
-    });
-  }
-
-  //задать элемент
-  public setItem(item: ListItemInfo): void {
-    this.control.setValue(item.itemInfo.value);
-    this.changeItem(item);
-  }
-
-  //поменять элемент списка
-  private changeItem(item: ListItemInfo): void {
-    if(this.isMultiple) {
-      this.selectTags.chooseMultipleItem(item.itemInfo, item.el.classList.contains('active'));
-    } else {
-      this.elSelectList.forEach((el: Element) => {
-        this.renderer2.removeClass(el, 'active');
-      });
-      this.renderer2.setProperty(this.elInput, 'value', item.itemInfo.label);
-      this.markItem(item.itemInfo);
-    }
-  };
-
-  //снять выбранный элемент
-  public markItem(target: ListItem, add: boolean = true): void {
-    const index = this.list.findIndex(item => item.value === target.value);
-    if(add) {
-      this.renderer2.addClass(this.elSelectList[index], 'active');
-    } else {
-      this.renderer2.removeClass(this.elSelectList[index], 'active');
-    }
+  public selectItem(item: ListItem): void {
+    this.control.setValue(item);
+    this.elInput.value = item.label;
+    this.isShowList.next(false);
   }
 
   ngOnInit(): void {
-    if(this.list) {
-      this.list$.next(this.list);
-    }
-  }
-
-  ngAfterContentInit(): void {
-    //присваивание
     this.elInput = this.inputRef.nativeElement;
-    this.dropdown = new Dropdown(this.elInput, this.isMultiple ? '.field-list' : '');
-
-    //рендеринг
     this.renderer2.addClass(this.elInput, 'field__input');
-    this.renderer2.setAttribute(this.elInput, 'readonly', 'readonly');
+    this.renderer2.listen(this.elInput, 'focus', () => {
+      this.isShowList.next(true);
+    });
+    this.subs.add(
+      this.isShowList
+        .subscribe(value => {
+          if(value) {
+            console.log(value);
+            // this.elSelect = this.elRef.nativeElement.querySelector('.field-list');
+            // console.log(this.elRef.nativeElement.querySelector('.field-list'));
+            // this.elSelectList = this.elSelect.querySelectorAll('.field-list__item');
+            // Array.from(this.elSelectList).forEach((item: Element) => {
+            //   console.log((item as HTMLElement).innerHTML);
+            // });
+          }
+        })
+    );
   }
-
   ngAfterViewInit(): void {
-    this.elSelect = this.elRef.nativeElement.querySelector('.field-list');
-    this.elSelectList = Array.from(this.elSelect.children);
-    this.value = this.control.value;
+    if(this.control.value) {
+      const value = this.control.value.label;
 
-    if(this.isMultiple) {
-      this.subs.add(
-        this.selectTags.onChangeValue.subscribe(val => {
-          this.control.setValue(val || null);
-        })
-      );
-      this.subs.add(
-        this.selectTags.onMarkItem.subscribe(val => {
-          this.markItem(val.item, val.add);
-        })
-      );
-    }
-
-    if(this.value) {
-      if(Array.isArray(this.value)) {
-        this.value.forEach(item => {
-          this.initInputValue(item);
-        });
-      } else {
-        this.initInputValue(this.value);
-      }
+      this.elInput.value = value;
     }
   }
 

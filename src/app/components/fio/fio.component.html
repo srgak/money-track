@@ -1,0 +1,27 @@
+<ng-container>
+  <ng-container *ngIf="isAloneField else manyFields">
+    <label for="">ФИО</label>
+    <input type="text"
+      [formControl]="fioControl"
+      (blur)="onBlurFio()">
+  </ng-container>
+  <ng-template #manyFields [formGroup]="form">
+    <div class="col-12">
+      <label for="">Фамилия: </label>
+      <input type="text" formControlName="lastName">
+      <val-errors controlName="lastName">
+        <ng-template valError="required">
+          Заполни поле
+        </ng-template>
+      </val-errors>
+    </div>
+    <div class="col-12">  
+      <label for="">Имя: </label>
+      <input type="text" formControlName="firstName">
+    </div>
+    <div class="col-12">
+      <label for="">Отчество: </label>
+      <input type="text" formControlName="patronomic">
+    </div>
+  </ng-template>
+</ng-container>

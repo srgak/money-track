@@ -1,6 +1,6 @@
 <form class="container"
   [formGroup]="form">
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-6 col-12">
       <ui-field>
         <input type="text"
@@ -9,7 +9,7 @@
           formControlName="control1"
           uiInputLabel="Название поля"
           uiInputHelp="Подсказка"
-          uiInputClear>
+        >
       </ui-field>
     </div>
     <div class="col-md-6 col-12">
@@ -21,5 +21,8 @@
           uiInputLabel="Пароль">
       </ui-field>
     </div>
-  </div>
+  </div> -->
+
+  <app-fio formControlName="fio">
+  </app-fio>
 </form>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { DataService } from './services/data/data.service';
 import { ValdemortConfig } from 'ngx-valdemort';
 import { StorageService } from './services/storage.service';
 import { MenuItem, MenuMain } from './ui-kit/models/models';
+import { createCustomElement } from '@angular/elements';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,17 @@ import { MenuItem, MenuMain } from './ui-kit/models/models';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  constructor(private config: ValdemortConfig, public data: DataService, private store: StorageService) {
+  @Input() public isFrame: boolean = false;
+  constructor(
+    private config: ValdemortConfig, 
+    public data: DataService, 
+    private store: StorageService,
+    // injector: Injector
+  ) {
+    // const anketaEl = createCustomElement(AnketaMainComponent, {injector});
+    // customElements.define('app-anketa-main', anketaEl);
+
+
     config.errorClasses = 'input__error';
   }
 

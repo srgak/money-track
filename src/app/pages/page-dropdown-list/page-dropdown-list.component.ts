@@ -67,6 +67,8 @@ export class PageDropdownListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.form.get('control1')?.valueChanges.subscribe(console.log);
+    this.form.get('control1')?.setValue(this.list[0]);
   }
 
 }

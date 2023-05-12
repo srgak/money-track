@@ -6,9 +6,9 @@ import { AfterContentInit, Component, ContentChild, ElementRef, OnInit, Renderer
   styleUrls: ['./field.component.less']
 })
 export class FieldComponent implements OnInit, AfterContentInit {
-  @ContentChild('input') private inputRef: ElementRef;
+  @ContentChild('input') private inputRef!: ElementRef;
 
-  private elInput: Element;
+  private elInput!: Element;
   
   constructor(private renderer2: Renderer2) { }
 
