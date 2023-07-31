@@ -26,8 +26,6 @@ import { ValdemortModule } from 'ngx-valdemort';
 import { UI_LANG } from './ui-kit/models/ui-lang';
 import { MenuModule } from './ui-kit/components/menu/menu.module';
 import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-centered.module';
-import { createCustomElement } from '@angular/elements';
-import { AnketaMainComponent } from './components/anketa-main/anketa-main.component';
 
 
 
@@ -60,13 +58,4 @@ import { AnketaMainComponent } from './components/anketa-main/anketa-main.compon
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule implements DoBootstrap {
-  constructor(
-    private injector: Injector
-  ) {}
-  
-  ngDoBootstrap(): void {
-    const el = createCustomElement(AnketaMainComponent, {injector: this.injector});
-    customElements.define('app-anketa-main', el);
-  }
-}
+export class AppModule { }
