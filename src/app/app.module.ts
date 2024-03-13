@@ -26,13 +26,15 @@ import { ValdemortModule } from 'ngx-valdemort';
 import { UI_LANG } from './ui-kit/models/ui-lang';
 import { MenuModule } from './ui-kit/components/menu/menu.module';
 import { MenuCenteredModule } from './ui-kit/directives/menu-centered/menu-centered.module';
+import { VisualviewportDirective } from './directives/visualviewport.directive';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FixBlockDirective
+    FixBlockDirective,
+    VisualviewportDirective
   ],
   imports: [
     BrowserModule,
