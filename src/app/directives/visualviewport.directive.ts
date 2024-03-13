@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Directive, HostBinding } from "@angular/core";
-import { first, fromEvent, map } from "rxjs";
+import { filter, first, fromEvent, map } from "rxjs";
 
 @Directive({
   selector: "[appVisualviewport]",
@@ -10,10 +10,11 @@ export class VisualviewportDirective {
   constructor(private cdr: ChangeDetectorRef) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(
+        map(() => window.visualViewport as VisualViewport),
+        filter(data => data.height < window.innerHeight),
         first(),
-        map(() => window.visualViewport)
       )
-      .subscribe((data: VisualViewport) => {
+      .subscribe(data => {
         console.log(data.height);
         this.height = `${data.height}px`;
         cdr.detectChanges();
