@@ -1,6 +1,10 @@
 .block {
   border: 1px solid red;
-  height: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   transition: 0.3s;
 }
 .input {
@@ -8,4 +12,8 @@
   margin-top: 55px;
   border: 1px solid white;
   padding: 10px;
+  text-align: center;
+  &:focus {
+    border-color: aqua;
+  }
 }
