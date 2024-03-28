@@ -11,13 +11,13 @@ export class VisualviewportDirective {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(
         map(() => window.visualViewport as VisualViewport),
-        filter(data => data.height < window.innerHeight),
-        first(),
+        filter((data) => data.height < window.innerHeight),
+        first()
       )
-      .subscribe(data => {
+      .subscribe((data) => {
         console.log(data.height);
         this.height = `${data.height}px`;
-        cdr.detectChanges();
+        cdr.markForCheck();
       });
   }
 }
