@@ -1,6 +1,13 @@
 import { ViewportScroller } from "@angular/common";
 import { ChangeDetectorRef, Directive, HostBinding } from "@angular/core";
-import { debounceTime, delay, fromEvent, map } from "rxjs";
+import {
+  debounceTime,
+  delay,
+  distinctUntilChanged,
+  fromEvent,
+  map,
+  tap,
+} from "rxjs";
 
 @Directive({
   selector: "[appVisualviewport]",
@@ -20,8 +27,9 @@ export class VisualviewportDirective {
       });
 
     fromEvent(window, "scroll")
-      .pipe(debounceTime(100))
+      .pipe(debounceTime(0))
       .subscribe(() => {
+        console.log(23);
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
   }
