@@ -28,6 +28,7 @@ import { MenuModule } from "./ui-kit/components/menu/menu.module";
 import { MenuCenteredModule } from "./ui-kit/directives/menu-centered/menu-centered.module";
 import { VisualviewportDirective } from "./directives/visualviewport.directive";
 import { NgxMaskModule } from "ngx-mask";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent, FixBlockDirective, VisualviewportDirective],
@@ -43,6 +44,7 @@ import { NgxMaskModule } from "ngx-mask";
     MenuCenteredModule,
     //свои страницы
     NgxMaskModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [
     DataService,
