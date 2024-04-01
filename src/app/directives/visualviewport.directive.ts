@@ -16,10 +16,15 @@ export class VisualviewportDirective {
       .pipe(map(() => window.visualViewport as VisualViewport))
       .subscribe(({ height }) => {
         this.height = `${height}px`;
+        cdr.markForCheck();
+      });
+
+    fromEvent(window.visualViewport as VisualViewport, "scroll")
+      .pipe(map(() => window.visualViewport as VisualViewport))
+      .subscribe(() => {
         setTimeout(() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }, 500);
-        cdr.markForCheck();
       });
   }
 }
