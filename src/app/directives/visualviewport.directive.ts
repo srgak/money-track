@@ -16,7 +16,7 @@ export class VisualviewportDirective {
       .pipe(map(() => window.visualViewport as VisualViewport))
       .subscribe(({ height }) => {
         this.height = `${height}px`;
-        this.viewportScroller.scrollToPosition([0, 0]);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         cdr.markForCheck();
       });
   }
