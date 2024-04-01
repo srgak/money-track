@@ -4,7 +4,7 @@ import { ValdemortConfig } from "ngx-valdemort";
 import { StorageService } from "./services/storage.service";
 import { MenuItem, MenuMain } from "./ui-kit/models/models";
 import { createCustomElement } from "@angular/elements";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-root",
@@ -71,10 +71,6 @@ export class AppComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     minutes: new FormControl("0"),
   });
-
-  public customPatterns = {
-    n: { pattern: new RegExp("^([0-9]|[1-9][0-9])$") },
-  };
 
   ngOnInit(): void {}
 }

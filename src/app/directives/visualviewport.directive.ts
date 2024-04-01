@@ -22,12 +22,11 @@ export class VisualviewportDirective {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(map(() => window.visualViewport as VisualViewport))
       .subscribe(({ height }) => {
-        window.scrollTo({ top: 0 });
         this.height = `${height}px`;
         cdr.markForCheck();
       });
 
-    // fromEvent(window.visualViewport as VisualViewport, "scroll")
+    // fromEvent(window, "scroll")
     //   .pipe(debounceTime(100))
     //   .subscribe(() => {
     //     window.scrollTo({ top: 0, behavior: "smooth" });

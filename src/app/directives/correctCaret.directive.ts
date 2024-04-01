@@ -7,18 +7,14 @@ import { NgControl } from "@angular/forms";
 export class CorrectCaret implements OnInit {
   @HostListener("click") public moveCaret(): void {
     const { length } = this.ngControl.control?.value;
-    console.log(length);
 
-    // setTimeout(() => {
     (this.elRef.nativeElement as HTMLInputElement).setSelectionRange(
       length,
       length
     );
-    // });
   }
 
   @HostListener("touchend") public touchEnd(): void {
-    console.log("end");
     this.moveCaret();
   }
 
