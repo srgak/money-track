@@ -1,3 +1,4 @@
+import { ViewportScroller } from "@angular/common";
 import { ChangeDetectorRef, Directive, HostBinding } from "@angular/core";
 import { fromEvent, map } from "rxjs";
 
@@ -7,12 +8,15 @@ import { fromEvent, map } from "rxjs";
 export class VisualviewportDirective {
   @HostBinding("style.height") public height: string;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private viewportScroller: ViewportScroller
+  ) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(map(() => window.visualViewport as VisualViewport))
       .subscribe(({ height }) => {
-        console.log(height);
         this.height = `${height}px`;
+        this.viewportScroller.scrollToPosition([0, 0]);
         cdr.markForCheck();
       });
   }
