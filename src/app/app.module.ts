@@ -29,9 +29,15 @@ import { MenuCenteredModule } from "./ui-kit/directives/menu-centered/menu-cente
 import { VisualviewportDirective } from "./directives/visualviewport.directive";
 import { NgxMaskModule } from "ngx-mask";
 import { ReactiveFormsModule } from "@angular/forms";
+import { CorrectCaret } from "./directives/correctCaret.directive";
 
 @NgModule({
-  declarations: [AppComponent, FixBlockDirective, VisualviewportDirective],
+  declarations: [
+    AppComponent,
+    FixBlockDirective,
+    VisualviewportDirective,
+    CorrectCaret,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -16,9 +16,8 @@ export class AppComponent implements OnInit {
   constructor(
     private config: ValdemortConfig,
     public data: DataService,
-    private store: StorageService
-  ) // injector: Injector
-  {
+    private store: StorageService // injector: Injector
+  ) {
     // const anketaEl = createCustomElement(AnketaMainComponent, {injector});
     // customElements.define('app-anketa-main', anketaEl);
 
@@ -72,6 +71,10 @@ export class AppComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     minutes: new FormControl("0"),
   });
+
+  public customPatterns = {
+    n: { pattern: new RegExp("^([0-9]|[1-9][0-9])$") },
+  };
 
   ngOnInit(): void {}
 }
