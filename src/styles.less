@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/styles/variables.less';
-@import './assets/styles/zorro.less';
+@import "./assets/styles/variables.less";
+@import "./assets/styles/zorro.less";
 
-@import './assets/styles/styles-field.less';
-@import './assets/styles/styles-pagination.less';
+@import "./assets/styles/styles-field.less";
+@import "./assets/styles/styles-pagination.less";
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
   background: transparent;
@@ -17,12 +17,14 @@ body {
   background: @Scream-2-hex;
   color: @Scream-4-hex;
   font-size: 18px;
+
+  overflow: hidden;
 }
 button {
   cursor: pointer;
   font-size: 18px;
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
     pointer-events: none;
   }
 }
@@ -30,16 +32,22 @@ a {
   color: @white;
   text-decoration: none;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: @white;
   margin: 0;
 }
 
-ul, p {
+ul,
+p {
   margin: 0;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   display: none;
 }
 
