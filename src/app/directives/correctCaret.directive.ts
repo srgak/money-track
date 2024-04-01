@@ -17,8 +17,8 @@ export class CorrectCaret implements OnInit {
     // });
   }
 
-  @HostListener("touchmove") public touchMove(): void {
-    console.log("move");
+  @HostListener("touchend") public touchEnd(): void {
+    console.log("end");
     this.moveCaret();
   }
 
