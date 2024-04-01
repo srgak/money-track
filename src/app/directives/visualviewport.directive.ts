@@ -29,7 +29,6 @@ export class VisualviewportDirective {
     fromEvent(window, "scroll")
       .pipe(debounceTime(10))
       .subscribe(() => {
-        console.log(23);
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
   }
