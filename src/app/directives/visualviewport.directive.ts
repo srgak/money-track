@@ -19,10 +19,10 @@ export class VisualviewportDirective {
         cdr.markForCheck();
       });
 
-    fromEvent(window, "scroll")
-      .pipe(debounceTime(500))
-      .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+    // fromEvent(window, "scroll")
+    //   .pipe(debounceTime(500))
+    //   .subscribe(() => {
+    //     window.scrollTo({ top: 0, behavior: "smooth" });
+    //   });
   }
 }
