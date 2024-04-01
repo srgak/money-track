@@ -26,8 +26,8 @@ export class VisualviewportDirective {
         cdr.markForCheck();
       });
 
-    fromEvent(window, "scroll")
-      .pipe(debounceTime(100))
+    fromEvent(window.visualViewport as VisualViewport, "scroll")
+      .pipe(debounceTime(50))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
