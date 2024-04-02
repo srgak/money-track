@@ -27,7 +27,7 @@ export class VisualviewportDirective {
       });
 
     fromEvent(window, "scroll")
-      .pipe(debounceTime(100))
+      .pipe(debounceTime(50))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
