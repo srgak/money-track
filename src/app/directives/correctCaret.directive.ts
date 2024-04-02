@@ -14,7 +14,11 @@ export class CorrectCaret implements OnInit {
     );
   }
 
-  @HostListener("touchend") public touchEnd(): void {
+  // @HostListener("touchend") public touchEnd(): void {
+  //   this.moveCaret();
+  // }
+
+  @HostListener("paste") public paste(): void {
     this.moveCaret();
   }
 
