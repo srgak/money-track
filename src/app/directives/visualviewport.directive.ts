@@ -22,7 +22,7 @@ export class VisualviewportDirective {
   ) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(
-        debounceTime(50),
+        debounceTime(100),
         map(() => window.visualViewport as VisualViewport),
         tap(({ height }) => {
           this.isOpenKeyboard = height < window.innerHeight;
@@ -39,7 +39,7 @@ export class VisualviewportDirective {
       });
 
     fromEvent(window, "scroll")
-      .pipe(debounceTime(50))
+      .pipe(debounceTime(100))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
