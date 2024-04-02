@@ -1,5 +1,10 @@
 import { ViewportScroller } from "@angular/common";
-import { ChangeDetectorRef, Directive, HostBinding } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  HostBinding,
+} from "@angular/core";
 import {
   debounceTime,
   delay,
@@ -17,12 +22,20 @@ export class VisualviewportDirective {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private elRef: ElementRef
   ) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(map(() => window.visualViewport as VisualViewport))
       .subscribe(({ height }) => {
+        const input = document.querySelector(".input") as HTMLElement;
+
         this.height = `${height}px`;
+        (this.elRef.nativeElement as HTMLElement).style.top = `${
+          window.innerHeight -
+          input?.getBoundingClientRect().top -
+          input?.clientHeight / 2
+        }px`;
         cdr.markForCheck();
       });
 
