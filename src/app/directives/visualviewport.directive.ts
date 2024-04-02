@@ -22,7 +22,7 @@ export class VisualviewportDirective {
   ) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(
-        debounceTime(50),
+        debounceTime(100),
         map(() => window.visualViewport as VisualViewport),
         tap(({ height }) => {
           this.isOpenKeyboard = height < window.innerHeight;
@@ -35,13 +35,14 @@ export class VisualviewportDirective {
           this.renderer.removeClass(this.elRef.nativeElement, "active");
         }
         this.height = `${height}px`;
+        window.scrollTo({ top: 0, behavior: "smooth" });
         cdr.markForCheck();
       });
 
-    fromEvent(window, "scroll")
-      .pipe(debounceTime(200))
-      .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+    // fromEvent(window, "scroll")
+    //   .pipe(debounceTime(100))
+    //   .subscribe(() => {
+    //     window.scrollTo({ top: 0, behavior: "smooth" });
+    //   });
   }
 }
