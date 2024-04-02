@@ -22,7 +22,7 @@ export class VisualviewportDirective {
   ) {
     fromEvent(window.visualViewport as VisualViewport, "resize")
       .pipe(
-        debounceTime(100),
+        debounceTime(50),
         map(() => window.visualViewport as VisualViewport),
         tap(({ height }) => {
           this.isOpenKeyboard = height < window.innerHeight;
