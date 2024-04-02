@@ -39,7 +39,7 @@ export class VisualviewportDirective {
       });
 
     fromEvent(window, "scroll")
-      .pipe(debounceTime(600))
+      .pipe(debounceTime(550))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
