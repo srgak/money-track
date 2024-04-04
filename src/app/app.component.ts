@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
   ];
 
   public form: FormGroup = new FormGroup({
-    minutes: new FormControl("0"),
+    minutes: new FormControl(""),
   });
 
   ngOnInit(): void {}

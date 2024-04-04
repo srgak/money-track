@@ -37,10 +37,10 @@ export class CorrectCaret implements OnInit {
   }
 
   ngOnInit() {
-    this.ngControl.control?.valueChanges.subscribe((value) => {
-      if (!value.length) {
-        this.ngControl.control?.reset("0");
-      }
-    });
+    // this.ngControl.control?.valueChanges.subscribe((value) => {
+    //   if (!value.length) {
+    //     this.ngControl.control?.reset("0");
+    //   }
+    // });
   }
 }
