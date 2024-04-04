@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, OnInit } from "@angular/core";
 import { NgControl } from "@angular/forms";
-import { fromEvent } from "rxjs";
+import { fromEvent, merge } from "rxjs";
 
 @Directive({
   selector: "[correctCaret]",
@@ -25,7 +25,11 @@ export class CorrectCaret implements OnInit {
   // }
 
   constructor(private ngControl: NgControl, private elRef: ElementRef) {
-    fromEvent(this.inputElement, "click").subscribe(() => this.moveCaret());
+    merge(
+      fromEvent(this.inputElement, "click"),
+      fromEvent(this.inputElement, 'input'),
+    )
+    .subscribe(() => this.moveCaret());
   }
 
   private moveCaret(): void {
