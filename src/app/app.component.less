@@ -1,11 +1,14 @@
 .block {
   border: 1px solid red;
-  height: 100dvh;
+  // height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   transition: 0.2s ease-in;
+  position: fixed;
+  height: 100%;
+  width: 100vw;
   &.active {
     transition: 0.3s ease-in-out;
   }
