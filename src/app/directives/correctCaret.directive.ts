@@ -24,7 +24,9 @@ export class CorrectCaret implements OnInit {
   //   this.moveCaret();
   // }
 
-  constructor(private ngControl: NgControl, private elRef: ElementRef) {}
+  constructor(private ngControl: NgControl, private elRef: ElementRef) {
+    fromEvent(this.inputElement, "click").subscribe(() => this.moveCaret());
+  }
 
   private moveCaret(): void {
     const { length } = this.ngControl.control?.value;
@@ -33,7 +35,6 @@ export class CorrectCaret implements OnInit {
   }
 
   ngOnInit() {
-    fromEvent(this.inputElement, "input").subscribe(() => this.moveCaret());
     this.ngControl.control?.valueChanges.subscribe((value) => {
       if (!value.length) {
         this.ngControl.control?.reset("0");
