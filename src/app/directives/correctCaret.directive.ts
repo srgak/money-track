@@ -5,14 +5,14 @@ import { NgControl } from "@angular/forms";
   selector: "[correctCaret]",
 })
 export class CorrectCaret implements OnInit {
-  // @HostListener("input") public moveCaret(): void {
-  //   const { length } = this.ngControl.control?.value;
+  @HostListener("input") public moveCaret(): void {
+    const { length } = this.ngControl.control?.value;
 
-  //   (this.elRef.nativeElement as HTMLInputElement).setSelectionRange(
-  //     length,
-  //     length
-  //   );
-  // }
+    (this.elRef.nativeElement as HTMLInputElement).setSelectionRange(
+      length,
+      length
+    );
+  }
 
   // @HostListener("touchend") public touchEnd(): void {
   //   this.moveCaret();
