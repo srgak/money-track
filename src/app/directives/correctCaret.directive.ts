@@ -25,7 +25,7 @@ export class CorrectCaret implements OnInit {
   // }
 
   constructor(private ngControl: NgControl, private elRef: ElementRef) {
-    merge(fromEvent(this.inputElement, "focus")).subscribe(() =>
+    merge(fromEvent(this.inputElement, "click")).subscribe(() =>
       this.moveCaret()
     );
   }
