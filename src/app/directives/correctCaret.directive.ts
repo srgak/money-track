@@ -25,11 +25,11 @@ export class CorrectCaret implements OnInit {
   constructor(private ngControl: NgControl, private elRef: ElementRef) {}
 
   ngOnInit() {
-    // this.ngControl.control?.valueChanges.subscribe((value) => {
-    //   if (!value.length) {
-    //     this.ngControl.control?.reset("0");
-    //     this.moveCaret();
-    //   }
-    // });
+    this.ngControl.control?.valueChanges.subscribe((value) => {
+      if (!value.length) {
+        this.ngControl.control?.reset("0");
+        // this.moveCaret();
+      }
+    });
   }
 }
