@@ -13,7 +13,9 @@ export class FlashinfCaretDirective {
   ) {
     merge(
       fromEvent(this.elRef.nativeElement, "focus").pipe(map(() => true)),
-      fromEvent(this.elRef.nativeElement, "blur").pipe(map(() => false))
+      fromEvent(this.elRef.nativeElement, "blur").pipe(
+        map(() => Boolean(this.ngControl.control?.value.length))
+      )
     ).subscribe((isEnable) => {
       console.log(isEnable);
       const parentElement = this.renderer.parentNode(this.elRef.nativeElement);
