@@ -29,14 +29,14 @@ import { MenuCenteredModule } from "./ui-kit/directives/menu-centered/menu-cente
 import { VisualviewportDirective } from "./directives/visualviewport.directive";
 import { NgxMaskModule } from "ngx-mask";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CorrectCaret } from "./directives/correctCaret.directive";
+import { FlashinfCaretDirective } from "./directives/flasing-caret";
 
 @NgModule({
   declarations: [
     AppComponent,
     FixBlockDirective,
     VisualviewportDirective,
-    CorrectCaret,
+    FlashinfCaretDirective,
   ],
   imports: [
     BrowserModule,

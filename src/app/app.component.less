@@ -16,15 +16,17 @@
 .field {
   position: relative;
   width: 100%;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: red;
-    animation: flashingCaret 1s infinite;
+  &.flashing {
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: red;
+      animation: flashingCaret 1s infinite;
+    }
   }
 }
 .input {

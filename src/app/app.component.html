@@ -5,7 +5,7 @@
 </p> -->
 <form class="block" appVisualviewport [formGroup]="form">
   <h1>Заголовок</h1>
-  <div class="field">
+  <div class="field flashing">
     <input
       formControlName="minutes"
       type="text"
@@ -17,6 +17,7 @@
       suffix=" мин"
       maxlength="10"
       placeholder="0 мин"
+      flashingCaret
     />
   </div>
   <button type="button">Подвал</button>
