@@ -5,17 +5,19 @@
 </p> -->
 <form class="block" appVisualviewport [formGroup]="form">
   <h1>Заголовок</h1>
-  <input
-    formControlName="minutes"
-    type="text"
-    class="input"
-    inputmode="numeric"
-    mask="separator.0"
-    separatorLimit="100000"
-    thousandSeparator=""
-    suffix=" мин"
-    maxlength="10"
-    placeholder="0 мин"
-  />
+  <div class="field">
+    <input
+      formControlName="minutes"
+      type="text"
+      class="input"
+      inputmode="numeric"
+      mask="separator.0"
+      separatorLimit="100000"
+      thousandSeparator=""
+      suffix=" мин"
+      maxlength="10"
+      placeholder="0 мин"
+    />
+  </div>
   <button type="button">Подвал</button>
 </form>

@@ -13,6 +13,20 @@
     transition: 0.3s ease-in-out;
   }
 }
+.field {
+  position: relative;
+  width: 100%;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: red;
+    animation: flashingCaret 1s infinite;
+  }
+}
 .input {
   width: 100%;
   border: 1px solid white;
@@ -21,5 +35,17 @@
   caret-color: white;
   &:focus {
     border-color: aqua;
+  }
+}
+
+@keyframes flashingCaret {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
