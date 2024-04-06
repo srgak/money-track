@@ -13,6 +13,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class AppComponent implements OnInit {
   @Input() public isFrame: boolean = false;
+  public counter = 0;
   constructor(
     private config: ValdemortConfig,
     public data: DataService,
@@ -71,6 +72,10 @@ export class AppComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     minutes: new FormControl(""),
   });
+
+  public foo(): void {
+    this.counter++;
+  }
 
   ngOnInit(): void {}
 }
