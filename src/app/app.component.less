@@ -1,3 +1,9 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+}
 .block {
   border: 1px solid red;
   height: 100dvh;
@@ -6,8 +12,9 @@
   justify-content: space-between;
   align-items: center;
   transition: 0.2s ease-in;
-  // position: fixed;
-  // height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
   width: 100vw;
   &.active {
     transition: 0.3s ease-in-out;
@@ -21,10 +28,11 @@
       content: "";
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 100%;
-      background: red;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1px;
+      height: 18px;
+      background: white;
       animation: flashingCaret 1s infinite;
     }
   }

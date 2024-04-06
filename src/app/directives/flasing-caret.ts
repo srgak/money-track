@@ -17,7 +17,6 @@ export class FlashinfCaretDirective {
         map(() => Boolean(this.ngControl.control?.value.length))
       )
     ).subscribe((isEnable) => {
-      console.log(isEnable);
       const parentElement = this.renderer.parentNode(this.elRef.nativeElement);
 
       if (isEnable) {
