@@ -19,7 +19,6 @@
 .field {
   position: relative;
   width: 100%;
-  pointer-events: none;
   &.flashing {
     &::before {
       content: "";
@@ -40,6 +39,7 @@
   padding: 10px;
   text-align: center;
   caret-color: white;
+  pointer-events: none;
   &:focus {
     border-color: aqua;
   }

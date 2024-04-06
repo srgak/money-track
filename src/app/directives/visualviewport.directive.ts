@@ -36,14 +36,14 @@ export class VisualviewportDirective {
         } else {
           this.renderer.removeClass(this.elRef.nativeElement, "active");
         }
-        this.height = `${height}px`;
+        // this.height = `${height}px`;
         cdr.markForCheck();
       });
 
     fromEvent(window, "scroll")
       .pipe(debounceTime(300))
       .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // window.scrollTo({ top: 0, behavior: "smooth" });
       });
   }
 }
