@@ -41,7 +41,8 @@ export class VisualviewportDirective {
     fromEvent(window, "scroll")
       .pipe(debounceTime(300))
       .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        this.renderer.setStyle(this.elRef.nativeElement, "top", window.scrollY);
+        // window.scrollTo({ top: 0, behavior: "smooth" });
       });
   }
 }

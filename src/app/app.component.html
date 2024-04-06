@@ -3,24 +3,22 @@
 <!-- <p *ngIf="!isFrame">
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque soluta, possimus illo voluptate nesciunt nobis vel maiores quia natus fugit repellendus, reiciendis corporis odio dicta. Ut mollitia nemo dolore aut aperiam. Eligendi minus qui cumque ipsa saepe porro repellat dolorum, ipsam quibusdam doloremque dolorem voluptas nulla neque error iste debitis.
 </p> -->
-<div class="wrapper">
-  <form class="block" appVisualviewport [formGroup]="form">
-    <h1>Заголовок</h1>
-    <div class="field flashing">
-      <input
-        formControlName="minutes"
-        type="text"
-        class="input"
-        inputmode="numeric"
-        mask="separator.0"
-        separatorLimit="100000"
-        thousandSeparator=""
-        suffix=" мин"
-        maxlength="10"
-        placeholder="0 мин"
-        flashingCaret
-      />
-    </div>
-    <button type="button">Подвал</button>
-  </form>
-</div>
+<form class="block" appVisualviewport [formGroup]="form">
+  <h1>Заголовок</h1>
+  <div class="field flashing">
+    <input
+      formControlName="minutes"
+      type="text"
+      class="input"
+      inputmode="numeric"
+      mask="separator.0"
+      separatorLimit="100000"
+      thousandSeparator=""
+      suffix=" мин"
+      maxlength="10"
+      placeholder="0 мин"
+      flashingCaret
+    />
+  </div>
+  <button type="button">Подвал</button>
+</form>
