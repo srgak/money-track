@@ -6,20 +6,19 @@
 <div class="wrapper">
   <form class="block" appVisualviewport [formGroup]="form">
     <h1>Заголовок</h1>
-    <div class="field flashing">
-      <input
-        formControlName="minutes"
-        type="text"
-        class="input"
-        inputmode="numeric"
-        mask="0{6}"
-        suffix=" мин"
-        placeholder="0 мин"
-        flashingCaret
-        readonly
-        (focus)="fieldFocused()"
-      />
-    </div>
+    <!-- <div class="field flashing"> -->
+    <input
+      formControlName="minutes"
+      type="text"
+      class="input"
+      inputmode="numeric"
+      mask="0{6}"
+      suffix=" мин"
+      placeholder="0 мин"
+      readonly
+      (focus)="fieldFocused()"
+    />
+    <!-- </div> -->
     <button type="button" (click)="fieldBlured()">Подвал</button>
   </form>
   <app-virtual-keyboard

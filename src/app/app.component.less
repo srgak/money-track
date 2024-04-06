@@ -34,21 +34,26 @@
   }
 }
 .input {
-  width: 100%;
-  border: 1px solid white;
+  width: calc(100% - 40px);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  // border: 1px solid white;
   padding: 10px;
   text-align: center;
   caret-color: white;
+  border-bottom: 2px solid transparent;
+  animation: flashingField 1.5s infinite;
 }
 
-@keyframes flashingCaret {
+@keyframes flashingField {
   0% {
-    opacity: 0;
+    border-bottom-color: transparent;
   }
   50% {
-    opacity: 1;
+    border-bottom-color: white;
   }
   100% {
-    opacity: 0;
+    border-bottom-color: transparent;
   }
 }
