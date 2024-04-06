@@ -1,6 +1,11 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+}
 .block {
   border: 1px solid red;
-  height: 100dvh;
+  // height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,6 +19,7 @@
 .field {
   position: relative;
   width: 100%;
+  pointer-events: none;
   &.flashing {
     &::before {
       content: "";

@@ -1,19 +1,31 @@
-import { Component, Injector, Input, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Injector,
+  Input,
+  OnInit,
+} from "@angular/core";
 import { DataService } from "./services/data/data.service";
 import { ValdemortConfig } from "ngx-valdemort";
 import { StorageService } from "./services/storage.service";
 import { MenuItem, MenuMain } from "./ui-kit/models/models";
 import { createCustomElement } from "@angular/elements";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   @Input() public isFrame: boolean = false;
-  public counter = 0;
+
   constructor(
     private config: ValdemortConfig,
     public data: DataService,
@@ -73,8 +85,14 @@ export class AppComponent implements OnInit {
     minutes: new FormControl(""),
   });
 
-  public foo(): void {
-    this.counter++;
+  public updateFiled(key: number | string): void {
+    const value = this.form.get("minutes")?.value;
+
+    if (typeof key === "number") {
+      this.form.get("minutes")?.setValue(`${value}${key}`);
+    } else {
+      this.form.get("minutes")?.setValue(`${value.slice(0, -1)}`);
+    }
   }
 
   ngOnInit(): void {}

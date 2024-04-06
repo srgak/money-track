@@ -1,0 +1,15 @@
+<div class="keyboard">
+  <div
+    class="keyboard__row"
+    *ngFor="let row of keys"
+    [class.keyboard__row--last]="row.length < 3"
+  >
+    <button
+      class="keyboard__key"
+      *ngFor="let key of row"
+      (click)="pressedKey.emit(key)"
+    >
+      {{ key }}
+    </button>
+  </div>
+</div>

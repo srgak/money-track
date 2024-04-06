@@ -30,6 +30,7 @@ import { VisualviewportDirective } from "./directives/visualviewport.directive";
 import { NgxMaskModule } from "ngx-mask";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FlashinfCaretDirective } from "./directives/flasing-caret";
+import { VirtualKeyboardComponent } from './components/virtual-keyboard/virtual-keyboard.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FlashinfCaretDirective } from "./directives/flasing-caret";
     FixBlockDirective,
     VisualviewportDirective,
     FlashinfCaretDirective,
+    VirtualKeyboardComponent,
   ],
   imports: [
     BrowserModule,

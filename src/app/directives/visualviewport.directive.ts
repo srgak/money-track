@@ -14,7 +14,6 @@ import { debounceTime, fromEvent, map, tap } from "rxjs";
 })
 export class VisualviewportDirective {
   @HostBinding("style.height") public height: string;
-  @Output() public foo = new EventEmitter<void>();
 
   private isOpenKeyboard = false;
 
@@ -44,8 +43,6 @@ export class VisualviewportDirective {
     fromEvent(window, "scroll")
       .pipe(debounceTime(300))
       .subscribe(() => {
-        this.foo.emit();
-        // this.renderer.setStyle(this.elRef.nativeElement, "top", window.scrollY);
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
   }
