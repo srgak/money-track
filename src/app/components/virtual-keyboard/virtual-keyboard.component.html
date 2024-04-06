@@ -4,12 +4,19 @@
     *ngFor="let row of keys"
     [class.keyboard__row--last]="row.length < 3"
   >
-    <button
-      class="keyboard__key"
-      *ngFor="let key of row"
-      (click)="pressedKey.emit(key)"
-    >
-      {{ key }}
-    </button>
+    <ng-container *ngFor="let key of row">
+      <button
+        class="keyboard__key"
+        *ngIf="key.action !== 'backspace'; else backspaceKey"
+        (click)="pressedKey.emit(key)"
+      >
+        {{ key.value }}
+      </button>
+      <ng-template #backspaceKey>
+        <button class="keyboard__key" (click)="pressedKey.emit(key)">
+          delete
+        </button>
+      </ng-template>
+    </ng-container>
   </div>
 </div>

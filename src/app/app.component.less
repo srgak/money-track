@@ -20,17 +20,17 @@
   position: relative;
   width: 100%;
   &.flashing {
-    &::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 1px;
-      height: 18px;
-      background: white;
-      animation: flashingCaret 1s infinite;
-    }
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   left: 50%;
+    //   top: 50%;
+    //   transform: translate(-50%, -50%);
+    //   width: 1px;
+    //   height: 18px;
+    //   background: white;
+    //   animation: flashingCaret 1s infinite;
+    // }
   }
 }
 .input {
@@ -39,7 +39,6 @@
   padding: 10px;
   text-align: center;
   caret-color: white;
-  pointer-events: none;
   &:focus {
     border-color: aqua;
   }

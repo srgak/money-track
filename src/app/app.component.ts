@@ -16,6 +16,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { KeyboardKeyData } from "./components/virtual-keyboard/virtual-keyboard.component";
 
 @Component({
   selector: "app-root",
@@ -85,13 +86,17 @@ export class AppComponent implements OnInit {
     minutes: new FormControl(""),
   });
 
-  public updateFiled(key: number | string): void {
+  public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;
 
-    if (typeof key === "number") {
-      this.form.get("minutes")?.setValue(`${value}${key}`);
-    } else {
-      this.form.get("minutes")?.setValue(`${value.slice(0, -1)}`);
+    if (!value && key.value === 0) {
+      return;
+    }
+
+    if (key.action === "print" && value.length < 6) {
+      this.form.get("minutes")?.patchValue(`${value}${key.value}`);
+    } else if (key.action === "backspace") {
+      this.form.get("minutes")?.patchValue(`${value.slice(0, -1)}`);
     }
   }
 
