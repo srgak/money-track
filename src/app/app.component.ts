@@ -17,12 +17,40 @@ import {
   Validators,
 } from "@angular/forms";
 import { KeyboardKeyData } from "./components/virtual-keyboard/virtual-keyboard.component";
+import { animate, style, transition, trigger } from "@angular/animations";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger("toggleVirtualKeyboard", [
+      transition(":enter", [
+        style({
+          height: 0,
+        }),
+        animate(
+          "300ms",
+          style({
+            height: "*",
+          })
+        ),
+      ]),
+      transition(":leave", [
+        style({
+          height: "*",
+        }),
+        animate(
+          "300ms",
+          style({
+            height: "0px",
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent implements OnInit {
   @Input() public isFrame: boolean = false;
@@ -86,6 +114,8 @@ export class AppComponent implements OnInit {
     minutes: new FormControl(""),
   });
 
+  public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
+
   public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;
 
@@ -100,5 +130,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  public fieldFocused(): void {
+    this.isVisibleKeyboard.next(true);
+  }
+
+  public fieldBlured(): void {
+    this.isVisibleKeyboard.next(false);
+  }
+
+  ngOnInit(): void {
+    this.isVisibleKeyboard.next(true);
+  }
 }
