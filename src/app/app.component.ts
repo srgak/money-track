@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
   ];
 
   public form: FormGroup = new FormGroup({
-    minutes: new FormControl("0", [Validators.min(100)]),
+    minutes: new FormControl("0", [Validators.min(1), Validators.max(300)]),
   });
 
   public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
