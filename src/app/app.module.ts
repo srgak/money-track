@@ -31,6 +31,7 @@ import { NgxMaskModule } from "ngx-mask";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FlashinfCaretDirective } from "./directives/flasing-caret";
 import { VirtualKeyboardComponent } from './components/virtual-keyboard/virtual-keyboard.component';
+import { MinutesFieldComponent } from './components/minutes-field/minutes-field.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { VirtualKeyboardComponent } from './components/virtual-keyboard/virtual-
     VisualviewportDirective,
     FlashinfCaretDirective,
     VirtualKeyboardComponent,
+    MinutesFieldComponent,
   ],
   imports: [
     BrowserModule,

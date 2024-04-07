@@ -7,7 +7,7 @@
   <form class="block" appVisualviewport [formGroup]="form">
     <h1>Заголовок</h1>
     <!-- <div class="field flashing"> -->
-    <input
+    <!-- <input
       formControlName="minutes"
       type="text"
       class="input"
@@ -17,9 +17,15 @@
       placeholder="0 мин"
       readonly
       (focus)="fieldFocused()"
-    />
+    /> -->
     <!-- </div> -->
-    <button type="button" (click)="fieldBlured()">Подвал</button>
+    <app-minutes-field
+      formControlName="minutes"
+      (click)="fieldClicked()"
+    ></app-minutes-field>
+    <button type="button" (click)="fieldBlured()">
+      Подвал {{ form.valid ? "корректно" : "ошибка" }}
+    </button>
   </form>
   <app-virtual-keyboard
     *ngIf="isVisibleKeyboard | async"

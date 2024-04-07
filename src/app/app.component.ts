@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
   ];
 
   public form: FormGroup = new FormGroup({
-    minutes: new FormControl(""),
+    minutes: new FormControl("0", [Validators.min(100)]),
   });
 
   public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
@@ -119,18 +119,20 @@ export class AppComponent implements OnInit {
   public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;
 
-    if (!value && key.value === 0) {
-      return;
-    }
-
     if (key.action === "print" && value.length < 6) {
-      this.form.get("minutes")?.patchValue(`${value}${key.value}`);
+      this.form
+        .get("minutes")
+        ?.setValue(
+          value.startsWith("0") ? `${key.value}` : `${value}${key.value}`
+        );
     } else if (key.action === "backspace") {
-      this.form.get("minutes")?.patchValue(`${value.slice(0, -1)}`);
+      this.form
+        .get("minutes")
+        ?.setValue(`${value.length === 1 ? "0" : value.slice(0, -1)}`);
     }
   }
 
-  public fieldFocused(): void {
+  public fieldClicked(): void {
     this.isVisibleKeyboard.next(true);
   }
 
