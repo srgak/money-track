@@ -4,7 +4,7 @@
       class="keyboard__key"
       [class.keyboard__key--empty]="!key.action"
       *ngFor="let key of row"
-      (touchstart)="pressedKey.emit(key)"
+      (click)="pressedKey.emit(key)"
     >
       <ng-container *ngIf="key.action !== 'backspace'; else backspaceKey">
         {{ key.value }}
