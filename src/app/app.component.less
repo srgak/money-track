@@ -1,7 +1,7 @@
 .wrapper {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .block {
   border: 1px solid red;
@@ -11,6 +11,7 @@
   align-items: center;
   transition: 0.2s ease-in;
   width: 100vw;
+  height: 100%;
   &.active {
     transition: 0.3s ease-in-out;
   }
