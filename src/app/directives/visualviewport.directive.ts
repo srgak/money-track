@@ -40,10 +40,10 @@ export class VisualviewportDirective {
         cdr.markForCheck();
       });
 
-    // fromEvent(window, "scroll")
-    //   .pipe(debounceTime(300))
-    //   .subscribe(() => {
-    //     window.scrollTo({ top: 0, behavior: "smooth" });
-    //   });
+    fromEvent(window, "scroll")
+      .pipe(debounceTime(300))
+      .subscribe(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
   }
 }
