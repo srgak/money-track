@@ -28,10 +28,10 @@ import { MenuModule } from "./ui-kit/components/menu/menu.module";
 import { MenuCenteredModule } from "./ui-kit/directives/menu-centered/menu-centered.module";
 import { VisualviewportDirective } from "./directives/visualviewport.directive";
 import { NgxMaskModule } from "ngx-mask";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlashinfCaretDirective } from "./directives/flasing-caret";
-import { VirtualKeyboardComponent } from './components/virtual-keyboard/virtual-keyboard.component';
-import { MinutesFieldComponent } from './components/minutes-field/minutes-field.component';
+import { VirtualKeyboardComponent } from "./components/virtual-keyboard/virtual-keyboard.component";
+import { MinutesFieldComponent } from "./components/minutes-field/minutes-field.component";
 
 @NgModule({
   declarations: [
@@ -55,6 +55,7 @@ import { MinutesFieldComponent } from './components/minutes-field/minutes-field.
     //свои страницы
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     DataService,

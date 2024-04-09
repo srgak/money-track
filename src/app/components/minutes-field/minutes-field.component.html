@@ -1,5 +1,13 @@
 <div class="minutes">
-  {{ minutesValue }}
+  <input
+    class="minutes__input"
+    inputmode="numeric"
+    [formControl]="minutesField"
+    mask="separator.0"
+    maxlength="6"
+    autofocus
+  />
+  {{ minutesField.value }}
   <span class="minutes__cursor"></span>
   <span class="minutes__suffix"> мин </span>
 </div>

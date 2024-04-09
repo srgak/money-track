@@ -25,15 +25,16 @@ import {
   ],
 })
 export class MinutesFieldComponent implements ControlValueAccessor, OnInit {
-  public minutesValue!: string;
+  // public minutesValue!: string;
+  public minutesField: FormControl = new FormControl("");
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   private onChange(_: number): void {}
 
   public writeValue(value: string): void {
-    this.cdr.markForCheck();
-    this.minutesValue = value;
+    // this.cdr.markForCheck();
+    this.minutesField.setValue(value);
   }
 
   public registerOnChange(fn: any): void {
@@ -42,5 +43,9 @@ export class MinutesFieldComponent implements ControlValueAccessor, OnInit {
 
   public registerOnTouched(_: any): void {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.minutesField.valueChanges.subscribe((value) => {
+      this.onChange(value);
+    });
+  }
 }
