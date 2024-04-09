@@ -32,6 +32,7 @@ export class MinutesFieldComponent
   implements ControlValueAccessor, OnInit, AfterViewInit
 {
   @ViewChild("input") public inputRef!: ElementRef;
+  @ViewChild("valueEl") public valueRef!: ElementRef;
   // public minutesValue!: string;
   public minutesField: FormControl = new FormControl("");
 
@@ -58,7 +59,13 @@ export class MinutesFieldComponent
 
   ngAfterViewInit(): void {
     this.r2.listen(this.inputRef.nativeElement, "select", () => {
-      (this.inputRef.nativeElement as HTMLInputElement).setSelectionRange(this.minutesField.value.length, this.minutesField.value.length);
+      (this.inputRef.nativeElement as HTMLInputElement).setSelectionRange(
+        this.minutesField.value.length,
+        this.minutesField.value.length
+      );
+    });
+    this.r2.listen(this.valueRef.nativeElement, "click", () => {
+      (this.inputRef.nativeElement as HTMLInputElement).focus();
     });
   }
 }

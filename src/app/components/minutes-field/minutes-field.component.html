@@ -8,7 +8,9 @@
     maxlength="6"
     autofocus
   />
-  {{ minutesField.value }}
-  <span class="minutes__cursor"></span>
-  <span class="minutes__suffix"> мин </span>
+  <span class="minutes__value" #valueEl>
+    {{ minutesField.value }}
+    <span class="minutes__cursor"></span>
+    <span class="minutes__suffix"> мин </span>
+  </span>
 </div>
