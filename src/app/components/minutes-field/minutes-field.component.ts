@@ -64,8 +64,8 @@ export class MinutesFieldComponent
         this.minutesField.value.length
       );
     });
-    // this.r2.listen(this.valueRef.nativeElement, "click", () => {
-    //   (this.inputRef.nativeElement as HTMLInputElement).focus();
-    // });
+    this.r2.listen(this.valueRef.nativeElement, "click", () => {
+      (this.inputRef.nativeElement as HTMLInputElement).focus();
+    });
   }
 }
