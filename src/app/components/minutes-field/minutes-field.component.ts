@@ -14,6 +14,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
+import { tap } from "rxjs";
 
 @Component({
   selector: "app-minutes-field",
@@ -33,7 +34,6 @@ export class MinutesFieldComponent
 {
   @ViewChild("input") public inputRef!: ElementRef;
   @ViewChild("valueEl") public valueRef!: ElementRef;
-  // public minutesValue!: string;
   public minutesField: FormControl = new FormControl("");
 
   constructor(private cdr: ChangeDetectorRef, private r2: Renderer2) {}
@@ -41,7 +41,6 @@ export class MinutesFieldComponent
   private onChange(_: number): void {}
 
   public writeValue(value: string): void {
-    // this.cdr.markForCheck();
     this.minutesField.setValue(value);
   }
 
@@ -52,18 +51,20 @@ export class MinutesFieldComponent
   public registerOnTouched(_: any): void {}
 
   ngOnInit(): void {
-    this.minutesField.valueChanges.subscribe((value) => {
-      this.onChange(value);
-    });
+    this.minutesField.valueChanges
+      .pipe(
+        tap((value) => {
+          if (!value.length) {
+            this.minutesField.reset("0");
+          }
+        })
+      )
+      .subscribe((value) => {
+        this.onChange(value);
+      });
   }
 
   ngAfterViewInit(): void {
-    this.r2.listen(this.inputRef.nativeElement, "select", () => {
-      (this.inputRef.nativeElement as HTMLInputElement).setSelectionRange(
-        this.minutesField.value.length,
-        this.minutesField.value.length
-      );
-    });
     this.r2.listen(this.valueRef.nativeElement, "click", () => {
       (this.inputRef.nativeElement as HTMLInputElement).focus();
     });

@@ -5,8 +5,7 @@
     inputmode="numeric"
     [formControl]="minutesField"
     mask="separator.0"
-    maxlength="6"
-    autofocus
+    separatorLimit="100000"
   />
   <span class="minutes__value" #valueEl>
     {{ minutesField.value }}
