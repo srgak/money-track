@@ -1,15 +1,20 @@
-<div class="minutes">
+<div class="minutes-field">
   <input
     #input
-    class="minutes__input"
+    class="minutes-field__input"
     inputmode="numeric"
     [formControl]="minutesField"
     mask="separator.0"
     separatorLimit="100000"
+    (focus)="focusedField()"
+    (blur)="bluredField()"
   />
-  <span class="minutes__value" #valueEl>
+  <span class="minutes-field-value" (click)="clickedValue()">
     {{ minutesField.value }}
-    <span class="minutes__cursor"></span>
-    <span class="minutes__suffix"> мин </span>
+    <span
+      class="minutes-field-value__cursor"
+      [class.minutes-field-value__cursor_flashing]="visibleCursor"
+    ></span>
+    <span class="minutes-field-value__suffix"> мин </span>
   </span>
 </div>

@@ -2,44 +2,46 @@
   display: block;
   width: 100%;
 }
-.minutes {
+.minutes-field {
   border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   height: 52px;
-  // padding-top: 4px;
-  // padding-bottom: 4px;
   &__input {
-    width: 0;
-    height: 0;
+    // width: 0;
+    // height: 0;
     color: transparent;
     caret-color: transparent;
   }
-  &__value {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    font-size: 44px;
-    line-height: 44px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
+}
+.minutes-field-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 44px;
+  line-height: 44px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   &__cursor {
-    align-self: center;
     display: inline-block;
+    align-self: center;
     background: white;
     height: 32px;
     width: 2px;
     border-radius: 10px;
     margin-right: 6px;
-    animation: flashingField 1.5s infinite;
+    visibility: hidden;
+    &_flashing {
+      visibility: visible;
+      animation: flashingField 1.5s infinite;
+    }
   }
   &__suffix {
     color: red;

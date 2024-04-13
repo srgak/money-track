@@ -4,7 +4,9 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   OnInit,
+  Output,
   Renderer2,
   ViewChild,
   forwardRef,
@@ -32,9 +34,11 @@ import { tap } from "rxjs";
 export class MinutesFieldComponent
   implements ControlValueAccessor, OnInit, AfterViewInit
 {
+  @Output() public focused = new EventEmitter<void>();
   @ViewChild("input") public inputRef!: ElementRef;
-  @ViewChild("valueEl") public valueRef!: ElementRef;
+
   public minutesField: FormControl = new FormControl("");
+  private isFocused = false;
 
   constructor(private cdr: ChangeDetectorRef, private r2: Renderer2) {}
 
@@ -50,6 +54,23 @@ export class MinutesFieldComponent
 
   public registerOnTouched(_: any): void {}
 
+  public clickedValue(): void {
+    (this.inputRef.nativeElement as HTMLInputElement).focus();
+  }
+
+  public focusedField(): void {
+    this.isFocused = true;
+    this.focused.emit();
+  }
+
+  public bluredField(): void {
+    this.isFocused = false;
+  }
+
+  public get visibleCursor(): boolean {
+    return this.isFocused || !Number(this.minutesField.value);
+  }
+
   ngOnInit(): void {
     this.minutesField.valueChanges
       .pipe(
@@ -64,9 +85,5 @@ export class MinutesFieldComponent
       });
   }
 
-  ngAfterViewInit(): void {
-    this.r2.listen(this.valueRef.nativeElement, "click", () => {
-      (this.inputRef.nativeElement as HTMLInputElement).focus();
-    });
-  }
+  ngAfterViewInit(): void {}
 }
