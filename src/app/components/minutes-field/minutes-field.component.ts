@@ -55,7 +55,7 @@ export class MinutesFieldComponent
   public registerOnTouched(_: any): void {}
 
   public clickedValue(): void {
-    (this.inputRef.nativeElement as HTMLInputElement).focus();
+    // (this.inputRef.nativeElement as HTMLInputElement).focus();
   }
 
   public focusedField(): void {
@@ -85,7 +85,5 @@ export class MinutesFieldComponent
       });
   }
 
-  ngAfterViewInit(): void {
-    (this.inputRef.nativeElement as HTMLInputElement).focus();
-  }
+  ngAfterViewInit(): void {}
 }
