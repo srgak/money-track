@@ -85,5 +85,7 @@ export class MinutesFieldComponent
       });
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    (this.inputRef.nativeElement as HTMLInputElement).focus();
+  }
 }
