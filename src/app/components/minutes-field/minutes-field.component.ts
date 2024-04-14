@@ -16,7 +16,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
-import { tap } from "rxjs";
+import { map, tap } from "rxjs";
 
 @Component({
   selector: "app-minutes-field",
@@ -76,7 +76,7 @@ export class MinutesFieldComponent
       .pipe(
         tap((value) => {
           if (!value.length) {
-            this.minutesField.reset("0");
+            this.minutesField.reset("0", { emitEvent: false });
           }
         })
       )
