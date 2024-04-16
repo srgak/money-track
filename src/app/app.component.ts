@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
   ];
 
   public form: FormGroup = new FormGroup({
-    minutes: new FormControl("0", [
+    minutes: new FormControl("", [
       Validators.required,
       Validators.min(1),
       Validators.max(300),
@@ -119,6 +119,10 @@ export class AppComponent implements OnInit {
   });
 
   public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
+
+  public get isBlinkingCaret(): boolean {
+    return !this.form.get("minutes")?.value.length;
+  }
 
   public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;

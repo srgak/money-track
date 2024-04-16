@@ -1,13 +1,10 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   OnInit,
   Output,
-  Renderer2,
   ViewChild,
   forwardRef,
 } from "@angular/core";
@@ -16,7 +13,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
-import { map, tap } from "rxjs";
+import { tap } from "rxjs";
 
 @Component({
   selector: "app-minutes-field",
@@ -31,16 +28,14 @@ import { map, tap } from "rxjs";
     },
   ],
 })
-export class MinutesFieldComponent
-  implements ControlValueAccessor, OnInit, AfterViewInit
-{
+export class MinutesFieldComponent implements ControlValueAccessor, OnInit {
   @Output() public focused = new EventEmitter<void>();
   @ViewChild("input") public inputRef!: ElementRef;
 
   public minutesField: FormControl = new FormControl("");
   private isFocused = false;
 
-  constructor(private cdr: ChangeDetectorRef, private r2: Renderer2) {}
+  constructor() {}
 
   private onChange(_: number): void {}
 
@@ -84,6 +79,4 @@ export class MinutesFieldComponent
         this.onChange(value);
       });
   }
-
-  ngAfterViewInit(): void {}
 }

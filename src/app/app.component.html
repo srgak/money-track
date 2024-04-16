@@ -6,8 +6,8 @@
 <!-- <div class="wrapper"> -->
 <form class="block" appVisualviewport [formGroup]="form">
   <h1>Заголовок</h1>
-  <!-- <div class="field flashing"> -->
-  <!-- <input
+  <div class="field" [class.flashing]="isBlinkingCaret">
+    <input
       formControlName="minutes"
       type="text"
       class="input"
@@ -15,14 +15,12 @@
       mask="0{6}"
       suffix=" мин"
       placeholder="0 мин"
-      readonly
-      (focus)="fieldFocused()"
-    /> -->
-  <!-- </div> -->
-  <app-minutes-field
+    />
+  </div>
+  <!-- <app-minutes-field
     formControlName="minutes"
     (click)="fieldClicked()"
-  ></app-minutes-field>
+  ></app-minutes-field> -->
   <button type="button" (click)="fieldBlured()">
     Подвал {{ form.valid ? "корректно" : "ошибка" }}
   </button>
