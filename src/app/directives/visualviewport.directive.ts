@@ -36,7 +36,7 @@ export class VisualviewportDirective {
         } else {
           this.renderer.removeClass(this.elRef.nativeElement, "active");
         }
-        this.height = `${height}px`;
+        // this.height = `${height}px`;
         cdr.markForCheck();
       });
 
