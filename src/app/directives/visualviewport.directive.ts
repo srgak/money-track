@@ -9,7 +9,7 @@ import {
   Output,
   Renderer2,
 } from "@angular/core";
-import { debounceTime, fromEvent, map, tap } from "rxjs";
+import { debounceTime, fromEvent, map, merge, tap } from "rxjs";
 
 @Directive({
   selector: "[appVisualviewport]",
@@ -33,22 +33,31 @@ export class VisualviewportDirective implements OnInit {
       });
   }
   ngOnInit(): void {
-    fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus")
-      .pipe(
-        debounceTime(100),
-        map(() => window.visualViewport as VisualViewport),
-        tap(({ height }) => {
-          this.isOpenKeyboard = height < window.innerHeight;
-        })
+    merge(
+      fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus").pipe(
+        map(() => true)
+      ),
+      fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
+        map(() => false)
       )
-      .subscribe(({ height }) => {
-        console.log(height);
-        if (this.isOpenKeyboard) {
-          this.renderer.addClass(this.elRef.nativeElement, "active");
-        } else {
-          this.renderer.removeClass(this.elRef.nativeElement, "active");
-        }
-        this.height = `${height}px`;
+    )
+      .pipe
+      // debounceTime(100),
+      // map(() => window.visualViewport as VisualViewport),
+      // tap(({ height }) => {
+      //   this.isOpenKeyboard = height < window.innerHeight;
+      // })
+      ()
+      .subscribe((isFocused) => {
+        isFocused
+          ? this.renderer.addClass(this.elRef.nativeElement, "active")
+          : this.renderer.removeClass(this.elRef.nativeElement, "active");
+        // if (this.isOpenKeyboard) {
+        //   this.renderer.addClass(this.elRef.nativeElement, "active");
+        // } else {
+        //   this.renderer.removeClass(this.elRef.nativeElement, "active");
+        // }
+        // this.height = `${height}px`;
         this.cdr.markForCheck();
       });
   }
