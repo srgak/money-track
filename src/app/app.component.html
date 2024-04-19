@@ -4,7 +4,7 @@
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque soluta, possimus illo voluptate nesciunt nobis vel maiores quia natus fugit repellendus, reiciendis corporis odio dicta. Ut mollitia nemo dolore aut aperiam. Eligendi minus qui cumque ipsa saepe porro repellat dolorum, ipsam quibusdam doloremque dolorem voluptas nulla neque error iste debitis.
 </p> -->
 <!-- <div class="wrapper"> -->
-<form class="block" [appVisualviewport]="isFocused" [formGroup]="form">
+<form class="block" appVisualviewport [formGroup]="form">
   <h1>Заголовок</h1>
   <div class="field" [class.flashing]="isBlinkingCaret">
     <input
@@ -16,8 +16,6 @@
       mask="0{6}"
       suffix=" мин"
       placeholder="0 мин"
-      (focus)="isFocused = true"
-      (blur)="isFocused = false"
     />
   </div>
   <!-- <app-minutes-field

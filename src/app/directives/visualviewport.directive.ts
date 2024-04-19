@@ -15,10 +15,6 @@ import { debounceTime, fromEvent, map, tap } from "rxjs";
 })
 export class VisualviewportDirective {
   @HostBinding("style.height") public height: string;
-  @Input("appVisualviewport") public set isFocused(value: boolean) {
-    console.log(window.visualViewport?.height);
-    this.height = value ? `${window.visualViewport?.height}px` : "";
-  }
 
   private isOpenKeyboard = false;
 
@@ -27,21 +23,23 @@ export class VisualviewportDirective {
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {
-    fromEvent(window.visualViewport as VisualViewport, "resize")
+    // fromEvent(window.visualViewport as VisualViewport, "resize")
+    fromEvent(elRef.nativeElement.querySelector(".input"), "focus")
       .pipe(
-        // debounceTime(100),
+        debounceTime(100),
         map(() => window.visualViewport as VisualViewport),
         tap(({ height }) => {
           this.isOpenKeyboard = height < window.innerHeight;
         })
       )
       .subscribe(({ height }) => {
+        console.log(height);
         if (this.isOpenKeyboard) {
           this.renderer.addClass(this.elRef.nativeElement, "active");
         } else {
           this.renderer.removeClass(this.elRef.nativeElement, "active");
         }
-        // this.height = `${height}px`;
+        this.height = `${height}px`;
         cdr.markForCheck();
       });
 

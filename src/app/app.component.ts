@@ -124,8 +124,6 @@ export class AppComponent implements OnInit {
     return !this.form.get("minutes")?.value.length;
   }
 
-  public isFocused = false;
-
   public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;
 
