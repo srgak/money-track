@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
+  Input,
   Output,
   Renderer2,
 } from "@angular/core";
@@ -14,6 +15,10 @@ import { debounceTime, fromEvent, map, tap } from "rxjs";
 })
 export class VisualviewportDirective {
   @HostBinding("style.height") public height: string;
+  @Input("appVisualviewport") public set isFocused(value: boolean) {
+    console.log(window.visualViewport?.height);
+    this.height = value ? `${window.visualViewport?.height}px` : "";
+  }
 
   private isOpenKeyboard = false;
 

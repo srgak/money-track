@@ -118,11 +118,13 @@ export class AppComponent implements OnInit {
     ]),
   });
 
-  public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
+  // public isVisibleKeyboard = new BehaviorSubject<boolean>(false);
 
   public get isBlinkingCaret(): boolean {
     return !this.form.get("minutes")?.value.length;
   }
+
+  public isFocused = false;
 
   public updateFiled(key: KeyboardKeyData): void {
     const value = this.form.get("minutes")?.value;
@@ -141,14 +143,14 @@ export class AppComponent implements OnInit {
   }
 
   public fieldClicked(): void {
-    this.isVisibleKeyboard.next(true);
+    // this.isVisibleKeyboard.next(true);
   }
 
   public fieldBlured(): void {
-    this.isVisibleKeyboard.next(false);
+    // this.isVisibleKeyboard.next(false);
   }
 
   ngOnInit(): void {
-    this.isVisibleKeyboard.next(true);
+    // this.isVisibleKeyboard.next(true);
   }
 }
