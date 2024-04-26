@@ -24,8 +24,6 @@ export class VisualviewportDirective implements OnInit {
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {
-    // fromEvent(window.visualViewport as VisualViewport, "resize")
-
     fromEvent(window, "scroll")
       .pipe(debounceTime(300))
       .subscribe(() => {
@@ -33,24 +31,27 @@ export class VisualviewportDirective implements OnInit {
       });
   }
   ngOnInit(): void {
-    merge(
-      fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus").pipe(
-        map(() => true)
-      ),
-      fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
-        map(() => false)
-      )
-    ).subscribe((isFocused) => {
-      isFocused
-        ? this.renderer.addClass(this.elRef.nativeElement, "active")
-        : this.renderer.removeClass(this.elRef.nativeElement, "active");
-      // if (this.isOpenKeyboard) {
-      //   this.renderer.addClass(this.elRef.nativeElement, "active");
-      // } else {
-      //   this.renderer.removeClass(this.elRef.nativeElement, "active");
-      // }
-      // this.height = `${height}px`;
-      // this.cdr.markForCheck();
-    });
+    // merge(
+    //   fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus").pipe(
+    //     map(() => true)
+    //   ),
+    //   fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
+    //     map(() => false)
+    //   )
+    // )
+    fromEvent(window.visualViewport as VisualViewport, "resize")
+      .pipe(map(() => window.visualViewport as VisualViewport))
+      .subscribe(({ height }) => {
+        //isFocused
+        //  ? this.renderer.addClass(this.elRef.nativeElement, "active")
+        //  : this.renderer.removeClass(this.elRef.nativeElement, "active");
+        this.renderer.setStyle(
+          this.elRef.nativeElement,
+          "height",
+          `${height}px`
+        );
+        // this.height = `${height}px`;
+        // this.cdr.markForCheck();
+      });
   }
 }
