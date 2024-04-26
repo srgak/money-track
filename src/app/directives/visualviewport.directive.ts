@@ -40,25 +40,17 @@ export class VisualviewportDirective implements OnInit {
       fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
         map(() => false)
       )
-    )
-      .pipe
-      // debounceTime(100),
-      // map(() => window.visualViewport as VisualViewport),
-      // tap(({ height }) => {
-      //   this.isOpenKeyboard = height < window.innerHeight;
-      // })
-      ()
-      .subscribe((isFocused) => {
-        isFocused
-          ? this.renderer.addClass(this.elRef.nativeElement, "active")
-          : this.renderer.removeClass(this.elRef.nativeElement, "active");
-        // if (this.isOpenKeyboard) {
-        //   this.renderer.addClass(this.elRef.nativeElement, "active");
-        // } else {
-        //   this.renderer.removeClass(this.elRef.nativeElement, "active");
-        // }
-        // this.height = `${height}px`;
-        this.cdr.markForCheck();
-      });
+    ).subscribe((isFocused) => {
+      isFocused
+        ? this.renderer.addClass(this.elRef.nativeElement, "active")
+        : this.renderer.removeClass(this.elRef.nativeElement, "active");
+      // if (this.isOpenKeyboard) {
+      //   this.renderer.addClass(this.elRef.nativeElement, "active");
+      // } else {
+      //   this.renderer.removeClass(this.elRef.nativeElement, "active");
+      // }
+      // this.height = `${height}px`;
+      // this.cdr.markForCheck();
+    });
   }
 }
