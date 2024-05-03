@@ -15,7 +15,7 @@ import { debounceTime, fromEvent, map, merge, tap } from "rxjs";
   selector: "[appVisualviewport]",
 })
 export class VisualviewportDirective implements OnInit {
-  @HostBinding("style.height") public height: string;
+  // @HostBinding("style.height") public height: string;
 
   private isOpenKeyboard = false;
 
@@ -31,27 +31,38 @@ export class VisualviewportDirective implements OnInit {
       });
   }
   ngOnInit(): void {
-    // merge(
-    //   fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus").pipe(
-    //     map(() => true)
-    //   ),
-    //   fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
-    //     map(() => false)
-    //   )
-    // )
-    fromEvent(window.visualViewport as VisualViewport, "resize")
-      .pipe(map(() => window.visualViewport as VisualViewport))
-      .subscribe(({ height }) => {
-        //isFocused
-        //  ? this.renderer.addClass(this.elRef.nativeElement, "active")
-        //  : this.renderer.removeClass(this.elRef.nativeElement, "active");
+    merge(
+      fromEvent(this.elRef.nativeElement.querySelector(".input"), "focus").pipe(
+        map(() => "focus")
+      ),
+      fromEvent(this.elRef.nativeElement.querySelector(".input"), "blur").pipe(
+        map(() => "blur")
+      ),
+      fromEvent(window.visualViewport as VisualViewport, "resize").pipe(
+        map(() => "resize")
+      )
+    ).subscribe((type) => {
+      if (type === "resize") {
+        const height = (window.visualViewport as VisualViewport).height;
+
+        height < window.innerHeight
+          ? this.renderer.addClass(this.elRef.nativeElement, "active")
+          : this.renderer.removeClass(this.elRef.nativeElement, "active");
+
         this.renderer.setStyle(
           this.elRef.nativeElement,
           "height",
           `${height}px`
         );
-        // this.height = `${height}px`;
-        // this.cdr.markForCheck();
-      });
+      } else {
+        if (type === "focus") {
+          this.renderer.addClass(this.elRef.nativeElement, "active");
+          this.renderer.addClass(this.elRef.nativeElement, "active_height");
+        } else {
+          this.renderer.removeClass(this.elRef.nativeElement, "active");
+          this.renderer.removeClass(this.elRef.nativeElement, "active_height");
+        }
+      }
+    });
   }
 }
